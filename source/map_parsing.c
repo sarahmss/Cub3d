@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 21:26:02 by smodesto          #+#    #+#             */
-/*   Updated: 2022/06/12 23:02:15 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/06/14 21:56:44 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,21 +94,24 @@ int	check_map(char **cub_map, t_scene *scene)
 	int	i;
 
 	i = 0;
-	while (cub_map[0][i])
-		if (ft_strchr("1 \t", cub_map[0][i++]) == NULL)
+	while (cub_map[0][i] != '\0')
+		if (ft_strccmp("1 \t", cub_map[0][i++]) == 0)
 			return (-1);
 	i = 0;
-	while (cub_map[scene->map_height][i])
-		if (ft_strchr("1 \t", cub_map[scene->map_height][i++]) == NULL)
+	while (cub_map[scene->map_height][i]  != '\0')
+		if (ft_strccmp("1 \t", cub_map[scene->map_height][i++]) == 0)
 			return (-1);
 	i = 0;
-	while (cub_map[i][0])
-		if (ft_strchr("1 \t", cub_map[i++][0]) == NULL)
+	while (i < scene->map_height)
+		if (ft_strccmp("1 \t", cub_map[i++][0]) == 0)
 			return (-1);
 	i = 0;
-	while (cub_map[i][scene->map_width])
-		if (ft_strchr("1 \t", cub_map[i++][scene->map_width]) == NULL)
+	while (i < scene->map_height)
+	{
+		if (ft_strccmp("1 \t", cub_map[i][ft_strlen(cub_map[i]) - 1]) == 0)
 			return (-1);
+		i++;
+	}
 	return (0);
 }
 
@@ -118,17 +121,17 @@ int	map_parsing(char **cub_map, t_scene *scene)
 
 	i = 0;
 	get_height_width(cub_map, scene);
-/*	if (check_map(cub_map, scene))
+	if (check_map(cub_map, scene))
 	{
 		free_matrix(cub_map);
 		printf ("ERROR- INVALID MAP");
 		return (-1);
-	}*/
-	alloc_map(scene);
+	}
+/*	alloc_map(scene);
 	while (cub_map[i] != NULL)
 	{
 		fill_map(cub_map[i], scene, i);
 		i++;
-	}
+	}*/
 	return (0);
 }

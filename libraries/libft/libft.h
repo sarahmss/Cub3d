@@ -46,6 +46,7 @@ int		ft_strcmp(const char *s1, const char *s2);
 char	*str_replace(char *orig, char *rep, char *with);
 char	*ft_join_var(unsigned int arg_quantity, ...);
 int		c_in_c(char c, char *line);
+int		ft_strccmp(const char *s1, const char c);
 
 // input/output
 int		get_next_line(int fd, char **line);

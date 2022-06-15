@@ -42,3 +42,19 @@ int	ft_strcmp(const char *s1, const char *s2)
 	}
 	return (1);
 }
+
+/*
+	1: Equal
+	0: distint
+*/
+int	ft_strccmp(const char *s1, char c)
+{
+
+	while (*s1)
+	{
+		if (*s1 == c)
+			return (1);
+		s1++;
+	}
+	return (0);
+}
