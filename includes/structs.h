@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 08:51:24 by smodesto          #+#    #+#             */
-/*   Updated: 2022/06/12 20:59:29 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/06/15 23:26:39 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@
 
 typedef enum e_map
 {
-	SPACES = -1,
 	EMPTY,
 	WALL,
 	N,
 	S,
 	W,
-	E
+	E,
+	SPACES
 }				t_map;
 
 typedef struct s_scene

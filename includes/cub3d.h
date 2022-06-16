@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                              :+:      :+:    :+:   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/17 18:56:26 by smodesto          #+#    #+#             */
-/*   Updated: 2021/09/13 11:12:47 by smodesto         ###   ########.fr       */
+/*   Created: 2022/06/15 23:29:38 by smodesto          #+#    #+#             */
+/*   Updated: 2022/06/15 23:29:40 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,5 @@ void	check_error(int err, char *msg);
 int		before_living(t_cub3d *data);
 int		read_file(char *filename, t_scene *scene);
 int		map_parsing(char **cub_map, t_scene *scene);
+int		check_map(char **cub_map, t_scene *scene);
 #endif

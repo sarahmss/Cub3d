@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/20 10:49:09 by smodesto          #+#    #+#             */
-/*   Updated: 2022/06/12 21:01:13 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/06/15 23:30:19 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ static int	close_window(t_cub3d *data)
 	free(data);
 	exit(0);
 }
-
 
 void	control_events(t_cub3d *data)
 {

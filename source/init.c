@@ -6,12 +6,11 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 19:27:02 by smodesto          #+#    #+#             */
-/*   Updated: 2022/06/12 20:58:50 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/06/15 23:30:27 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
 
 static t_scene	*init_scene(void)
 {
@@ -45,4 +44,3 @@ t_cub3d	*init_data(void)
 	data->scene = init_scene();
 	return (data);
 }
-

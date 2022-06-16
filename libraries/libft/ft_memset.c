@@ -23,3 +23,15 @@ void	*ft_memset(void *mem, int const_byte, size_t n_bytes)
 		mem_f[pos++] = (unsigned char)const_byte;
 	return (mem);
 }
+
+int	*ft_intset(void *mem, int const_byte, int n_bytes)
+{
+	int		pos;
+	int		*mem_f;
+
+	pos = 0;
+	mem_f = (int *)mem;
+	while (pos < n_bytes)
+		mem_f[pos++] = const_byte;
+	return (mem);
+}

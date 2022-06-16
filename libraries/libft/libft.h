@@ -105,5 +105,6 @@ int		ft_numblen(long numb, int base);
 char	*ft_itoa(int n);
 char	*ft_itoa_bases(long long int value, int base, char x);
 int		ft_arraylen(void **array);
+int		*ft_intset(void *mem, int const_byte, int n_bytes);
 
 #endif
