@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 22:24:29 by smodesto          #+#    #+#             */
-/*   Updated: 2022/06/22 22:40:45 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/06/22 22:58:38 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,17 @@ static int bottom_line(char **cub_map, int last_line)
 static int left_column(char **cub_map, int lines)
 {
 	int	i;
+	int	j;
 
 	i = 0;
+	j = 0;
 	while (i < lines)
 	{
-		while (cub_map[i][0] == '\t' || cub_map[i][0] == ' ')
-			i++;
-		if (cub_map[i][0] != 1)
+		while (cub_map[i][0 + j] == '\t' || cub_map[i][0 + j] == ' ')
+			j++;
+		if (cub_map[i][0 + j] != '1')
 			return (-1);
+		i++;
 	}
 	return (0);
 }
@@ -62,11 +65,10 @@ static int left_column(char **cub_map, int lines)
 static int right_column(char **cub_map, int lines)
 {
 	int	i;
+
+	i = 0;
 	while (i < lines)
 	{
-		while (cub_map[i][ft_strlen(cub_map[i]) - 1] == '\t'
-		|| cub_map[i][ft_strlen(cub_map[i]) - 1] == ' ')
-			i++;
 		if (cub_map[i][ft_strlen(cub_map[i]) - 1] != '1')
 			return (-1);
 		i++;
