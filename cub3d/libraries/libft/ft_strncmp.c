@@ -58,20 +58,3 @@ int	ft_strccmp(const char *s1, char c)
 	}
 	return (0);
 }
-
-/*
-	compares
-	1: Equal
-	0: distint
-*/
-int	ft_strccmpskip(const char compare, char c, char *skip)
-{
-
-	while (*s1)
-	{
-		if (*s1 == c)
-			return (1);
-		s1++;
-	}
-	return (0);
-}
