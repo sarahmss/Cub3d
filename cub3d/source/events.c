@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/20 10:49:09 by smodesto          #+#    #+#             */
-/*   Updated: 2022/06/20 12:11:44 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/06/22 22:14:28 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static void	free_scene(t_scene *scene)
 		free(scene->ea_texture);
 	if (scene->cub_map)
 		free_array((void **)scene->cub_map, scene->map_height);
+	free(scene);
 }
 
 /*

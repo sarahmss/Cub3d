@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 21:26:02 by smodesto          #+#    #+#             */
-/*   Updated: 2022/06/21 19:28:02 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/06/22 22:13:40 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ static void	alloc_map(t_scene *scene)
 	int	i;
 
 	i = 0;
-	scene->cub_map = (int **) malloc(sizeof(int *) * (scene->map_height + 1));
+	scene->cub_map = (int **) malloc(sizeof(int *) * (scene->map_height));
 	if (!(scene->cub_map))
 		check_error(1, "ALLOCATING ERROR");
 	i = 0;
-	while (i <= scene->map_height)
+	while (i < scene->map_height)
 	{
-		scene->cub_map[i] = (int *)malloc(sizeof(int) * (scene->map_width + 1));
+		scene->cub_map[i] = (int *)malloc(sizeof(int) * (scene->map_width));
 		if (!(scene->cub_map[i]))
 			check_error(1, "ALLOCATING ERROR");
 		i++;
@@ -54,7 +54,7 @@ static void	get_height_width(char **cub_map, t_scene *scene)
 		height++;
 	}
 	scene->map_height = height;
-	scene->map_width = width - 1;
+	scene->map_width = width;
 }
 
 static int	set_element(char *map_line)
@@ -92,11 +92,12 @@ static void	fill_map(char *map_line, t_scene *scene, int line)
 		}
 		else
 			*cub_line = set_element(map_line);
+		i++;
 		map_line++;
 		cub_line++;
 	}
 	if (i < scene->map_width)
-		ft_intset(cub_line, SPACES, (scene->map_width - i));
+		ft_intset(cub_line, SPACES, (scene->map_width - i - 1));
 }
 
 int	map_parsing(char **cub_map, t_scene *scene)
@@ -105,12 +106,13 @@ int	map_parsing(char **cub_map, t_scene *scene)
 
 	i = 0;
 	get_height_width(cub_map, scene);
-	if (check_map(cub_map, scene))
+/*	if (check_map(cub_map, scene))
 	{
-		free_matrix(cub_map);
+		while (cub_map[i] != NULL)
+			free(cub_map[i++]);
 		printf ("ERROR- INVALID MAP");
 		return (-1);
-	}
+	}*/
 	alloc_map(scene);
 	while (cub_map[i] != NULL)
 	{
