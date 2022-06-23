@@ -6,7 +6,7 @@
 #    By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/11 17:02:33 by smodesto          #+#    #+#              #
-#    Updated: 2022/06/20 11:50:26 by smodesto         ###   ########.fr        #
+#    Updated: 2022/06/22 22:40:20 by smodesto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ SRCS_FILES =	main.c			\
 				init.c			\
 				file_handling.c	\
 				map_parsing.c	\
-				raycasting.c
+				check_map.c
 
 SRCS = $(addprefix $(SRC_PATH), $(SRCS_FILES))
 

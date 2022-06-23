@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 20:45:09 by smodesto          #+#    #+#             */
-/*   Updated: 2022/06/22 22:16:03 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/06/22 22:24:20 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,30 +84,6 @@ static char	**copy_map(int fd, char **maptriz, int i)
 	maptriz = ft_split(map_in_one_line, '\n');
 	free(map_in_one_line);
 	return (maptriz);
-}
-
-int	check_map(char **cub_map, t_scene *scene)
-{
-	int	i;
-
-	i = 0;
-	while (cub_map[0][i] != '\0')
-		if (ft_strccmp("1 \t", cub_map[0][i++]) == 0)
-			return (-1);
-	i = 0;
-	while (cub_map[scene->map_height][i] != '\0')
-		if (ft_strccmp("1 \t", cub_map[scene->map_height][i++]) == 0)
-			return (-1);
-	i = 0;
-	while (i < scene->map_height)
-	{
-		if (ft_strccmp("1 \t", cub_map[i][0]) == 0)
-			return (-1);
-		if (ft_strccmp("1 \t", cub_map[i][ft_strlen(cub_map[i]) - 1]) == 0)
-			return (-1);
-		i++;
-	}
-	return (0);
 }
 
 int	read_file(char *filename, t_scene *scene)

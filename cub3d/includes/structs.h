@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 08:51:24 by smodesto          #+#    #+#             */
-/*   Updated: 2022/06/20 11:44:28 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/06/22 22:39:55 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ typedef enum e_map
 	S,
 	W,
 	E,
-	SPACES
+	SPACES,
+	TAB
 }				t_map;
 
 typedef struct s_vector

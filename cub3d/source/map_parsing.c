@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 21:26:02 by smodesto          #+#    #+#             */
-/*   Updated: 2022/06/22 22:13:40 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/06/22 22:43:04 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ static int	set_element(char *map_line)
 {
 	if (*map_line == ' ')
 		return (SPACES);
+	else if (*map_line == '\t')
+		return (TAB);
 	else if (*map_line == '0')
 		return (EMPTY);
 	else if (*map_line == '1')
@@ -85,13 +87,7 @@ static void	fill_map(char *map_line, t_scene *scene, int line)
 	cub_line = scene->cub_map[line];
 	while (*map_line != '\0')
 	{
-		if (*map_line == '\t')
-		{
-			ft_intset(cub_line, SPACES, 4);
-			cub_line += 3;
-		}
-		else
-			*cub_line = set_element(map_line);
+		*cub_line = set_element(map_line);
 		i++;
 		map_line++;
 		cub_line++;
@@ -106,13 +102,12 @@ int	map_parsing(char **cub_map, t_scene *scene)
 
 	i = 0;
 	get_height_width(cub_map, scene);
-/*	if (check_map(cub_map, scene))
+	if (check_map(cub_map, scene))
 	{
-		while (cub_map[i] != NULL)
-			free(cub_map[i++]);
+		free_matrix(cub_map);
 		printf ("ERROR- INVALID MAP");
 		return (-1);
-	}*/
+	}
 	alloc_map(scene);
 	while (cub_map[i] != NULL)
 	{
