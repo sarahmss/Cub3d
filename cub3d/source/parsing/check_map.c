@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 22:24:29 by smodesto          #+#    #+#             */
-/*   Updated: 2022/06/22 23:57:25 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/06/23 01:08:18 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,11 @@ static int	right_column(char **cub_map, int lines)
 
 int	check_map(char **cub_map, t_scene *scene)
 {
+	int	i;
+	int	valid;
+
+	i = 0;
+	valid = 0;
 	if (top_line(cub_map) == -1)
 		return (-1);
 	if (bottom_line(cub_map, scene->map_height - 1) == -1)
@@ -85,6 +90,15 @@ int	check_map(char **cub_map, t_scene *scene)
 	if (left_column(cub_map, scene->map_height) == -1)
 		return (-1);
 	if (right_column(cub_map, scene->map_height) == -1)
+		return (-1);
+	while (cub_map[i] != NULL)
+	{
+		if (ft_strchr(cub_map[i], 'N') || ft_strchr(cub_map[i], 'S')
+			|| ft_strchr(cub_map[i], 'W') || ft_strchr(cub_map[i], 'E'))
+			valid++;
+		i++;
+	}
+	if (valid != 1)
 		return (-1);
 	return (0);
 }

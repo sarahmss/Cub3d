@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 23:16:56 by smodesto          #+#    #+#             */
-/*   Updated: 2022/06/22 23:56:12 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/06/23 01:04:06 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,9 @@ void	draw_vertical_line(t_image *img, int x, int begin, int end ,int color);
 //	img
 void	my_mlx_pixel_put(int x, int y, t_image *img, int color);
 void	background(t_image *img);
-void	ft_create_image(t_mlx *mlx, t_image *img);
 
 //	init
 t_image	*init_img(int width, int height);
 t_mlx	*init_mlx(void);
 
-//	main raycasting
-void	raycasting(t_image *img);
 #endif

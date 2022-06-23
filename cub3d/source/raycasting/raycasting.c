@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 17:58:28 by smodesto          #+#    #+#             */
-/*   Updated: 2022/06/22 23:23:01 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/06/23 00:50:52 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	wolrdmap[mapWidth][mapHeight]=
 	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
 };
 
-int	set_color(int wall, int side)
+int	set_color(int wall, t_side side)
 {
 	int	color;
 
@@ -55,7 +55,7 @@ int	set_color(int wall, int side)
 		color = PURPLE;
 	if (wall == 4)
 		color = RED;
-	if (side == 1)
+	if (side == VERTICAL)
 		color = color / 2;
 	return (color);
 }
@@ -73,13 +73,13 @@ t_raycasting	go_through_ray(t_raycasting r)
 		{
 			new_r.side_ds.x += new_r.delta_ds.x;
 			new_r.map.x += new_r.step.x;
-			new_r.side = 0;
+			new_r.side = HORIZONTAL;
 		}
 		else
 		{
 			new_r.side_ds.y += new_r.delta_ds.y;
 			new_r.map.y += new_r.step.y;
-			new_r.side = 1;
+			new_r.side = VERTICAL;
 		}
 		if (wolrdmap[(int)new_r.map.x][(int)new_r.map.y] > 0)
 			hit = true;
@@ -108,17 +108,13 @@ void	dda(t_raycasting r, int x, t_image *img, int color)
 	draw_vertical_line(img, x, start, end, color);
 }
 
-void	raycasting(t_image *img)
+void	raycasting(t_image *img, t_cub3d *data)
 {
 	t_raycasting	r;
 	int				color;
 
-	r.time = 0; r.old_time = 0;
-	r.pos.x = 22; r.pos.y = 12;
-	r.dir.x = -1; r.dir.y = 0;
-	r.cam_plane.x = 0; r.cam_plane.y = 0.66;
-
-	for (int pixel  = 0; pixel < WIN_WIDTH; pixel++)
+	r = define_points(data->scene);
+	for (int pixel = 0; pixel < WIN_WIDTH; pixel++)
 	{
 		r.ray = set_ray(r.dir, r.cam_plane, pixel);
 		r.map.x = r.pos.x;

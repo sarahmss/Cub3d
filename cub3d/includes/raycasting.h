@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 22:04:46 by smodesto          #+#    #+#             */
-/*   Updated: 2022/06/22 23:48:15 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/06/23 01:06:12 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 # define RAYCASTING_H
 
 #include "../includes/cub3d.h"
+
+typedef enum e_side
+{
+	HORIZONTAL,
+	VERTICAL
+}				t_side;
 
 typedef struct s_point
 {

@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/20 10:49:09 by smodesto          #+#    #+#             */
-/*   Updated: 2022/06/22 23:55:09 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/06/23 01:32:51 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 */
 static int	close_window(t_cub3d *data)
 {
+	mlx_destroy_image(data->mlx->mlx, data->img->img);
 	mlx_destroy_window(data->mlx->mlx, data->mlx->win);
-	ft_create_image(data->mlx, data->img);
 	mlx_destroy_display(data->mlx->mlx);
 	before_living(data);
 	exit(0);

@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 21:26:02 by smodesto          #+#    #+#             */
-/*   Updated: 2022/06/22 22:43:04 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/06/23 01:22:05 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ static void	fill_map(char *map_line, t_scene *scene, int line)
 		map_line++;
 		cub_line++;
 	}
-	if (i < scene->map_width)
+	if (i < scene->map_width - 1)
 		ft_intset(cub_line, SPACES, (scene->map_width - i - 1));
 }
 
@@ -102,7 +102,7 @@ int	map_parsing(char **cub_map, t_scene *scene)
 
 	i = 0;
 	get_height_width(cub_map, scene);
-	if (check_map(cub_map, scene))
+	if (check_map(cub_map, scene) == -1)
 	{
 		free_matrix(cub_map);
 		printf ("ERROR- INVALID MAP");

@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 17:15:21 by smodesto          #+#    #+#             */
-/*   Updated: 2022/06/22 23:22:55 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/06/23 00:09:08 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	background(t_image *img)
 /*
 	Create an image and calls draw function to draw into it
 */
-void	ft_create_image(t_mlx *mlx, t_image *img)
+void	ft_create_image(t_mlx *mlx, t_image *img, t_cub3d *data)
 {
 	if (img->img != NULL)
 		mlx_destroy_image(mlx->mlx, img->img);
@@ -59,6 +59,6 @@ void	ft_create_image(t_mlx *mlx, t_image *img)
 	img->data_address = mlx_get_data_addr(img->img, &(img->bpp),
 			&(img->line_size), &(img->endian));
 	background(img);
-	raycasting(img);
+	raycasting(img, data);
 	mlx_put_image_to_window(mlx->mlx, mlx->win, img->img, 0, 0);
 }
