@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   events.c                                           :+:      :+:    :+:   */
+/*   leave.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/20 10:49:09 by smodesto          #+#    #+#             */
-/*   Updated: 2022/06/22 22:14:28 by smodesto         ###   ########.fr       */
+/*   Created: 2022/06/22 23:09:17 by smodesto          #+#    #+#             */
+/*   Updated: 2022/06/22 23:29:44 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,10 @@ int	before_living(t_cub3d *data)
 {
 	if (data->scene)
 		free_scene(data->scene);
+	if (data->mlx)
+		free(data->mlx);
+	if (data->img)
+		free(data->img);
 	if (data)
 		free(data);
 	return (0);
@@ -49,23 +53,4 @@ void	check_error(int err, char *msg)
 		ft_printf("-ERROR: %s\n", msg);
 		exit (1);
 	}
-}
-
-/*
-	Close window when X bar's buttom is pressed
-*/
-static int	close_window(t_cub3d *data)
-{
-	mlx_destroy_window(data->mlx, data->win);
-	mlx_destroy_display(data->mlx);
-	free(data->mlx);
-	free(data);
-	exit(0);
-}
-
-void	control_events(t_cub3d *data)
-{
-//	mlx_key_hook(data->win, keyboard_input, data);
-	mlx_hook(data->win, X_EVENT_KEY_EXIT, 0, &close_window, data);
-//	mlx_expose_hook(mlx->win, &redraw, mlx);
 }

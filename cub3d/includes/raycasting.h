@@ -1,47 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   structs.h                                          :+:      :+:    :+:   */
+/*   raycasting.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/18 08:51:24 by smodesto          #+#    #+#             */
-/*   Updated: 2022/06/22 22:39:55 by smodesto         ###   ########.fr       */
+/*   Created: 2022/06/20 22:04:46 by smodesto          #+#    #+#             */
+/*   Updated: 2022/06/22 23:48:15 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCTS_H
-# define STRUCTS_H
+#ifndef RAYCASTING_H
+# define RAYCASTING_H
 
-# define WIN_WIDTH		1280
-# define WIN_HEIGHT		600
-# define MENU_WIDTH		200
+#include "../includes/cub3d.h"
 
-# define WIN_CENTER_X	400
-# define WIN_CENTER_Y	300
-
-typedef enum e_map
+typedef struct s_point
 {
-	EMPTY,
-	WALL,
-	N,
-	S,
-	W,
-	E,
-	SPACES,
-	TAB
-}				t_map;
-
-typedef struct s_vector
-{
-	double	x0;
-	double	y0;
-	double	x1;
-	double	y1;
-	int		del_x;
-	int		del_y;
-	int		module;
-}				t_vector;
+	double	x;
+	double	y;
+}				t_point;
 
 /*
 For our player we have:
@@ -52,6 +30,7 @@ For our player we have:
 	cam_pixel == (mult·cam_plane) vector from (xd, yd)→(x_pixel, y_pixel)
 	mult == (2·(act_pixel/WIN_WIDTH) - 1) escalar used to find ray
 	ray == (dir + cam_pixel)
+	map : actual square ray is in
   012345689ABCD
  |---pixels----|
   _____________	→ (cam_plane)
@@ -66,35 +45,24 @@ For our player we have:
 */
 typedef struct s_raycasting
 {
-	t_vector	pos;
-	t_vector	dir;
-	t_vector	cam_plane;
-	t_vector	cam_pixel;
-	t_vector	ray;
-	int			mult;
-	int			fov;
+	t_point	pos;
+	t_point	dir;
+	t_point	cam_plane;
+	t_point	ray;
+	t_point	side_ds;
+	t_point	delta_ds;
+	t_point	map;
+	t_point	step;
 	double		time;
 	double		old_time;
+	int			side;
 }				t_raycasting;
 
-typedef struct s_scene
-{
-	char	*no_texture;
-	char	*so_texture;
-	char	*we_texture;
-	char	*ea_texture;
-	int		floor_color[3];
-	int		ceiling_color[3];
-	int		map_height;
-	int		map_width;
-	int		**cub_map;
-}			t_scene;
-
-typedef struct s_cub3d
-{
-	void		*mlx;
-	void		*win;
-	t_scene		*scene;
-}				t_cub3d;
+//	Point configure
+t_point	set_ray(t_point dir, t_point cam_plane, int pixel);
+t_point	set_delta_ds(t_point ray);
+t_point	set_step(t_point ray);
+t_point	set_side_ds(t_point ray, t_point map, t_point pos,
+	t_point delta_ds);
 
 #endif

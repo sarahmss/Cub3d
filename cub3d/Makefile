@@ -6,11 +6,11 @@
 #    By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/11 17:02:33 by smodesto          #+#    #+#              #
-#    Updated: 2022/06/22 22:40:20 by smodesto         ###   ########.fr        #
+#    Updated: 2022/06/22 23:46:06 by smodesto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= cub3d
+NAME	= cub3D
 LIBFT	= ./libraries/libft/libft.a
 MLX		= ./libraries/minilibx-linux/libmlx.a
 
@@ -20,21 +20,28 @@ SRC_PATH		= ./source/
 INCLUDES_PATH	= ./includes/
 OBJS_PATH		= ./objects/
 
-SRCS_FILES =	main.c			\
-				events.c		\
-				init.c			\
-				file_handling.c	\
-				map_parsing.c	\
-				check_map.c
+SRCS_FILES =	init/main.c				\
+				init/init.c				\
+				init/leave.c			\
+				parsing/file_handling.c	\
+				parsing/map_parsing.c	\
+				parsing/check_map.c		\
+				mlx/draw.c				\
+				mlx/events.c			\
+				mlx/img.c				\
+				raycasting/raycasting.c	\
+				raycasting/set_point.c
 
 SRCS = $(addprefix $(SRC_PATH), $(SRCS_FILES))
 
 OBJS_FILES	= $(patsubst %.c, %.o, $(SRCS_FILES))
 OBJS = $(addprefix $(OBJS_PATH), $(OBJS_FILES))
 
-HEADER_FILES	=	cub3d.h		\
-					keymap.h	\
-					structs.h
+HEADER_FILES	=	cub3d.h			\
+					keymap.h		\
+					my_mlx_draw.h	\
+					raycasting.h
+
 HEADERS = $(addprefix $(INCLUDES_PATH), $(HEADER_FILES))
 
 CC			= gcc
@@ -48,6 +55,12 @@ $(NAME):	$(OBJS) $(LIBFT) $(MLX)
 			$(CC) $(OBJS) $(FLAGS) $(LIBRARIES) $(INCLUDES)  -o $(NAME)
 
 $(OBJS_PATH)%.o : $(SRC_PATH)%.c $(HEADERS)
+			@mkdir -p objects
+			@mkdir -p objects/init
+			@mkdir -p objects/parsing
+			@mkdir -p objects/mlx
+			@mkdir -p objects/raycasting
+
 			$(CC) $(FLAGS) -c $(INCLUDES) $< -o $@
 $(MLX):
 			@echo making minilibx...
@@ -71,6 +84,10 @@ clean:
 
 fclean:		clean
 			@rm -f $(NAME)
+			@rm -rf objects/raycasting
+			@rm -rf objects/init
+			@rm -rf objects/parsing
+			@rm -rf objects/mlx
 
 re: fclean all
 
