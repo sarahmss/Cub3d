@@ -3,7 +3,7 @@ This project is inspired by the world-famous Wolfenstein 3D game, which was the 
 
 All info about the project can be found in Wiki pages:
 
-1.  [home] (https://github.com/sarahmss/Cub3d/wiki)
+1.  [home](https://github.com/sarahmss/Cub3d/wiki)
 2.  [Drawing lines](https://github.com/sarahmss/Cub3d/wiki/DDA-X-Brasenham's-line-algorithms)
 3.  [raycasting](https://github.com/sarahmss/Cub3d/wiki/Raycasting)
 4.  [minilibx](https://github.com/sarahmss/Cub3d/wiki/Minilibx)
