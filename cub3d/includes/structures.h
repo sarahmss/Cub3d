@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 00:54:30 by smodesto          #+#    #+#             */
-/*   Updated: 2022/06/23 01:00:53 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/06/27 10:29:46 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include "./raycasting.h"
 # include "./my_mlx_draw.h"
 # include "./keymap.h"
-
 
 # define WIN_WIDTH			640
 # define WIN_HEIGHT			480
@@ -50,7 +49,6 @@ typedef struct t_mlx
 	void		*win;
 }				t_mlx;
 
-
 typedef enum e_map
 {
 	EMPTY,
@@ -62,7 +60,6 @@ typedef enum e_map
 	SPACES,
 	TAB
 }				t_map;
-
 
 typedef struct s_scene
 {
@@ -88,7 +85,6 @@ typedef struct s_point
 	double	x;
 	double	y;
 }				t_point;
-
 
 typedef struct s_raycasting
 {

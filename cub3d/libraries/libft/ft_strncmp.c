@@ -49,7 +49,6 @@ int	ft_strcmp(const char *s1, const char *s2)
 */
 int	ft_strccmp(const char *s1, char c)
 {
-
 	while (*s1)
 	{
 		if (*s1 == c)

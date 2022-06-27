@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: morgana <morgana@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 17:58:28 by smodesto          #+#    #+#             */
-/*   Updated: 2022/06/23 00:50:52 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/06/23 20:23:13 by morgana          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,9 @@ t_raycasting	go_through_ray(t_raycasting r)
 	return (new_r);
 }
 
+/*
+	substituir draw vertical line to put sprite to window
+*/
 void	dda(t_raycasting r, int x, t_image *img, int color)
 {
 	double		perpWall;

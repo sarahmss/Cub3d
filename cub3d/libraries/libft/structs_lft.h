@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 19:11:44 by smodesto          #+#    #+#             */
-/*   Updated: 2022/06/22 23:52:15 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/06/27 10:32:49 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ typedef enum e_bool
 	false,
 	true
 }				t_bool;
-
 
 typedef struct s_format
 {

@@ -6,14 +6,14 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 22:04:46 by smodesto          #+#    #+#             */
-/*   Updated: 2022/06/23 01:06:12 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/06/27 10:32:09 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RAYCASTING_H
 # define RAYCASTING_H
 
-#include "../includes/cub3d.h"
+# include "../includes/cub3d.h"
 
 typedef enum e_side
 {
@@ -59,9 +59,9 @@ typedef struct s_raycasting
 	t_point	delta_ds;
 	t_point	map;
 	t_point	step;
-	double		time;
-	double		old_time;
-	int			side;
+	double	time;
+	double	old_time;
+	int		side;
 }				t_raycasting;
 
 //	Point configure
@@ -69,6 +69,6 @@ t_point	set_ray(t_point dir, t_point cam_plane, int pixel);
 t_point	set_delta_ds(t_point ray);
 t_point	set_step(t_point ray);
 t_point	set_side_ds(t_point ray, t_point map, t_point pos,
-	t_point delta_ds);
+			t_point delta_ds);
 
 #endif

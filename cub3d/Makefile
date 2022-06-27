@@ -6,7 +6,7 @@
 #    By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/11 17:02:33 by smodesto          #+#    #+#              #
-#    Updated: 2022/06/23 01:01:46 by smodesto         ###   ########.fr        #
+#    Updated: 2022/06/27 09:58:06 by smodesto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ SRCS_FILES =	init/main.c				\
 				mlx/draw.c				\
 				mlx/events.c			\
 				mlx/img.c				\
+				mlx/ft_rgbhex.c			\
 				raycasting/raycasting.c	\
 				raycasting/set_point.c	\
 				raycasting/get_scene.c

@@ -12,45 +12,105 @@
 
 #include "./libft.h"
 
-int	test_base(const char c)
+int	ft_is_in_base(char c, char *base)
 {
-	int		nb;
+	int		i;
 
-	if (c >= '0' && c <= '9')
-		nb = c - '0';
-	else if (c >= 'a' && c <= 'z')
-		nb = c - 'a' + 10;
-	else if (c >= 'A' && c <= 'Z')
-		nb = c - 'A' + 10;
+	i = 0;
+	while (base[i] != c)
+		i++;
+	if (base[i] == '\0')
+		return (0);
 	else
-		nb = -1;
-	return (nb);
+		return (1);
 }
 
-int	ft_atoi_base(const char *str, int str_base)
+int	ft_get_int_from_base(char c, char *base)
 {
-	int		neg;
-	int		nb;
-	int		current;
+	int		i;
 
-	nb = 0;
-	while (*str == ' ' || *str == '\n' || *str == '\t'
-		|| *str == '\f' || *str == '\r' || *str == '\v')
-		str++;
-	if (*str == '-')
-		neg = 1;
-	else
-		neg = 0;
-	if (*str == '-' || *str == '+')
-		str++;
-	current = test_base(*str);
-	while (current >= 0 && current < str_base)
+	i = 0;
+	while (base[i])
 	{
-		nb = nb * str_base + current;
-		str++;
-		current = test_base(*str);
+		if (base[i] == c)
+		{
+			return (i);
+		}
+		i++;
 	}
-	if (neg)
-		return (-nb);
-	return (nb);
+	return (i);
+}
+
+int	ft_check_base(char *base)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	while (base[i])
+		i++;
+	if (i < 2)
+		return (0);
+	i = 0;
+	while (base[i])
+	{
+		if (base[i] == '-' || base[i] == '+' || base[i] == '\f'
+			|| base[i] == '\t' || base[i] == ' ' || base[i] == '\n'
+			|| base[i] == '\r' || base[i] == '\v')
+			return (0);
+		j = i + 1;
+		while (base[j])
+		{
+			if (base[i] == base[j])
+				return (0);
+			j++;
+		}
+		i++;
+	}
+	return (1);
+}
+
+int	skip_whitespace_minus(char *str, int *ptr_i)
+{
+	int		minus_count;
+	int		i;
+
+	i = 0;
+	while (str[i] == '\f' || str[i] == '\t' || str[i] == ' '
+		|| str[i] == '\n' || str[i] == '\r' || str[i] == '\v')
+		i++;
+	minus_count = 0;
+	while (str[i] && (str[i] == '+' || str[i] == '-'))
+	{
+		if (str[i] == '-')
+			minus_count++;
+		i++;
+	}
+	*ptr_i = i;
+	return (minus_count);
+}
+
+int	ft_atoi_base(char *str, char *base)
+{
+	int		i;
+	int		sign;
+	int		result;
+	int		base_divider;
+
+	i = 0;
+	while (base[i])
+		i++;
+	base_divider = i;
+	result = 0;
+	sign = 1;
+	if (skip_whitespace_minus(str, &i) % 2)
+		sign = -1;
+	while (str[i] && ft_is_in_base(str[i], base))
+	{
+		result *= base_divider;
+		result += ft_get_int_from_base(str[i], base);
+		i++;
+	}
+	result *= sign;
+	return (result);
 }

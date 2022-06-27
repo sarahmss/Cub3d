@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 23:29:38 by smodesto          #+#    #+#             */
-/*   Updated: 2022/06/23 01:05:09 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/06/27 10:29:02 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ typedef enum e_map
 	SPACES,
 	TAB
 }				t_map;
-
 
 typedef struct s_scene
 {
@@ -66,10 +65,10 @@ int				map_parsing(char **cub_map, t_scene *scene);
 int				check_map(char **cub_map, t_scene *scene);
 
 //	events
-void	control_events(t_cub3d *data);
+void			control_events(t_cub3d *data);
 
 //	img
-void	ft_create_image(t_mlx *mlx, t_image *img, t_cub3d *data);
+void			ft_create_image(t_mlx *mlx, t_image *img, t_cub3d *data);
 
 //	main raycasting
 void			raycasting(t_image *img, t_cub3d *data);

@@ -96,7 +96,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void(*del)(void *));
 
 // math
 int		ft_atoi(const char *str);
-int		ft_atoi_base(const char *str, int str_base);
+int		ft_atoi_base(char *str, char *base);
 float	mod(float a);
 float	max(float a, float b);
 float	min(float a, float b);
@@ -106,5 +106,4 @@ char	*ft_itoa(int n);
 char	*ft_itoa_bases(long long int value, int base, char x);
 int		ft_arraylen(void **array);
 int		*ft_intset(void *mem, int const_byte, int n_bytes);
-
 #endif
