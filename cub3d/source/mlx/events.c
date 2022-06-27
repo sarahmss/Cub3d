@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/20 10:49:09 by smodesto          #+#    #+#             */
-/*   Updated: 2022/06/23 01:32:51 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/06/27 12:05:40 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,28 +26,29 @@ static int	close_window(t_cub3d *data)
 
 /*
 	Controls keyboard events
+*/
 static int	keyboard_input(int key, t_cub3d *data)
 {
 	if (key == MAIN_KEY_ESC)
 		close_window(data);
 	else if (key == ARROW_UP)
-		move_forward(key, mlx);
+		move_forward(data, data->r);
 	else if (key == ARROW_DOWN)
-		move_backward(key, mlx);
+		move_backward(data, data->r);
 	else if (key == ARROW_RIGHT)
-		rotate_right();
+		rotate_right(data, data->r);
 	else if (key == ARROW_LEFT)
-		rotate_left();
+		rotate_left(data, data->r);
 	return (0);
 }
-*/
+
 
 /*
 	add following lines to handle keymboard and reload (-)
 	mlx_expose_hook(mlx->win, &redraw, mlx);
-	mlx_key_hook(data->win, keyboard_input, data);
 */
 void	control_events(t_cub3d *data)
 {
 	mlx_hook(data->mlx->win, X_EVENT_KEY_EXIT, 0, &close_window, data);
+	mlx_key_hook(data->mlx->win, keyboard_input, data);
 }

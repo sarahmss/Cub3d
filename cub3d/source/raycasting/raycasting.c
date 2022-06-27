@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 17:58:28 by smodesto          #+#    #+#             */
-/*   Updated: 2022/06/27 10:45:00 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/06/27 11:35:02 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,7 @@ int	set_color(int wall, t_side side)
 {
 	int	color;
 
-	color = WHITE;
-	if (wall == 2)
-		color = GREY;
-	if (wall == 3)
-		color = PURPLE;
-	if (wall == 4)
-		color = RED;
+	color = DGREY;
 	if (side == VERTICAL)
 		color = color / 2;
 	return (color);
@@ -83,8 +77,15 @@ void	raycasting(t_image *img, t_cub3d *data)
 {
 	t_raycasting	r;
 	int				color;
+	static int		init;
 
-	r = define_points(data->scene);
+	if (init++ == 0)
+	{
+		r = define_points(data->scene);
+		data->r = r;
+	}
+	else
+		r = data->r;
 	for (int pixel = 0; pixel < WIN_WIDTH; pixel++)
 	{
 		r.ray = set_ray(r.dir, r.cam_plane, pixel);

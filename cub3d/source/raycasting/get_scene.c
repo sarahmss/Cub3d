@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 00:12:12 by smodesto          #+#    #+#             */
-/*   Updated: 2022/06/27 10:38:59 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/06/27 12:10:00 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 /*
 Defines direction in function of unitary vectors
-		     N(0, 1)
+		     N(0, -1)
                 |
  EA(-1, 0)______|_____WE(1, 0)
 			    |
 			    |
-		       S(0,-1)
+		       S(0, 1)
 */
 static t_point	get_direction(t_map direction)
 {
@@ -28,12 +28,12 @@ static t_point	get_direction(t_map direction)
 	if (direction == N)
 	{
 		dir.x = 0;
-		dir.y = 1;
+		dir.y = -1;
 	}
 	if (direction == S)
 	{
 		dir.x = 0;
-		dir.y = -1;
+		dir.y = 1;
 	}
 	if (direction == W)
 	{
@@ -82,10 +82,10 @@ t_raycasting	define_points(t_scene *scn)
 	t_raycasting	r;
 
 	r = get_initial_position(scn->cub_map, scn->map_width, scn->map_height, r);
-	r.time = 0;
-	r.old_time = 0;
 	r.cam_plane.x = 0;
 	r.cam_plane.y = 0.66;
 	r.cub_map = scn->cub_map;
+	r.move_speed = 5;
+	r.turn_speed = 3 * (M_PI / 180);
 	return (r);
 }

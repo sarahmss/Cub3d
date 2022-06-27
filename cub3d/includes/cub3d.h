@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 23:29:38 by smodesto          #+#    #+#             */
-/*   Updated: 2022/06/27 10:29:02 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/06/27 12:03:35 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,10 @@ typedef struct s_scene
 
 typedef struct s_cub3d
 {
-	t_scene		*scene;
-	t_mlx		*mlx;
-	t_image		*img;
+	t_scene			*scene;
+	t_mlx			*mlx;
+	t_image			*img;
+	t_raycasting	r;
 }				t_cub3d;
 
 //	init
@@ -73,5 +74,12 @@ void			ft_create_image(t_mlx *mlx, t_image *img, t_cub3d *data);
 //	main raycasting
 void			raycasting(t_image *img, t_cub3d *data);
 t_raycasting	define_points(t_scene *scn);
+
+
+// controls
+void	move_forward(t_cub3d *data, t_raycasting r);
+void	move_backward(t_cub3d *data, t_raycasting r);
+void	rotate_right(t_cub3d *data, t_raycasting r);
+void	rotate_left(t_cub3d *data, t_raycasting r);
 
 #endif

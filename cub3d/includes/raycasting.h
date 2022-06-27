@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 22:04:46 by smodesto          #+#    #+#             */
-/*   Updated: 2022/06/27 10:38:31 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/06/27 11:44:57 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ For our player we have:
 */
 typedef struct s_raycasting
 {
+	int		**cub_map;
 	t_point	pos;
 	t_point	dir;
 	t_point	cam_plane;
@@ -59,10 +60,9 @@ typedef struct s_raycasting
 	t_point	delta_ds;
 	t_point	map;
 	t_point	step;
-	double	time;
-	double	old_time;
 	t_side	side;
-	int		**cub_map;
+	double	move_speed;
+	double	turn_speed;
 }				t_raycasting;
 
 //	Point configure
