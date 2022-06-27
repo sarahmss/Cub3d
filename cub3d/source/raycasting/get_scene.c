@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 00:12:12 by smodesto          #+#    #+#             */
-/*   Updated: 2022/06/24 18:47:17 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/06/27 10:38:59 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,11 @@ t_raycasting	define_points(t_scene *scn)
 {
 	t_raycasting	r;
 
+	r = get_initial_position(scn->cub_map, scn->map_width, scn->map_height, r);
 	r.time = 0;
 	r.old_time = 0;
 	r.cam_plane.x = 0;
 	r.cam_plane.y = 0.66;
-	r = get_initial_position(scn->cub_map, scn->map_width, scn->map_height, r);
+	r.cub_map = scn->cub_map;
 	return (r);
 }

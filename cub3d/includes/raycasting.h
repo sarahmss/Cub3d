@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 22:04:46 by smodesto          #+#    #+#             */
-/*   Updated: 2022/06/27 10:32:09 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/06/27 10:38:31 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ typedef struct s_raycasting
 	t_point	step;
 	double	time;
 	double	old_time;
-	int		side;
+	t_side	side;
+	int		**cub_map;
 }				t_raycasting;
 
 //	Point configure
