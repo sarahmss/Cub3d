@@ -6,7 +6,7 @@
 #    By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/11 17:02:33 by smodesto          #+#    #+#              #
-#    Updated: 2022/07/06 14:12:13 by smodesto         ###   ########.fr        #
+#    Updated: 2022/07/06 15:18:29 by smodesto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,11 +26,12 @@ SRCS_FILES =	init/main.c				\
 				parsing/file_handling.c	\
 				parsing/map_parsing.c	\
 				parsing/check_map.c		\
-				mlx/draw.c				\
 				mlx/events.c			\
 				mlx/img.c				\
-				mlx/ft_rgbhex.c			\
-				mlx/controls.c			\
+				game/draw.c				\
+				game/ft_rgbhex.c		\
+				game/controls.c			\
+				game/minimap.c			\
 				raycasting/raycasting.c	\
 				raycasting/set_point.c	\
 				raycasting/get_scene.c
@@ -64,6 +65,7 @@ $(OBJS_PATH)%.o : $(SRC_PATH)%.c $(HEADERS)
 			@mkdir -p objects/parsing
 			@mkdir -p objects/mlx
 			@mkdir -p objects/raycasting
+			@mkdir -p objects/game
 
 			$(CC) $(FLAGS) -c $(INCLUDES) $< -o $@
 $(MLX):

@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 23:16:56 by smodesto          #+#    #+#             */
-/*   Updated: 2022/06/27 10:31:23 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/06 15:37:06 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,10 @@ typedef struct t_mlx
 
 //	draw
 void	brasenham(t_line line, t_image *img, int color);
-void	draw_vertical_line(t_image *img, int x, int begin, int end, int color);
+void	draw_vertical_line(t_image *img, int y, t_point begin_end, int color);
+void	draw_rectangle(t_image *img, int color, t_point init, t_point end);
+void	draw_horizontal_line(t_image *img, int y, t_point begin_end, int color);
+void	draw_square(t_image *img, int color, t_point init, t_point end);
 
 //	img
 void	my_mlx_pixel_put(int x, int y, t_image *img, int color);

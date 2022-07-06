@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 23:29:38 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/06 14:06:23 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/06 15:55:11 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,16 @@
 # include "./raycasting.h"
 # include "./my_mlx_draw.h"
 # include "./keymap.h"
+
+# define	TILE_SIZE 32
+
+typedef struct s_render_map
+{
+	t_point	iterator;
+	t_point	tile;
+	t_point	tile_size;
+	int		color;
+}	t_render_map;
 
 typedef enum e_map
 {
@@ -73,6 +83,7 @@ void			control_events(t_cub3d *data);
 void			ft_create_image(t_mlx *mlx, t_image *img);
 void			draw_game(t_cub3d *data, t_mlx *mlx, t_image *img);
 void			background(t_image *img, int f[3], int c[3]);
+void			draw_minimap(t_cub3d *data, t_scene *scene, t_image *img);
 
 
 //	main raycasting

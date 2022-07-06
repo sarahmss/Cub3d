@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 17:58:28 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/06 14:04:00 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/06 15:57:16 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,21 +56,20 @@ void	dda(t_raycasting r, int x, t_image *img, int color)
 {
 	double		perp_wall;
 	int			line_height;
-	int			start;
-	int			end;
+	t_point		start_end;
 
 	if (r.side == HORIZONTAL)
 		perp_wall = r.side_ds.x - r.delta_ds.x;
 	else
 		perp_wall = r.side_ds.y - r.delta_ds.y;
 	line_height = (int)(WIN_HEIGHT / perp_wall);
-	start = (-line_height / 2) + (WIN_HEIGHT / 2);
-	if (start < 0)
-		start = 0;
-	end = (line_height / 2) + (WIN_HEIGHT / 2);
-	if (end >= WIN_HEIGHT)
-		end = WIN_HEIGHT - 1;
-	draw_vertical_line(img, x, start, end, color);
+	start_end.x = (-line_height / 2) + (WIN_HEIGHT / 2);
+	if (start_end.x < 0)
+		start_end.x = 0;
+	start_end.y = (line_height / 2) + (WIN_HEIGHT / 2);
+	if (start_end.y >= WIN_HEIGHT)
+		start_end.y = WIN_HEIGHT - 1;
+	draw_vertical_line(img, x, start_end, color);
 }
 
 void	raycasting(t_image *img, t_cub3d *data)
