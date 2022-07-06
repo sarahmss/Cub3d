@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 11:21:03 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/06 18:00:03 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/06 18:16:19 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 void	rotate_left(t_cub3d *data, t_raycasting r)
 {
-	t_point	new_dir;
+	data->r.player.rotation_angle += data->r.player.rotation_speed * LEFT;
+/*	t_point	new_dir;
 	t_point	new_plane;
+
 
 	new_dir.x = r.dir.x * cos(r.player.rotation_speed) - r.dir.y
 		* sin(r.player.rotation_speed);
@@ -26,13 +28,15 @@ void	rotate_left(t_cub3d *data, t_raycasting r)
 	new_plane.y = r.cam_plane.x * sin(r.player.rotation_speed) + r.cam_plane.y
 		* cos(r.player.rotation_speed);
 	data->r.dir = new_dir;
-	data->r.cam_plane = new_plane;
+	data->r.cam_plane = new_plane;*/
 	draw_game(data, data->mlx, data->img);
 }
 
 void	rotate_right(t_cub3d *data, t_raycasting r)
 {
-	t_point	new_dir;
+
+	data->r.player.rotation_angle += data->r.player.rotation_speed * 10;
+/*	t_point	new_dir;
 	t_point	new_plane;
 
 	new_dir.x = r.dir.x * cos(-r.player.rotation_speed) - r.dir.y
@@ -44,7 +48,7 @@ void	rotate_right(t_cub3d *data, t_raycasting r)
 	new_plane.y = r.cam_plane.x * sin(-r.player.rotation_speed) + r.cam_plane.y
 		* cos(-r.player.rotation_speed);
 	data->r.dir = new_dir;
-	data->r.cam_plane = new_plane;
+	data->r.cam_plane = new_plane;*/
 	draw_game(data, data->mlx, data->img);
 }
 
@@ -52,16 +56,16 @@ void	move_forward(t_cub3d *data, t_raycasting r)
 {
 	t_point	new_pos;
 
-	new_pos.x = data->r.pos.x;
-	new_pos.y = data->r.pos.y;
+	new_pos.x = data->r.player.pos.x;
+	new_pos.y = data->r.player.pos.y;
 	new_pos.x += r.dir.x * r.player.move_speed;
 	new_pos.y += r.dir.y * r.player.move_speed;
 	if (new_pos.x <= data->scene->map_width && new_pos.x > 0
 		&& r.cub_map[(int)new_pos.x][(int)r.pos.y] == EMPTY)
-		data->r.pos.x = new_pos.x;
+		data->r.player.pos.x = new_pos.x;
 	if (new_pos.y <= data->scene->map_height && new_pos.y > 0
-		&& r.cub_map[(int)r.pos.x][(int)new_pos.y] == EMPTY)
-		data->r.pos.y = new_pos.y;
+		&& r.cub_map[(int)r.player.pos.x][(int)new_pos.y] == EMPTY)
+		data->r.player.pos.y = new_pos.y;
 	draw_game(data, data->mlx, data->img);
 }
 
@@ -69,15 +73,15 @@ void	move_backward(t_cub3d *data, t_raycasting r)
 {
 	t_point	new_pos;
 
-	new_pos.x = r.pos.x;
-	new_pos.y = r.pos.y;
+	new_pos.x = r.player.pos.x;
+	new_pos.y = r.player.pos.y;
 	new_pos.x -= r.dir.x * r.player.move_speed;
 	new_pos.y -= r.dir.y * r.player.move_speed;
 	if (new_pos.x <= data->scene->map_width && new_pos.x > 0
 		&& r.cub_map[(int)new_pos.x][(int)r.pos.y] == EMPTY)
-		data->r.pos.x = new_pos.x;
+		data->r.player.pos.x = new_pos.x;
 	if (new_pos.y <= data->scene->map_height && new_pos.y > 0
-		&& r.cub_map[(int)r.pos.x][(int)new_pos.y] == EMPTY)
-		data->r.pos.y = new_pos.y;
+		&& r.cub_map[(int)r.player.pos.x][(int)new_pos.y] == EMPTY)
+		data->r.player.pos.y = new_pos.y;
 	draw_game(data, data->mlx, data->img);
 }

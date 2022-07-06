@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 22:04:46 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/06 16:15:37 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/06 18:11:26 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ typedef struct s_player
 	int		turn_direction;
 	int		walk_direction;
 	int		move_speed;
-	int		rotation_speed;
+	double	rotation_speed;
 }				t_player;
 
 /*

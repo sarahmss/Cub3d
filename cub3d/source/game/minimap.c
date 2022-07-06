@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 14:20:56 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/06 18:00:40 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/06 18:14:58 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,28 +54,10 @@ void	render_player(t_player player, t_image *img)
 }
 
 /*
-	update player position based on turn_direction and walk_direction
-
-t_player	update_player(t_cub3d *data)
-{
-
-}
-*/
-/*
-	@brief: update all game objects before we render the next frame
-
-void	update_minimap(t_cub3d *data)
-{
-	data->r.player = update_player(data);
-}
-*
-/*
 	@brief: render all objects frame by frame
 */
 void	draw_minimap(t_cub3d *data, t_scene *scene, t_image *img)
 {
-	data->r = define_points(data->scene);
-	//update_minimap();
 	render_map(scene->cub_map, scene->map_width, scene->map_height, img);
 	render_player(data->r.player, img);
 }
