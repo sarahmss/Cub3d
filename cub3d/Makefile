@@ -6,7 +6,7 @@
 #    By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/11 17:02:33 by smodesto          #+#    #+#              #
-#    Updated: 2022/06/27 11:49:55 by smodesto         ###   ########.fr        #
+#    Updated: 2022/07/06 14:12:13 by smodesto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,6 +88,7 @@ clean:
 
 fclean:		clean
 			@rm -f $(NAME)
+			@rm -rf objects
 			@rm -rf objects/raycasting
 			@rm -rf objects/init
 			@rm -rf objects/parsing

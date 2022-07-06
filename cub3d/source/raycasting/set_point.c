@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 22:02:37 by smodesto          #+#    #+#             */
-/*   Updated: 2022/06/22 23:23:05 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/05 19:11:53 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ t_point	set_ray(t_point dir, t_point cam_plane, int pixel)
 	double		mult;
 	t_point		ray;
 
-	mult = 2 * (pixel / (double)WIN_WIDTH) - 1;
-	ray.x = dir.x + cam_plane.x * mult;
-	ray.y = dir.y + cam_plane.y * mult;
+	mult = 2 * pixel / (double)WIN_WIDTH - 1;
+	ray.x = dir.x + (cam_plane.x * mult);
+	ray.y = dir.y + (cam_plane.y * mult);
 	return (ray);
 }
 

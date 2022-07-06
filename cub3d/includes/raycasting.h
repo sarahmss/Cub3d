@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 22:04:46 by smodesto          #+#    #+#             */
-/*   Updated: 2022/06/27 11:44:57 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/05 19:23:04 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ typedef struct s_raycasting
 	t_side	side;
 	double	move_speed;
 	double	turn_speed;
+	double	time;
+	double	old_time;
 }				t_raycasting;
 
 //	Point configure

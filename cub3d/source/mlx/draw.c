@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: morgana <morgana@student.42.fr>            +#+  +:+       +#+        */
+/*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 19:58:01 by smodesto          #+#    #+#             */
-/*   Updated: 2022/06/23 20:16:35 by morgana          ###   ########.fr       */
+/*   Updated: 2022/07/06 14:05:28 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,12 @@ void	draw_vertical_line(t_image *img, int x, int begin, int end, int color)
 		brasenham(vector, img, color);
 		vector.y0++;
 	}
+}
+
+void	draw_game(t_cub3d *data, t_mlx *mlx, t_image *img)
+{
+	ft_create_image(mlx, img);
+	background(img, data->scene->floor_color, data->scene->ceiling_color);
+	raycasting(img, data);
+	mlx_put_image_to_window(mlx->mlx, mlx->win, img->img, 0, 0);
 }

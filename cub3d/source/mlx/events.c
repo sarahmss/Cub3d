@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/20 10:49:09 by smodesto          #+#    #+#             */
-/*   Updated: 2022/06/27 12:05:40 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/06 14:01:08 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ static int	keyboard_input(int key, t_cub3d *data)
 		rotate_left(data, data->r);
 	return (0);
 }
-
 
 /*
 	add following lines to handle keymboard and reload (-)
