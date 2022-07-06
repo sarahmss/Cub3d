@@ -6,30 +6,31 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 19:58:01 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/06 15:43:34 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/06 17:25:44 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-/*
-	Brasenham's algorithme draws lines between two points
-*/
-void	brasenham(t_line line, t_image *img, int color)
+void	draw_circle(t_point center, int color, int radius, t_image *img)
 {
-	t_line	*temp;
+	int	radius_squared;
+	int	x;
+	int	y;
 
-	temp = &line;
-	temp->delta_x = (temp->x1 - temp->x0);
-	temp->delta_y = (temp->y1 - temp->y0);
-	temp->max = max(mod(temp->delta_x), mod(temp->delta_y));
-	temp->delta_x /= temp->max;
-	temp->delta_y /= temp->max;
-	while ((int)(temp->x0 - temp->x1) || (int)(temp->y0 - temp->y1))
+	radius_squared = pow(radius, 2);
+	x = center.x - radius;
+	y = center.y - radius;
+	while (y <= center.y + radius)
 	{
-		my_mlx_pixel_put(temp->x0, temp->y0, img, color);
-		temp->x0 += temp->delta_x;
-		temp->y0 += temp->delta_y;
+		while (x <= center.x + radius)
+		{
+			if ((pow(x - center.x, 2) + pow(y - center.y, 2)) <= radius_squared)
+				my_mlx_pixel_put(x, y, img, color);
+			x++;
+		}
+		y++;
+		x = center.x - radius;
 	}
 }
 

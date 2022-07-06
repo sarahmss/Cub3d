@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 22:04:46 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/05 19:23:04 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/06 16:15:37 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,32 @@ typedef enum e_side
 	VERTICAL
 }				t_side;
 
+// turn and walk directions
+typedef enum e_movement
+{
+	STOP,
+	LEFT = -1,
+	RIGHT = 1,
+	BACK = -1,
+	FRONT = 1,
+}				t_movement;
+
 typedef struct s_point
 {
 	double	x;
 	double	y;
 }				t_point;
+
+typedef struct s_player
+{
+	t_point	pos;
+	double	radius;
+	double	rotation_angle;
+	int		turn_direction;
+	int		walk_direction;
+	int		move_speed;
+	int		rotation_speed;
+}				t_player;
 
 /*
 For our player we have:
@@ -51,20 +72,17 @@ For our player we have:
 */
 typedef struct s_raycasting
 {
-	int		**cub_map;
-	t_point	pos;
-	t_point	dir;
-	t_point	cam_plane;
-	t_point	ray;
-	t_point	side_ds;
-	t_point	delta_ds;
-	t_point	map;
-	t_point	step;
-	t_side	side;
-	double	move_speed;
-	double	turn_speed;
-	double	time;
-	double	old_time;
+	int			**cub_map;
+	t_point		pos;
+	t_point		dir;
+	t_point		cam_plane;
+	t_point		ray;
+	t_point		side_ds;
+	t_point		delta_ds;
+	t_point		map;
+	t_point		step;
+	t_side		side;
+	t_player	player;
 }				t_raycasting;
 
 //	Point configure

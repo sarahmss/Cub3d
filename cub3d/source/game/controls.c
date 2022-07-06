@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 11:21:03 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/06 14:11:34 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/06 18:00:03 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,14 @@ void	rotate_left(t_cub3d *data, t_raycasting r)
 	t_point	new_dir;
 	t_point	new_plane;
 
-	new_dir.x = r.dir.x * cos(r.turn_speed) - r.dir.y * sin(r.turn_speed);
-	new_dir.y = r.dir.x * sin(r.turn_speed) + r.dir.y * cos(r.turn_speed);
-	new_plane.x = r.cam_plane.x * cos(r.turn_speed) - r.cam_plane.y
-		* sin(r.turn_speed);
-	new_plane.y = r.cam_plane.x * sin(r.turn_speed) + r.cam_plane.y
-		* cos(r.turn_speed);
+	new_dir.x = r.dir.x * cos(r.player.rotation_speed) - r.dir.y
+		* sin(r.player.rotation_speed);
+	new_dir.y = r.dir.x * sin(r.player.rotation_speed) + r.dir.y
+		* cos(r.player.rotation_speed);
+	new_plane.x = r.cam_plane.x * cos(r.player.rotation_speed) - r.cam_plane.y
+		* sin(r.player.rotation_speed);
+	new_plane.y = r.cam_plane.x * sin(r.player.rotation_speed) + r.cam_plane.y
+		* cos(r.player.rotation_speed);
 	data->r.dir = new_dir;
 	data->r.cam_plane = new_plane;
 	draw_game(data, data->mlx, data->img);
@@ -33,12 +35,14 @@ void	rotate_right(t_cub3d *data, t_raycasting r)
 	t_point	new_dir;
 	t_point	new_plane;
 
-	new_dir.x = r.dir.x * cos(-r.turn_speed) - r.dir.y * sin(-r.turn_speed);
-	new_dir.y = r.dir.x * sin(-r.turn_speed) + r.dir.y * cos(-r.turn_speed);
-	new_plane.x = r.cam_plane.x * cos(-r.turn_speed) - r.cam_plane.y
-		* sin(-r.turn_speed);
-	new_plane.y = r.cam_plane.x * sin(-r.turn_speed) + r.cam_plane.y
-		* cos(-r.turn_speed);
+	new_dir.x = r.dir.x * cos(-r.player.rotation_speed) - r.dir.y
+		* sin(-r.player.rotation_speed);
+	new_dir.y = r.dir.x * sin(-r.player.rotation_speed) + r.dir.y
+		* cos(-r.player.rotation_speed);
+	new_plane.x = r.cam_plane.x * cos(-r.player.rotation_speed) - r.cam_plane.y
+		* sin(-r.player.rotation_speed);
+	new_plane.y = r.cam_plane.x * sin(-r.player.rotation_speed) + r.cam_plane.y
+		* cos(-r.player.rotation_speed);
 	data->r.dir = new_dir;
 	data->r.cam_plane = new_plane;
 	draw_game(data, data->mlx, data->img);
@@ -50,8 +54,8 @@ void	move_forward(t_cub3d *data, t_raycasting r)
 
 	new_pos.x = data->r.pos.x;
 	new_pos.y = data->r.pos.y;
-	new_pos.x += r.dir.x * r.move_speed;
-	new_pos.y += r.dir.y * r.move_speed;
+	new_pos.x += r.dir.x * r.player.move_speed;
+	new_pos.y += r.dir.y * r.player.move_speed;
 	if (new_pos.x <= data->scene->map_width && new_pos.x > 0
 		&& r.cub_map[(int)new_pos.x][(int)r.pos.y] == EMPTY)
 		data->r.pos.x = new_pos.x;
@@ -67,8 +71,8 @@ void	move_backward(t_cub3d *data, t_raycasting r)
 
 	new_pos.x = r.pos.x;
 	new_pos.y = r.pos.y;
-	new_pos.x -= r.dir.x * r.move_speed;
-	new_pos.y -= r.dir.y * r.move_speed;
+	new_pos.x -= r.dir.x * r.player.move_speed;
+	new_pos.y -= r.dir.y * r.player.move_speed;
 	if (new_pos.x <= data->scene->map_width && new_pos.x > 0
 		&& r.cub_map[(int)new_pos.x][(int)r.pos.y] == EMPTY)
 		data->r.pos.x = new_pos.x;

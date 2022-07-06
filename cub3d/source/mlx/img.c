@@ -6,11 +6,33 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 17:15:21 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/06 15:05:43 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/06 16:26:01 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+
+/*
+	Brasenham's algorithme draws lines between two points
+*/
+void	brasenham(t_line line, t_image *img, int color)
+{
+	t_line	*temp;
+
+	temp = &line;
+	temp->delta_x = (temp->x1 - temp->x0);
+	temp->delta_y = (temp->y1 - temp->y0);
+	temp->max = max(mod(temp->delta_x), mod(temp->delta_y));
+	temp->delta_x /= temp->max;
+	temp->delta_y /= temp->max;
+	while ((int)(temp->x0 - temp->x1) || (int)(temp->y0 - temp->y1))
+	{
+		my_mlx_pixel_put(temp->x0, temp->y0, img, color);
+		temp->x0 += temp->delta_x;
+		temp->y0 += temp->delta_y;
+	}
+}
 
 /*
 	Put pixel in img address in x and y positions

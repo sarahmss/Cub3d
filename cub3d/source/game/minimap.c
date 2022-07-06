@@ -6,12 +6,15 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 14:20:56 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/06 15:56:49 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/06 18:00:40 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
+/*
+	@brief: draw_map in img;
+*/
 void	render_map(int **cub_map, int w, int h, t_image *img)
 {
 	t_render_map	m;
@@ -38,10 +41,22 @@ void	render_map(int **cub_map, int w, int h, t_image *img)
 	}
 }
 
-/*
-	@brief: initialize all objects
+void	render_player(t_player player, t_image *img)
+{
+	t_line	line;
 
-void	setup()
+	line.x0 = player.pos.x;
+	line.y0 = player.pos.y;
+	line.x1 = player.pos.x + cos(player.rotation_angle) * 30;
+	line.y1 = player.pos.y + sin(player.rotation_angle) * 30;
+	draw_circle(player.pos, RED, player.radius, img);
+	brasenham(line, img, RED);
+}
+
+/*
+	update player position based on turn_direction and walk_direction
+
+t_player	update_player(t_cub3d *data)
 {
 
 }
@@ -49,16 +64,18 @@ void	setup()
 /*
 	@brief: update all game objects before we render the next frame
 
-void	update_minimap()
+void	update_minimap(t_cub3d *data)
 {
-
+	data->r.player = update_player(data);
 }
-*/
+*
 /*
 	@brief: render all objects frame by frame
 */
 void	draw_minimap(t_cub3d *data, t_scene *scene, t_image *img)
 {
+	data->r = define_points(data->scene);
 	//update_minimap();
 	render_map(scene->cub_map, scene->map_width, scene->map_height, img);
+	render_player(data->r.player, img);
 }

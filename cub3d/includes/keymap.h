@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keymap.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: morgana <morgana@student.42.fr>            +#+  +:+       +#+        */
+/*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 20:16:38 by smodesto          #+#    #+#             */
-/*   Updated: 2022/06/12 18:41:11 by morgana          ###   ########.fr       */
+/*   Updated: 2022/07/06 17:41:25 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@
 # define BACKGROUND			0X222222
 # define MENU_BACKGROUND	1973790
 # define TEXT_COLOR			0XEAEAEA
+
+# define K_PRESS 0
+# define K_RELEASE 1
 
 # define X_EVENT_KEY_EXIT	17
 # define MOUSE_LEFT_BUTTON	1
