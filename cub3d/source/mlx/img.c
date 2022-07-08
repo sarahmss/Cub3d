@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 17:15:21 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/06 16:26:01 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/07 21:55:01 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,11 @@ void	my_mlx_pixel_put(int x, int y, t_image *img, int color)
 */
 void	ft_create_image(t_mlx *mlx, t_image *img)
 {
+	printf("prev img: %p \n", img->img);
 	if (img->img != NULL)
 		mlx_destroy_image(mlx->mlx, img->img);
 	img->img = mlx_new_image(mlx->mlx, WIN_WIDTH, WIN_HEIGHT);
 	img->data_address = mlx_get_data_addr(img->img, &(img->bpp),
 			&(img->line_size), &(img->endian));
+	printf("new img: %p \n", img->img);
 }

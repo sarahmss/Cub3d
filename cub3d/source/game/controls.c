@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 11:21:03 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/06 18:16:19 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/07 22:25:34 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,9 @@ void	rotate_left(t_cub3d *data, t_raycasting r)
 
 void	rotate_right(t_cub3d *data, t_raycasting r)
 {
-
-	data->r.player.rotation_angle += data->r.player.rotation_speed * 10;
+	printf("prev angle: %f \n", data->r.player.rotation_angle);
+	data->r.player.rotation_angle += data->r.player.rotation_speed * RIGHT;
+	printf("next angle: %f \n", data->r.player.rotation_angle);
 /*	t_point	new_dir;
 	t_point	new_plane;
 

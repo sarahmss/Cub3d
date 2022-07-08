@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 23:16:56 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/06 16:42:51 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/07 22:16:13 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ typedef struct s_line
 	double	y0;
 	double	x1;
 	double	y1;
-	int		delta_x;
-	int		delta_y;
-	int		max;
+	double	delta_x;
+	double	delta_y;
+	double	max;
 }				t_line;
 
 typedef struct s_image
