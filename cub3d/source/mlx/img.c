@@ -6,12 +6,11 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 17:15:21 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/07 21:55:01 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/07 22:54:38 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
 
 /*
 	Brasenham's algorithme draws lines between two points

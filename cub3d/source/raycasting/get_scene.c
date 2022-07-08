@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 00:12:12 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/06 17:27:20 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/07 22:55:09 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,13 +77,10 @@ t_raycasting r)
 	return (new_r);
 }
 
-
 /*
 	@brief: Init player paramaters
 		pos: initial position;
 		radius: in pixels
-		turn_direction: could be LEFT, RIGHT, STOP
-		walk_direction: could be BACK, FRONT, STOP
 		rotation_angle:
 		move_speed:
 		turn_speed:
@@ -95,11 +92,9 @@ t_player	init_player(t_point pos)
 
 	player.pos = pos;
 	player.radius = 8;
-	player.walk_direction = STOP;
-	player.turn_direction = STOP;
 	player.rotation_angle = M_PI / 2;
-	player.move_speed = 5;
-	player.rotation_speed = 3 * (M_PI / 180);
+	player.move_speed = 2.0;
+	player.rotation_speed = 2 * (M_PI / 180);
 	return (player);
 }
 
