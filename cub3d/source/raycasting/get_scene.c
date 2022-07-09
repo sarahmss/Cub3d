@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 00:12:12 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/07 22:55:09 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/09 20:20:05 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,38 +14,24 @@
 
 /*
 Defines direction in function of unitary vectors
-		     N(0, -1)
+		     N 3pi / 2
                 |
- EA(-1, 0)______|_____WE(1, 0)
+ EA pi______|_____WE 0
 			    |
 			    |
-		       S(0, 1)
+		       S pi/2
 */
-static t_point	get_direction(t_map direction)
+static double	get_direction(t_map direction)
 {
-	t_point	dir;
-
 	if (direction == N)
-	{
-		dir.x = 0;
-		dir.y = -1;
-	}
+		return (3 * M_PI / 2);
 	if (direction == S)
-	{
-		dir.x = 0;
-		dir.y = 1;
-	}
+		return (M_PI / 2);
 	if (direction == W)
-	{
-		dir.x = 1;
-		dir.y = 0;
-	}
+		return (0);
 	if (direction == E)
-	{
-		dir.x = -1;
-		dir.y = 0;
-	}
-	return (dir);
+		return (M_PI);
+	return (0);
 }
 
 static t_raycasting	get_initial_position(int **cub_map, int width, int height,
@@ -67,7 +53,6 @@ t_raycasting r)
 			{
 				new_r.pos.x = j * TILE_SIZE;
 				new_r.pos.y = i * TILE_SIZE;
-				new_r.dir = get_direction(cub_map[i][j]);
 				return (new_r);
 			}
 			j++;
@@ -86,13 +71,13 @@ t_raycasting r)
 		turn_speed:
 
 */
-t_player	init_player(t_point pos)
+t_player	init_player(t_point pos, t_map direction)
 {
 	t_player	player;
 
 	player.pos = pos;
 	player.radius = 8;
-	player.rotation_angle = M_PI / 2;
+	player.rotation_angle = get_direction(direction);
 	player.move_speed = 2.0;
 	player.rotation_speed = 2 * (M_PI / 180);
 	return (player);
@@ -105,7 +90,10 @@ t_raycasting	define_points(t_scene *scn)
 	r = get_initial_position(scn->cub_map, scn->map_width, scn->map_height, r);
 	r.cam_plane.x = 0;
 	r.cam_plane.y = 0.66;
+	r.dir.x = 0;
+	r.dir.y = -1;
 	r.cub_map = scn->cub_map;
-	r.player = init_player(r.pos);
+	r.player = init_player(r.pos, r.cub_map[(int)r.pos.y / TILE_SIZE]
+		[(int)r.pos.x / TILE_SIZE]);
 	return (r);
 }

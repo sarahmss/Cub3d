@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 23:29:38 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/06 16:11:04 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/09 20:14:57 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ void			draw_minimap(t_cub3d *data, t_scene *scene, t_image *img);
 //	main raycasting
 void			raycasting(t_image *img, t_cub3d *data);
 t_raycasting	define_points(t_scene *scn);
-t_player		init_player(t_point pos);
 
 // controls
 void			move_forward(t_cub3d *data, t_raycasting r);
