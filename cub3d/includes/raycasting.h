@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 22:04:46 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/07 22:46:12 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/09 23:39:35 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 # define RAYCASTING_H
 
 # include "../includes/cub3d.h"
+
+# define TILE_SIZE			32
+# define WALL_STRIP_WIDTH	3
+# define MM_SCALE_FACTOR	0.3
 
 typedef enum e_side
 {
@@ -46,48 +50,32 @@ typedef struct s_player
 	double	rotation_speed;
 }				t_player;
 
-/*
-For our player we have:
-	fov: Field of vision (ø = 66°)
-	pos: position vector
-	dir: direction vector
-	cam_plane: tg(ø)·dir(perpendicular to the direction, with variable len)
-	cam_pixel == (mult·cam_plane) vector from (xd, yd)→(x_pixel, y_pixel)
-	mult == (2·(act_pixel/WIN_WIDTH) - 1) escalar used to find ray
-	ray == (dir + cam_pixel)
-	map : actual square ray is in
-  012345689ABCD
- |---pixels----|
-  _____________	→ (cam_plane)
-  \		|(dir)/
-   \	|    /
-	\	|   /
-	 \  |  /	→(ray)
-	  \ | /
-	   \|/
-	    P		→(pos)
-
-*/
 typedef struct s_raycasting
 {
 	int			**cub_map;
-	t_point		pos;
-	t_point		dir;
-	t_point		cam_plane;
-	t_point		ray;
-	t_point		side_ds;
-	t_point		delta_ds;
-	t_point		map;
-	t_point		step;
-	t_side		side;
 	t_player	player;
+	t_point		wall_hit;
+	t_point		step;
+	t_point		intercept;
+	t_point		next_touch;
+	t_side		hit_side;
+	int			distance;
+	double		ray_angle;
 }				t_raycasting;
 
-//	Point configure
-t_point	set_ray(t_point dir, t_point cam_plane, int pixel);
-t_point	set_delta_ds(t_point ray);
-t_point	set_step(t_point ray);
-t_point	set_side_ds(t_point ray, t_point map, t_point pos,
-			t_point delta_ds);
+// ray direction
+int		is_ray_facing_down(double angle);
+int		is_ray_facing_up(double angle);
+int		is_ray_facing_right(double angle);
+int		is_ray_facing_left(double angle);
+
+// math.c
+double	distance_between_points(t_point p1, t_point p2);
+double	normalize_angle(double angle);
+
+// set_poin.c
+t_point	set_step(double ray_angle, t_side h_v);
+t_point	set_intercept(double ray_angle, t_point pos, t_side h_v);
+t_point	set_map(double ray_angle, t_point next_touch, t_side h_v);
 
 #endif

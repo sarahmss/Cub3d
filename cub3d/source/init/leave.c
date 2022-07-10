@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 23:09:17 by smodesto          #+#    #+#             */
-/*   Updated: 2022/06/22 23:29:44 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/09 23:35:10 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int	before_living(t_cub3d *data)
 {
 	if (data->scene)
 		free_scene(data->scene);
+	if (data->mlx->mlx)
+		free(data->mlx->mlx);
 	if (data->mlx)
 		free(data->mlx);
 	if (data->img)

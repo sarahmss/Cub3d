@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 23:29:38 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/09 20:14:57 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/09 23:17:42 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@
 # include "./raycasting.h"
 # include "./my_mlx_draw.h"
 # include "./keymap.h"
-
-# define	TILE_SIZE 32
 
 typedef struct s_render_map
 {
@@ -63,6 +61,8 @@ typedef struct s_cub3d
 	t_mlx			*mlx;
 	t_image			*img;
 	t_raycasting	r;
+	t_raycasting	*rays;
+	int				num_rays;
 	double			frame_time;
 }				t_cub3d;
 
@@ -85,9 +85,8 @@ void			draw_game(t_cub3d *data, t_mlx *mlx, t_image *img);
 void			background(t_image *img, int f[3], int c[3]);
 void			draw_minimap(t_cub3d *data, t_scene *scene, t_image *img);
 
-
-//	main raycasting
-void			raycasting(t_image *img, t_cub3d *data);
+// raycasting.c
+void			cast_all_rays(t_cub3d *data);
 t_raycasting	define_points(t_scene *scn);
 
 // controls

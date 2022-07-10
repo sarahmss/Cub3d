@@ -6,95 +6,92 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 17:58:28 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/06 15:57:16 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/09 23:39:01 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int	set_color(t_side side)
+static t_raycasting	hit_aux(t_raycasting r, t_side s, t_point next_touch)
 {
-	int	color;
-
-	color = DGREY;
-	if (side == VERTICAL)
-		color = color / 2;
-	return (color);
-}
-
-t_raycasting	go_through_ray(t_raycasting r)
-{
-	t_raycasting	new_r;
-	t_bool			hit;
-
-	hit = false;
-	new_r = r;
-	while (hit == false)
-	{
-		if (new_r.side_ds.x < new_r.side_ds.y)
-		{
-			new_r.side_ds.x += new_r.delta_ds.x;
-			new_r.map.x += new_r.step.x;
-			new_r.side = HORIZONTAL;
-		}
-		else
-		{
-			new_r.side_ds.y += new_r.delta_ds.y;
-			new_r.map.y += new_r.step.y;
-			new_r.side = VERTICAL;
-		}
-		if (r.cub_map[(int)new_r.map.x][(int)new_r.map.y] > 0)
-			hit = true;
-	}
-	return (new_r);
+	r.hit_side = s;
+	r.wall_hit = next_touch;
+	return (r);
 }
 
 /*
-	substituir draw vertical line to put sprite to window
+	@brief: defines if ray its a wall
+		@param: w = map_width * TILE_SIZE
+		@param: h = map_height * TILE_SIZE
+		@param: s = HORIZONTAL / VERTICAL
 */
-void	dda(t_raycasting r, int x, t_image *img, int color)
+t_raycasting	hit(t_raycasting r, t_side s, int w, int h)
 {
-	double		perp_wall;
-	int			line_height;
-	t_point		start_end;
+	t_raycasting	r_local;
+	t_point			next_touch;
+	t_point			map;
 
-	if (r.side == HORIZONTAL)
-		perp_wall = r.side_ds.x - r.delta_ds.x;
-	else
-		perp_wall = r.side_ds.y - r.delta_ds.y;
-	line_height = (int)(WIN_HEIGHT / perp_wall);
-	start_end.x = (-line_height / 2) + (WIN_HEIGHT / 2);
-	if (start_end.x < 0)
-		start_end.x = 0;
-	start_end.y = (line_height / 2) + (WIN_HEIGHT / 2);
-	if (start_end.y >= WIN_HEIGHT)
-		start_end.y = WIN_HEIGHT - 1;
-	draw_vertical_line(img, x, start_end, color);
+	r_local = r;
+	r_local.wall_hit.x = 0;
+	r_local.wall_hit.y = 0;
+	r_local.intercept = set_intercept(r_local.ray_angle, r_local.player.pos, s);
+	r_local.step = set_step(r_local.ray_angle, s);
+	next_touch = r_local.intercept;
+	while ((next_touch.x >= 0 && next_touch.x <= w)
+		&& (next_touch.y >= 0 && next_touch.y <= h))
+	{
+		map = set_map(r_local.ray_angle, next_touch, s);
+		if (r.cub_map[(int)map.y][(int)map.x] == WALL)
+			return (hit_aux(r_local, s, next_touch));
+		next_touch.x += r_local.step.x;
+		next_touch.y += r_local.step.y;
+	}
+	return (r_local);
 }
 
-void	raycasting(t_image *img, t_cub3d *data)
+void	raycasting(t_cub3d *data)
 {
-	t_raycasting	r;
-	static int		init;
-	int				pixel;
+	t_raycasting	r_h;
+	t_raycasting	r_v;
+	double			h_dist;
+	double			v_dist;
 
-	if (init++ == 0)
+	r_h = hit(data->r, HORIZONTAL, data->scene->map_width * TILE_SIZE,
+			data->scene->map_height * TILE_SIZE);
+	r_v = hit(data->r, VERTICAL, data->scene->map_width * TILE_SIZE,
+			data->scene->map_height * TILE_SIZE);
+	h_dist = distance_between_points(r_h.player.pos, r_h.wall_hit);
+	v_dist = distance_between_points(r_v.player.pos, r_v.wall_hit);
+	if (v_dist < h_dist)
 	{
-		r = define_points(data->scene);
-		data->r = r;
+		data->r = r_v;
+		data->r.distance = v_dist;
 	}
 	else
-		r = data->r;
-	pixel = -1;
-	while (pixel++ < WIN_WIDTH)
 	{
-		r.ray = set_ray(r.dir, r.cam_plane, pixel);
-		r.map.x = r.pos.x;
-		r.map.y = r.pos.y;
-		r.delta_ds = set_delta_ds(r.ray);
-		r.step = set_step(r.ray);
-		r.side_ds = set_side_ds(r.ray, r.map, r.pos, r.delta_ds);
-		r = go_through_ray(r);
-		dda(r, pixel, img, set_color(r.side));
+		data->r = r_h;
+		data->r.distance = h_dist;
 	}
+}
+
+void	cast_all_rays(t_cub3d *data)
+{
+	int				pixel;
+	int				num_rays;
+	t_raycasting	*rays;
+	double			fov;
+
+	fov = 60 * (M_PI / 180);
+	data->r.ray_angle = data->r.player.rotation_angle - (fov / 2);
+	pixel = -1;
+	num_rays = data->scene->map_width * TILE_SIZE / WALL_STRIP_WIDTH;
+	rays = malloc(sizeof(t_raycasting) * num_rays);
+	while (++pixel < num_rays)
+	{
+		raycasting(data);
+		rays[pixel] = data->r;
+		data->r.ray_angle += fov / num_rays ;
+	}
+	data->rays = rays;
+	data->num_rays = num_rays;
 }

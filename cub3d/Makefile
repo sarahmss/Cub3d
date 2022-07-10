@@ -6,7 +6,7 @@
 #    By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/11 17:02:33 by smodesto          #+#    #+#              #
-#    Updated: 2022/07/06 15:18:29 by smodesto         ###   ########.fr        #
+#    Updated: 2022/07/09 23:18:51 by smodesto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,9 +32,12 @@ SRCS_FILES =	init/main.c				\
 				game/ft_rgbhex.c		\
 				game/controls.c			\
 				game/minimap.c			\
+				raycasting/aux_cast.c	\
+				raycasting/get_scene.c	\
+				raycasting/math.c		\
 				raycasting/raycasting.c	\
-				raycasting/set_point.c	\
-				raycasting/get_scene.c
+				raycasting/set_point.c
+
 
 
 SRCS = $(addprefix $(SRC_PATH), $(SRCS_FILES))

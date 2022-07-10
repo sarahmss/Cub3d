@@ -5,77 +5,87 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/20 22:02:37 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/05 19:11:53 by smodesto         ###   ########.fr       */
+/*   Created: 2022/07/09 22:03:40 by smodesto          #+#    #+#             */
+/*   Updated: 2022/07/09 23:20:52 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
 /*
-	Defines ray vector dir + cam_plane * mult;
+	@brief: find x and y of the closest intersection ray-wall
+	@param: pos: player position
 */
-t_point	set_ray(t_point dir, t_point cam_plane, int pixel)
+t_point	set_intercept(double ray_angle, t_point pos, t_side h_v)
 {
-	double		mult;
-	t_point		ray;
+	t_point	intercept;
 
-	mult = 2 * pixel / (double)WIN_WIDTH - 1;
-	ray.x = dir.x + (cam_plane.x * mult);
-	ray.y = dir.y + (cam_plane.y * mult);
-	return (ray);
+	if (h_v == HORIZONTAL)
+	{
+		intercept.y = floor(pos.y / TILE_SIZE) * TILE_SIZE;
+		if (is_ray_facing_down(ray_angle))
+			intercept.y += TILE_SIZE;
+		intercept.x = pos.x + (intercept.y - pos.y) / tan(ray_angle);
+	}
+	else if (h_v == VERTICAL)
+	{
+		intercept.x = floor(pos.x / TILE_SIZE) * TILE_SIZE;
+		if (is_ray_facing_down(ray_angle))
+			intercept.x += TILE_SIZE;
+		intercept.y = pos.y + (intercept.x - pos.x) / tan(ray_angle);
+	}
+	return (intercept);
 }
 
 /*
-	delta_ds: distance ray have to travel to go from 1 side of square to the
-	next one
+	@brief: Calculate the increment step.x and step.y
 */
-t_point	set_delta_ds(t_point ray)
-{
-	t_point	delta_ds;
-
-	if (ray.x == 0)
-		delta_ds.x = 1e30;
-	else
-		delta_ds.x = abs((int)(1 / ray.x));
-	if (ray.y == 0)
-		delta_ds.y = 1e30;
-	else
-		delta_ds.y = abs((int)(1 / ray.y));
-	return (delta_ds);
-}
-
-t_point	set_step(t_point ray)
+t_point	set_step(double ray_angle, t_side h_v)
 {
 	t_point	step;
 
-	if (ray.x < 0)
-		step.x = -1;
-	else
-		step.x = 1;
-	if (ray.y < 0)
-		step.y = -1;
-	else
-		step.y = 1;
+	if (h_v == HORIZONTAL)
+	{
+		step.y = TILE_SIZE;
+		if (is_ray_facing_up(ray_angle))
+			step.y *= -1;
+		step.x = TILE_SIZE / tan(ray_angle);
+		if (is_ray_facing_left(ray_angle) && step.x > 0)
+			step.x *= -1;
+		if (is_ray_facing_right(ray_angle) && step.x < 0)
+			step.x *= -1;
+	}
+	else if (h_v == VERTICAL)
+	{
+		step.x = TILE_SIZE;
+		if (is_ray_facing_up(ray_angle))
+			step.x *= -1;
+		step.y = TILE_SIZE / tan(ray_angle);
+		if (is_ray_facing_left(ray_angle) && step.y > 0)
+			step.y *= -1;
+		if (is_ray_facing_right(ray_angle) && step.y < 0)
+			step.y *= -1;
+	}
 	return (step);
 }
 
-/*
-	side_ds: distance ray have to travel  from its start position to achieve
-	closest side of next square
-*/
-t_point	set_side_ds(t_point ray, t_point map, t_point pos,
-	t_point delta_ds)
+t_point	set_map(double ray_angle, t_point next_touch, t_side h_v)
 {
-	t_point	side_ds;
+	t_point	map;
 
-	if (ray.x < 0)
-		side_ds.x = (pos.x - map.x) * delta_ds.x;
-	else
-		side_ds.x = (map.x + 1.0 - pos.x) * delta_ds.x;
-	if (ray.y < 0)
-		side_ds.y = (pos.y - map.y) * delta_ds.y;
-	else
-		side_ds.y = (map.y + 1.0 - pos.y) * delta_ds.y;
-	return (side_ds);
+	if (h_v == HORIZONTAL)
+	{
+		map.x = next_touch.x / TILE_SIZE;
+		map.y = next_touch.y / TILE_SIZE;
+		if (is_ray_facing_up(ray_angle))
+			map.y--;
+	}
+	if (h_v == VERTICAL)
+	{
+		map.x = next_touch.x / TILE_SIZE;
+		map.y = next_touch.y / TILE_SIZE;
+		if (is_ray_facing_left(ray_angle))
+			map.x--;
+	}
+	return (map);
 }

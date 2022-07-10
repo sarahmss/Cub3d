@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 19:27:02 by smodesto          #+#    #+#             */
-/*   Updated: 2022/06/22 23:28:50 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/09 23:16:49 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,6 @@ t_cub3d	*init_data(void)
 	data->scene = init_scene();
 	data->img = init_img(WIN_WIDTH, WIN_HEIGHT);
 	data->mlx = init_mlx();
+	data->rays = NULL;
 	return (data);
 }
