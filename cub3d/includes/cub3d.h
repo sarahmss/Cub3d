@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 23:29:38 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/09 23:17:42 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/09 23:54:38 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ typedef struct s_cub3d
 	t_raycasting	r;
 	t_raycasting	*rays;
 	int				num_rays;
-	double			frame_time;
 }				t_cub3d;
 
 //	init
@@ -92,7 +91,7 @@ t_raycasting	define_points(t_scene *scn);
 // controls
 void			move_forward(t_cub3d *data, t_raycasting r);
 void			move_backward(t_cub3d *data, t_raycasting r);
-void			rotate_right(t_cub3d *data, t_raycasting r);
-void			rotate_left(t_cub3d *data, t_raycasting r);
+void			rotate_right(t_cub3d *data);
+void			rotate_left(t_cub3d *data);
 
 #endif

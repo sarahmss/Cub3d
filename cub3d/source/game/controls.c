@@ -6,19 +6,19 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 11:21:03 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/07 23:25:28 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/09 23:52:08 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	rotate_left(t_cub3d *data, t_raycasting r)
+void	rotate_left(t_cub3d *data)
 {
 	data->r.player.rotation_angle += data->r.player.rotation_speed * LEFT;
 	draw_game(data, data->mlx, data->img);
 }
 
-void	rotate_right(t_cub3d *data, t_raycasting r)
+void	rotate_right(t_cub3d *data)
 {
 	data->r.player.rotation_angle += data->r.player.rotation_speed * RIGHT;
 	draw_game(data, data->mlx, data->img);

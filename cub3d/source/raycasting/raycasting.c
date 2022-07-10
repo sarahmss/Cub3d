@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 17:58:28 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/09 23:39:01 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/09 23:50:36 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,49 +49,47 @@ t_raycasting	hit(t_raycasting r, t_side s, int w, int h)
 	return (r_local);
 }
 
-void	raycasting(t_cub3d *data)
+t_raycasting	raycasting(t_cub3d *data, double ray_angle)
 {
 	t_raycasting	r_h;
 	t_raycasting	r_v;
 	double			h_dist;
 	double			v_dist;
 
-	r_h = hit(data->r, HORIZONTAL, data->scene->map_width * TILE_SIZE,
+	r_h = data->r;
+	r_v = data->r;
+	r_h.ray_angle = ray_angle;
+	r_v.ray_angle = ray_angle;
+	r_h = hit(r_h, HORIZONTAL, data->scene->map_width * TILE_SIZE,
 			data->scene->map_height * TILE_SIZE);
-	r_v = hit(data->r, VERTICAL, data->scene->map_width * TILE_SIZE,
+	r_v = hit(r_v, VERTICAL, data->scene->map_width * TILE_SIZE,
 			data->scene->map_height * TILE_SIZE);
 	h_dist = distance_between_points(r_h.player.pos, r_h.wall_hit);
 	v_dist = distance_between_points(r_v.player.pos, r_v.wall_hit);
+	r_v.distance = v_dist;
+	r_h.distance = h_dist;
 	if (v_dist < h_dist)
-	{
-		data->r = r_v;
-		data->r.distance = v_dist;
-	}
-	else
-	{
-		data->r = r_h;
-		data->r.distance = h_dist;
-	}
+		return (r_v);
+	return (r_h);
 }
 
 void	cast_all_rays(t_cub3d *data)
 {
-	int				pixel;
-	int				num_rays;
+	t_point			pixel_ray;
 	t_raycasting	*rays;
 	double			fov;
+	double			ray_angle;
 
+	pixel_ray.y = data->scene->map_width * TILE_SIZE / WALL_STRIP_WIDTH;
+	rays = malloc(sizeof(t_raycasting) * pixel_ray.y);
 	fov = 60 * (M_PI / 180);
-	data->r.ray_angle = data->r.player.rotation_angle - (fov / 2);
-	pixel = -1;
-	num_rays = data->scene->map_width * TILE_SIZE / WALL_STRIP_WIDTH;
-	rays = malloc(sizeof(t_raycasting) * num_rays);
-	while (++pixel < num_rays)
+	ray_angle = data->r.player.rotation_angle - (fov / 2);
+	pixel_ray.x = -1;
+	while (++pixel_ray.x < pixel_ray.y)
 	{
-		raycasting(data);
-		rays[pixel] = data->r;
-		data->r.ray_angle += fov / num_rays ;
+		rays[(int)pixel_ray.x] = raycasting(data, ray_angle);
+		ray_angle += fov / pixel_ray.y ;
 	}
 	data->rays = rays;
-	data->num_rays = num_rays;
+	data->num_rays = pixel_ray.y;
 }

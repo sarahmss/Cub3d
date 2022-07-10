@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/20 10:49:09 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/07 22:54:43 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/09 23:52:39 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ static int	keyboard_input(int key, t_cub3d *data)
 	else if (key == ARROW_DOWN)
 		move_backward(data, data->r);
 	else if (key == ARROW_RIGHT)
-		rotate_right(data, data->r);
+		rotate_right(data);
 	else if (key == ARROW_LEFT)
-		rotate_left(data, data->r);
+		rotate_left(data);
 	return (0);
 }
 
