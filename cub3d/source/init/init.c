@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 19:27:02 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/17 17:44:55 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/17 18:11:01 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,12 @@ t_cub3d	*init_data(char *argv)
 	if (!data)
 		check_error(1, "ERR_FDF_INIT");
 	data->scene = init_scene();
+	data->mlx = init_mlx();
 	if (read_file(argv, data->scene) != 0)
 		exit (before_living(data));
 	data->win_width = data->scene->map_width * TILE_SIZE;
 	data->win_height = data->scene->map_height * TILE_SIZE;
 	data->img = init_img(data->win_width, data->win_height);
-	data->mlx = init_mlx();
 	data->rays = NULL;
 	return (data);
 }
