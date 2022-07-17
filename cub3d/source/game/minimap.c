@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 14:20:56 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/09 23:23:19 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/17 18:07:00 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ void	render_map(int **cub_map, int w, int h, t_image *img)
 		m.iterator.x = 0;
 		while (m.iterator.x < w)
 		{
-			m.tile.x = m.iterator.x * TILE_SIZE;
-			m.tile.y = m.iterator.y * TILE_SIZE;
+			m.tile.x = m.iterator.x * TILE_SIZE * MM_SCALE_FACTOR;
+			m.tile.y = m.iterator.y * TILE_SIZE * MM_SCALE_FACTOR;
 			if (cub_map[(int)m.iterator.y][(int)m.iterator.x] == 0)
 				m.color = WHITE;
 			else
 				m.color = BLUE;
-			m.tile_size.x = m.tile.x + TILE_SIZE;
-			m.tile_size.y = m.tile.y + TILE_SIZE;
+			m.tile_size.x = m.tile.x + TILE_SIZE * MM_SCALE_FACTOR;
+			m.tile_size.y = m.tile.y + TILE_SIZE * MM_SCALE_FACTOR;
 			draw_rectangle(img, m.color, m.tile, m.tile_size);
 			draw_square(img, DGREY, m.tile, m.tile_size);
 			m.iterator.x++;
@@ -47,12 +47,17 @@ void	render_map(int **cub_map, int w, int h, t_image *img)
 void	render_player(t_player player, t_image *img)
 {
 	t_line	line;
+	t_point	pos;
 
-	line.x0 = player.pos.x;
-	line.y0 = player.pos.y;
+	line.x0 = player.pos.x * MM_SCALE_FACTOR;
+	line.y0 = player.pos.y * MM_SCALE_FACTOR;
 	line.x1 = player.pos.x + cos(player.rotation_angle) * 30;
+	line.x1 *= MM_SCALE_FACTOR;
 	line.y1 = player.pos.y + sin(player.rotation_angle) * 30;
-	draw_circle(player.pos, RED, player.radius, img);
+	line.y1 *= MM_SCALE_FACTOR;
+	pos.x = player.pos.x * MM_SCALE_FACTOR;
+	pos.y = player.pos.y * MM_SCALE_FACTOR;
+	draw_circle(pos, RED, player.radius * MM_SCALE_FACTOR, img);
 	brasenham(line, img, RED);
 }
 
@@ -64,10 +69,10 @@ void	render_rays(t_cub3d *data, t_player p)
 	i = 0;
 	while (i < data->num_rays)
 	{
-		ray.x0 = p.pos.x;
-		ray.y0 = p.pos.y;
-		ray.x1 = data->rays[i].wall_hit.x;
-		ray.y1 = data->rays[i].wall_hit.y;
+		ray.x0 = p.pos.x * MM_SCALE_FACTOR;
+		ray.y0 = p.pos.y * MM_SCALE_FACTOR;
+		ray.x1 = data->rays[i].wall_hit.x * MM_SCALE_FACTOR;
+		ray.y1 = data->rays[i].wall_hit.y * MM_SCALE_FACTOR;
 		brasenham(ray, data->img, GREEN);
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 23:29:38 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/09 23:54:38 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/17 18:07:27 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,12 @@ typedef struct s_cub3d
 	t_raycasting	r;
 	t_raycasting	*rays;
 	int				num_rays;
+	int				win_width;
+	int				win_height;
 }				t_cub3d;
 
 //	init
-t_cub3d			*init_data(void);
+t_cub3d			*init_data(char *argv);
 void			check_error(int err, char *msg);
 int				before_living(t_cub3d *data);
 
@@ -79,14 +81,16 @@ int				check_map(char **cub_map, t_scene *scene);
 void			control_events(t_cub3d *data);
 
 //	img
-void			ft_create_image(t_mlx *mlx, t_image *img);
+void			ft_create_image(t_mlx *mlx, t_image *img, int width,
+					int height);
 void			draw_game(t_cub3d *data, t_mlx *mlx, t_image *img);
-void			background(t_image *img, int f[3], int c[3]);
+void			background(t_image *img, int f[3], int c[3], int wh[2]);
 void			draw_minimap(t_cub3d *data, t_scene *scene, t_image *img);
 
 // raycasting.c
 void			cast_all_rays(t_cub3d *data);
 t_raycasting	define_points(t_scene *scn);
+void			render_walls(t_cub3d *data, t_point init, t_point end);
 
 // controls
 void			move_forward(t_cub3d *data, t_raycasting r);

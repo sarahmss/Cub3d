@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 19:27:02 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/09 23:16:49 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/17 17:44:55 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static t_scene	*init_scene(void)
 /*
 ** allocate and init cub3d data structure
 */
-t_cub3d	*init_data(void)
+t_cub3d	*init_data(char *argv)
 {
 	t_cub3d	*data;
 
@@ -75,7 +75,11 @@ t_cub3d	*init_data(void)
 	if (!data)
 		check_error(1, "ERR_FDF_INIT");
 	data->scene = init_scene();
-	data->img = init_img(WIN_WIDTH, WIN_HEIGHT);
+	if (read_file(argv, data->scene) != 0)
+		exit (before_living(data));
+	data->win_width = data->scene->map_width * TILE_SIZE;
+	data->win_height = data->scene->map_height * TILE_SIZE;
+	data->img = init_img(data->win_width, data->win_height);
 	data->mlx = init_mlx();
 	data->rays = NULL;
 	return (data);
