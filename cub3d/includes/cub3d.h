@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 23:29:38 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/17 18:07:27 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/18 12:26:21 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ typedef struct s_cub3d
 	int				num_rays;
 	int				win_width;
 	int				win_height;
+	double			fov;
 }				t_cub3d;
 
 //	init

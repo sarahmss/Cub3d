@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 14:20:56 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/17 18:07:00 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/17 19:48:52 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ void	render_map(int **cub_map, int w, int h, t_image *img)
 		{
 			m.tile.x = m.iterator.x * TILE_SIZE * MM_SCALE_FACTOR;
 			m.tile.y = m.iterator.y * TILE_SIZE * MM_SCALE_FACTOR;
-			if (cub_map[(int)m.iterator.y][(int)m.iterator.x] == 0)
-				m.color = WHITE;
-			else
+			if (cub_map[(int)m.iterator.y][(int)m.iterator.x] == WALL)
 				m.color = BLUE;
+			else
+				m.color = WHITE;
 			m.tile_size.x = m.tile.x + TILE_SIZE * MM_SCALE_FACTOR;
 			m.tile_size.y = m.tile.y + TILE_SIZE * MM_SCALE_FACTOR;
 			draw_rectangle(img, m.color, m.tile, m.tile_size);

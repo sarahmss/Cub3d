@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 17:58:28 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/17 17:57:15 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/18 13:17:18 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,10 @@ t_raycasting	raycasting(t_cub3d *data, double ray_angle)
 
 	r_h = data->r;
 	r_v = data->r;
-	r_h.ray_angle = ray_angle;
-	r_v.ray_angle = ray_angle;
-	r_h = hit(r_h, HORIZONTAL, data->scene->map_width * TILE_SIZE,
-			data->scene->map_height * TILE_SIZE);
-	r_v = hit(r_v, VERTICAL, data->scene->map_width * TILE_SIZE,
-			data->scene->map_height * TILE_SIZE);
+	r_h.ray_angle = normalize_angle(ray_angle);
+	r_v.ray_angle = normalize_angle(ray_angle);
+	r_h = hit(r_h, HORIZONTAL, data->win_width, data->win_height);
+	r_v = hit(r_v, VERTICAL, data->win_width, data->win_height);
 	h_dist = distance_between_points(r_h.player.pos, r_h.wall_hit);
 	v_dist = distance_between_points(r_v.player.pos, r_v.wall_hit);
 	r_v.distance = v_dist;
@@ -75,21 +73,17 @@ t_raycasting	raycasting(t_cub3d *data, double ray_angle)
 
 void	cast_all_rays(t_cub3d *data)
 {
-	t_point			pixel_ray;
 	t_raycasting	*rays;
-	double			fov;
+	int				pixel;
 	double			ray_angle;
 
-	pixel_ray.y = data->scene->map_width * TILE_SIZE / WALL_STRIP_WIDTH;
-	rays = malloc(sizeof(t_raycasting) * pixel_ray.y);
-	fov = 60 * (M_PI / 180);
-	ray_angle = data->r.player.rotation_angle - (fov / 2);
-	pixel_ray.x = -1;
-	while (++pixel_ray.x < pixel_ray.y)
+	rays = malloc(sizeof(t_raycasting) * data->num_rays);
+	pixel = -1;
+	ray_angle = data->r.player.rotation_angle - (data->fov / 2);
+	while (++pixel < data->num_rays)
 	{
-		rays[(int)pixel_ray.x] = raycasting(data, ray_angle);
-		ray_angle += fov / pixel_ray.y ;
+		rays[pixel] = raycasting(data, ray_angle);
+		ray_angle += data->fov / data->num_rays;
 	}
 	data->rays = rays;
-	data->num_rays = pixel_ray.y;
 }
