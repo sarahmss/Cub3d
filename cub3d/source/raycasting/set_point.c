@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 22:03:40 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/09 23:20:52 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/18 14:19:35 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ t_point	set_intercept(double ray_angle, t_point pos, t_side h_v)
 	else if (h_v == VERTICAL)
 	{
 		intercept.x = floor(pos.x / TILE_SIZE) * TILE_SIZE;
-		if (is_ray_facing_down(ray_angle))
+		if (is_ray_facing_right(ray_angle))
 			intercept.x += TILE_SIZE;
-		intercept.y = pos.y + (intercept.x - pos.x) / tan(ray_angle);
+		intercept.y = pos.y + (intercept.x - pos.x) * tan(ray_angle);
 	}
 	return (intercept);
 }
@@ -58,34 +58,22 @@ t_point	set_step(double ray_angle, t_side h_v)
 	else if (h_v == VERTICAL)
 	{
 		step.x = TILE_SIZE;
-		if (is_ray_facing_up(ray_angle))
+		if (is_ray_facing_left(ray_angle))
 			step.x *= -1;
-		step.y = TILE_SIZE / tan(ray_angle);
-		if (is_ray_facing_left(ray_angle) && step.y > 0)
+		step.y = TILE_SIZE * tan(ray_angle);
+		if (is_ray_facing_up(ray_angle) && step.y > 0)
 			step.y *= -1;
-		if (is_ray_facing_right(ray_angle) && step.y < 0)
+		if (is_ray_facing_down(ray_angle) && step.y < 0)
 			step.y *= -1;
 	}
 	return (step);
 }
 
-t_point	set_map(double ray_angle, t_point next_touch, t_side h_v)
+t_point	set_map(double ray_angle, t_point next_touch)
 {
 	t_point	map;
 
-	if (h_v == HORIZONTAL)
-	{
-		map.x = next_touch.x / TILE_SIZE;
-		map.y = next_touch.y / TILE_SIZE;
-		if (is_ray_facing_up(ray_angle))
-			map.y--;
-	}
-	if (h_v == VERTICAL)
-	{
-		map.x = next_touch.x / TILE_SIZE;
-		map.y = next_touch.y / TILE_SIZE;
-		if (is_ray_facing_left(ray_angle))
-			map.x--;
-	}
+	map.x = next_touch.x / TILE_SIZE;
+	map.y = next_touch.y / TILE_SIZE;
 	return (map);
 }

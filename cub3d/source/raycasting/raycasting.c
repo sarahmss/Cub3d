@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 17:58:28 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/18 13:17:18 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/18 14:22:15 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,14 @@ t_raycasting	hit(t_raycasting r, t_side s, int w, int h)
 	r_local.intercept = set_intercept(r_local.ray_angle, r_local.player.pos, s);
 	r_local.step = set_step(r_local.ray_angle, s);
 	next_touch = r_local.intercept;
+	if (is_ray_facing_up(r_local.ray_angle) && s == HORIZONTAL)
+		r_local.next_touch.y -= 0.01;
+	if (is_ray_facing_left(r_local.ray_angle) && s == VERTICAL)
+		r_local.next_touch.x -= 0.01;
 	while ((next_touch.x >= 0 && next_touch.x <= w)
 		&& (next_touch.y >= 0 && next_touch.y <= h))
 	{
-		map = set_map(r_local.ray_angle, next_touch, s);
+		map = set_map(r_local.ray_angle, next_touch);
 		if (r.cub_map[(int)map.y][(int)map.x] == WALL)
 			return (hit_aux(r_local, s, next_touch));
 		next_touch.x += r_local.step.x;
