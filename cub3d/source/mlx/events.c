@@ -48,6 +48,6 @@ static int	keyboard_input(int key, t_cub3d *data)
 */
 void	control_events(t_cub3d *data)
 {
-	mlx_hook(data->mlx->win, X_EVENT_KEY_EXIT, 0, &close_window, data);
+	mlx_hook(data->mlx->win, X_EVENT_KEY_EXIT, 1L << 0, &close_window, data);
 	mlx_key_hook(data->mlx->win, keyboard_input, data);
 }
