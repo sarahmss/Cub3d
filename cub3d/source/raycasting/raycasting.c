@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 17:58:28 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/18 14:32:57 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/18 14:36:55 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,6 @@ t_raycasting	raycasting(t_cub3d *data, double ray_angle)
 {
 	t_raycasting	r_h;
 	t_raycasting	r_v;
-	double			h_dist;
-	double			v_dist;
 
 	r_h = data->r;
 	r_v = data->r;
@@ -62,11 +60,9 @@ t_raycasting	raycasting(t_cub3d *data, double ray_angle)
 	r_v.ray_angle = normalize_angle(ray_angle);
 	r_h = hit(r_h, HORIZONTAL, data->win_width, data->win_height);
 	r_v = hit(r_v, VERTICAL, data->win_width, data->win_height);
-	h_dist = distance_between_points(r_h.player.pos, r_h.wall_hit);
-	v_dist = distance_between_points(r_v.player.pos, r_v.wall_hit);
-	r_v.distance = v_dist;
-	r_h.distance = h_dist;
-	if (v_dist < h_dist)
+	r_h.distance = distance_between_points(r_h.player.pos, r_h.wall_hit);
+	r_v.distance = distance_between_points(r_v.player.pos, r_v.wall_hit);
+	if (r_v.distance < r_h.distance)
 		return (r_v);
 	return (r_h);
 }

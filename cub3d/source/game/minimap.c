@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 14:20:56 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/17 19:48:52 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/18 14:39:57 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,6 @@ void	render_rays(t_cub3d *data, t_player p)
 void	draw_minimap(t_cub3d *data, t_scene *scene, t_image *img)
 {
 	render_map(scene->cub_map, scene->map_width, scene->map_height, img);
-	render_player(data->r.player, img);
 	render_rays(data, data->r.player);
+	render_player(data->r.player, img);
 }
