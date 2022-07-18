@@ -9,7 +9,7 @@
 			"name": "cub3d", //I named it Pusk because i can
 			"type": "cppdbg",
 			"request": "launch",
-			"program": "/home/morgana/42_projects/cub3d/cub3d",
+			"program": "/home/morgana/42_projects/cub3D_jose/Cub3d/cub3d/cub3D",
 			"args": ["./cub_files/scene0.cub"],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",

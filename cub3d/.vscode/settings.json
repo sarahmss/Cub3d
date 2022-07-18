@@ -12,5 +12,8 @@
             "editorWhitespace.foreground": "#6273a47b"
      },
     "42header.email": "smodesto@student.42sp.org.br",
-    "42header.username": "smodesto"
+	"42header.username": "smodesto",
+	"files.associations": {
+		"cub3d.h": "c"
+	}
     }
