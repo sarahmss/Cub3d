@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 11:21:03 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/09 23:52:08 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/18 12:39:20 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,14 @@ void	rotate_right(t_cub3d *data)
 void	move_forward(t_cub3d *data, t_raycasting r)
 {
 	t_point	new_pos;
+	t_point	map;
 
 	new_pos = r.player.pos;
 	new_pos.x += cos(r.player.rotation_angle) * r.player.move_speed;
 	new_pos.y += sin(r.player.rotation_angle) * r.player.move_speed;
-	if (r.cub_map[(int)new_pos.x / TILE_SIZE][(int)new_pos.y / TILE_SIZE]
-	== EMPTY)
+	map.x = new_pos.x / TILE_SIZE;
+	map.y = new_pos.y / TILE_SIZE;
+	if (r.cub_map[(int)map.y][(int)map.x] == EMPTY)
 		data->r.player.pos = new_pos;
 	if (new_pos.x == data->r.player.pos.x || new_pos.x == data->r.player.pos.x)
 		draw_game(data, data->mlx, data->img);
@@ -41,12 +43,14 @@ void	move_forward(t_cub3d *data, t_raycasting r)
 void	move_backward(t_cub3d *data, t_raycasting r)
 {
 	t_point	new_pos;
+	t_point	map;
 
 	new_pos = r.player.pos;
 	new_pos.x -= cos(r.player.rotation_angle) * r.player.move_speed;
 	new_pos.y -= sin(r.player.rotation_angle) * r.player.move_speed;
-	if (r.cub_map[(int)new_pos.x / TILE_SIZE][(int)new_pos.y / TILE_SIZE]
-	== EMPTY)
+	map.x = new_pos.x / TILE_SIZE;
+	map.y = new_pos.y / TILE_SIZE;
+	if (r.cub_map[(int)map.y][(int)map.x] == EMPTY)
 		data->r.player.pos = new_pos;
 	if (new_pos.x == data->r.player.pos.x || new_pos.x == data->r.player.pos.x)
 		draw_game(data, data->mlx, data->img);
