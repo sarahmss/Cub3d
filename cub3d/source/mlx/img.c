@@ -40,7 +40,7 @@ void	my_mlx_pixel_put(int x, int y, t_image *img, int color)
 {
 	int	i;
 
-	if ((x < 0) || (x >= WIN_WIDTH) || (y < 0) || (y >= WIN_HEIGHT))
+	if ((x < 0) || (x >= img->width) || (y < 0) || (y >= img->height))
 		return ;
 	i = (y * img->line_size) + (x * (img->bpp / 8));
 	*(unsigned int *)&img->data_address[i] = color;
