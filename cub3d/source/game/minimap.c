@@ -33,8 +33,11 @@ void	render_map(int **cub_map, int w, int h, t_image *img)
 				m.color = WHITE;
 			m.tile_size.x = m.tile.x + TILE_SIZE * MM_SCALE_FACTOR;
 			m.tile_size.y = m.tile.y + TILE_SIZE * MM_SCALE_FACTOR;
-			draw_rectangle(img, m.color, m.tile, m.tile_size);
-			draw_square(img, DGREY, m.tile, m.tile_size);
+			if (cub_map[(int)m.iterator.y][(int)m.iterator.x] < 6)
+			{
+				draw_rectangle(img, m.color, m.tile, m.tile_size);
+				draw_square(img, DGREY, m.tile, m.tile_size);
+			}
 			m.iterator.x++;
 		}
 		m.iterator.y++;

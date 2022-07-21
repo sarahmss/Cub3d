@@ -15,7 +15,7 @@
 
 # include "../includes/cub3d.h"
 
-# define TILE_SIZE			32
+# define TILE_SIZE			20
 # define WALL_STRIP_WIDTH	2
 # define MM_SCALE_FACTOR	0.3
 

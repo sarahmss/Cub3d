@@ -62,6 +62,8 @@ static int	left_column(char **cub_map, int lines)
 	while (i < lines)
 	{
 		printf ("%c\n", cub_map[i][j]);
+		printf ("%d(j) %d(i)", j, i);
+		j = 0;
 		while (cub_map[i][j] == '\t' || cub_map[i][j] == ' ')
 			j++;
 		if (cub_map[i][j] != '1')
