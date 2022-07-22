@@ -6,13 +6,11 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 22:24:29 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/21 20:23:54 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/21 21:12:59 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-
 
 static int	top_line(char **cub_map)
 {

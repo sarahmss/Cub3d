@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 22:04:46 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/18 15:08:07 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/21 21:04:55 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,6 @@ double	normalize_angle(double angle);
 // set_poin.c
 t_point	set_step(double ray_angle, t_side side);
 t_point	set_intercept(double ray_angle, t_point pos, t_side side);
-t_point	set_map(double ray_angle, t_point next_touch, t_side s);
+t_point	set_map(double ray_angle, t_point next_touch, t_side s, t_point wh);
 
 #endif

@@ -31,7 +31,7 @@ int	*ft_intset(void *mem, int const_byte, int n_bytes)
 
 	pos = 0;
 	mem_f = (int *)mem;
-	while (pos < n_bytes)
+	while (pos <= n_bytes)
 		mem_f[pos++] = const_byte;
 	return (mem);
 }
