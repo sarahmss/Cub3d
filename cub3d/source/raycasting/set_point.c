@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 22:03:40 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/18 14:33:14 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/21 21:14:29 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,15 +69,17 @@ t_point	set_step(double ray_angle, t_side h_v)
 	return (step);
 }
 
-t_point	set_map(double ray_angle, t_point next_touch, t_side s)
+t_point	set_map(double ray_angle, t_point next_touch, t_side s, t_point wh)
 {
 	t_point	map;
 
 	map.x = next_touch.x / TILE_SIZE;
 	map.y = next_touch.y / TILE_SIZE;
-	if (is_ray_facing_up(ray_angle) && s == HORIZONTAL)
+	if ((is_ray_facing_up(ray_angle) && s == HORIZONTAL && map.y > 0)
+		|| (map.y == wh.y / TILE_SIZE))
 		map.y--;
-	if (is_ray_facing_left(ray_angle) && s == VERTICAL)
+	if ((is_ray_facing_left(ray_angle) && s == VERTICAL && map.x > 0)
+		|| (map.x == wh.x / TILE_SIZE))
 		map.x--;
 	return (map);
 }
