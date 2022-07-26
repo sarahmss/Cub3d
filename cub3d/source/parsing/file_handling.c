@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 20:45:09 by smodesto          #+#    #+#             */
-/*   Updated: 2022/06/22 22:24:20 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/26 12:10:20 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,16 +86,34 @@ static char	**copy_map(int fd, char **maptriz, int i)
 	return (maptriz);
 }
 
+static int	check_extension(char *filename, char *extension)
+{
+	int		len;
+	char	*ext;
+
+	len = ft_strlen(filename);
+	ext = ft_substr(filename, (len - 4), len);
+	if (!ft_strcmp(ext, extension))
+	{
+		free(ext);
+		printf("ERROR - [%s] must end with .cub extension\n", filename);
+		return (-1);
+	}
+	return (0);
+}
+
 int	read_file(char *filename, t_scene *scene)
 {
 	int		fd;
 	char	**cub_map;
 
 	cub_map = NULL;
+	if (check_extension(filename, ".cub"))
+		return (-1);
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 	{
-		printf("ERROR - Unable to open %s", filename);
+		printf("ERROR - Unable to open %s\n", filename);
 		return (-1);
 	}
 	get_elements(scene, fd);
