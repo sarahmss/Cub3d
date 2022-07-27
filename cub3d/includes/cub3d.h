@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 23:29:38 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/21 20:15:22 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/26 14:22:05 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void			print_map(int w, int h, int **map);
 int				read_file(char *filename, t_scene *scene);
 int				map_parsing(char **cub_map, t_scene *scene);
 int				check_map(char **cub_map, t_scene *scene);
+int				get_elements(t_scene *scene, int fd, int i);
 
 //	events
 void			control_events(t_cub3d *data);

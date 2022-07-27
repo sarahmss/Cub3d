@@ -6,7 +6,7 @@
 #    By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/11 17:02:33 by smodesto          #+#    #+#              #
-#    Updated: 2022/07/17 16:49:46 by smodesto         ###   ########.fr        #
+#    Updated: 2022/07/26 13:52:34 by smodesto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRCS_FILES =	init/main.c				\
 				init/init.c				\
 				init/leave.c			\
 				parsing/file_handling.c	\
+				parsing/get_elements.c	\
 				parsing/map_parsing.c	\
 				parsing/check_map.c		\
 				mlx/events.c			\

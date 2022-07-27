@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 22:24:29 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/21 21:12:59 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/26 13:36:20 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,6 @@ static int	left_column(char **cub_map, int lines)
 	j = 0;
 	while (i < lines)
 	{
-		printf ("%c\n", cub_map[i][j]);
-		printf ("%d(j) %d(i)", j, i);
 		j = 0;
 		while (cub_map[i][j] == '\t' || cub_map[i][j] == ' ')
 			j++;
