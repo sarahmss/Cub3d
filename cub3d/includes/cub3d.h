@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 23:29:38 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/27 11:35:03 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/27 12:23:23 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ int				check_error(int err, char *msg);
 int				before_living(t_cub3d *data);
 void			print_map(int w, int h, int **map);
 
-
 //	Parsing
 int				read_file(char *filename, t_scene *scene);
 int				map_parsing(char **cub_map, t_scene *scene);
@@ -83,6 +82,8 @@ int				get_elements(t_scene *scene, int fd, int i);
 
 //	events
 void			control_events(t_cub3d *data);
+void			move_left(t_cub3d *data, t_raycasting r);
+void			move_right(t_cub3d *data, t_raycasting r);
 
 //	img
 void			ft_create_image(t_mlx *mlx, t_image *img, int width,

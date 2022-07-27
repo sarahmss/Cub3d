@@ -6,11 +6,23 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/20 10:49:09 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/09 23:52:39 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/27 12:22:32 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+void	rotate_left(t_cub3d *data)
+{
+	data->r.player.rotation_angle += data->r.player.rotation_speed * LEFT;
+	draw_game(data, data->mlx, data->img);
+}
+
+void	rotate_right(t_cub3d *data)
+{
+	data->r.player.rotation_angle += data->r.player.rotation_speed * RIGHT;
+	draw_game(data, data->mlx, data->img);
+}
 
 /*
 	Close window when X bar's buttom is pressed
@@ -31,9 +43,13 @@ static int	keyboard_input(int key, t_cub3d *data)
 {
 	if (key == MAIN_KEY_ESC)
 		close_window(data);
-	else if (key == ARROW_UP)
+	else if (key == MAIN_KEY_W)
 		move_forward(data, data->r);
-	else if (key == ARROW_DOWN)
+	else if (key == MAIN_KEY_A)
+		move_left(data, data->r);
+	else if (key == MAIN_KEY_D)
+		move_right(data, data->r);
+	else if (key == MAIN_KEY_S)
 		move_backward(data, data->r);
 	else if (key == ARROW_RIGHT)
 		rotate_right(data);
