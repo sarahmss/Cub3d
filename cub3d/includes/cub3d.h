@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 23:29:38 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/26 14:22:05 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/27 11:35:03 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ typedef struct s_cub3d
 
 //	init
 t_cub3d			*init_data(char *argv);
-void			check_error(int err, char *msg);
+int				check_error(int err, char *msg);
 int				before_living(t_cub3d *data);
 void			print_map(int w, int h, int **map);
 

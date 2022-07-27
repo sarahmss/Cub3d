@@ -6,11 +6,20 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 20:45:09 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/26 14:22:12 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/27 11:50:05 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+static char	*map_error(char *line, char *map_in_one_line)
+{
+	check_error(-1, "INVALID MAP - CHECK EMPTY LINES");
+	ft_free_g(&line);
+	if (map_in_one_line)
+		free (map_in_one_line);
+	return (NULL);
+}
 
 static char	**copy_map(int fd, char **maptriz, int i)
 {
@@ -18,20 +27,20 @@ static char	**copy_map(int fd, char **maptriz, int i)
 	char	*map_in_one_line;
 	char	*temp;
 
+	map_in_one_line = NULL;
 	while (get_next_line(fd, &line))
 	{
-		if (ft_strlen(line))
+		if (!ft_strlen(line))
+			return ((char **)map_error(line, map_in_one_line));
+		if (i == 0)
+			map_in_one_line = ft_strdup(line);
+		else
 		{
-			if (i == 0)
-				map_in_one_line = ft_strdup(line);
-			else
-			{
-				temp = map_in_one_line;
-				map_in_one_line = ft_join_var(3, map_in_one_line, "\n", line);
-				free(temp);
-			}
-			i++;
+			temp = map_in_one_line;
+			map_in_one_line = ft_join_var(3, map_in_one_line, "\n", line);
+			free(temp);
 		}
+		i++;
 		ft_free_g(&line);
 	}
 	ft_free_g(&line);
@@ -50,8 +59,7 @@ static int	check_extension(char *filename, char *extension)
 	if (!ft_strcmp(ext, extension))
 	{
 		free(ext);
-		printf("ERROR - [%s] must end with .cub extension\n", filename);
-		return (-1);
+		return (check_error(-1, "FILE MUST END WITH [.cub] EXTENSION"));
 	}
 	free(ext);
 	return (0);
@@ -67,14 +75,11 @@ int	read_file(char *filename, t_scene *scene)
 		return (-1);
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
-	{
-		printf("ERROR - Unable to open %s\n", filename);
-		return (-1);
-	}
+		return (check_error(-1, "UNABLE TO OPEN FILE"));
 	if (get_elements(scene, fd, 0))
 		return (-1);
 	cub_map = copy_map(fd, cub_map, 0);
-	if (map_parsing(cub_map, scene) == -1)
+	if (cub_map == NULL || map_parsing(cub_map, scene) == -1)
 		return (-1);
 	free_matrix(cub_map);
 	close(fd);

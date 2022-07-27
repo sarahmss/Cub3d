@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 19:27:02 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/18 15:28:54 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/27 11:32:06 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ t_cub3d	*init_data(char *argv)
 
 	data = (t_cub3d *)malloc(sizeof(t_cub3d));
 	if (!data)
-		check_error(1, "ERR_FDF_INIT");
+		check_error(-1, "Error\n - allocating error");
 	data->scene = init_scene();
 	data->mlx = init_mlx();
 	if (read_file(argv, data->scene) != 0)

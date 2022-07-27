@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 21:26:02 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/17 18:12:45 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/27 11:48:02 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ static void	alloc_map(t_scene *scene)
 	i = 0;
 	scene->cub_map = (int **) malloc(sizeof(int *) * (scene->map_height));
 	if (!(scene->cub_map))
-		check_error(1, "ALLOCATING ERROR");
+		check_error(-1, "ALLOCATING ERROR");
 	i = 0;
 	while (i < scene->map_height)
 	{
 		scene->cub_map[i] = (int *)malloc(sizeof(int) * (scene->map_width));
 		if (!(scene->cub_map[i]))
-			check_error(1, "ALLOCATING ERROR");
+			check_error(-1, "ALLOCATING ERROR");
 		i++;
 	}
 }
@@ -75,10 +75,10 @@ static int	set_element(char *map_line)
 		return (W);
 	else if (*map_line == 'E')
 		return (E);
-	return (0);
+	return (check_error(-1, "INVALID CHARACTER IN MAP"));
 }
 
-static void	fill_map(char *map_line, t_scene *scene, int line)
+static int	fill_map(char *map_line, t_scene *scene, int line)
 {
 	int	*cub_line;
 	int	i;
@@ -88,12 +88,15 @@ static void	fill_map(char *map_line, t_scene *scene, int line)
 	while (*map_line != '\0')
 	{
 		*cub_line = set_element(map_line);
+		if (*cub_line == -1)
+			return (-1);
 		i++;
 		map_line++;
 		cub_line++;
 	}
 	if (i < scene->map_width - 1)
 		ft_intset(cub_line, SPACES, (scene->map_width - i - 1));
+	return (0);
 }
 
 int	map_parsing(char **cub_map, t_scene *scene)
@@ -110,7 +113,8 @@ int	map_parsing(char **cub_map, t_scene *scene)
 	alloc_map(scene);
 	while (cub_map[i] != NULL)
 	{
-		fill_map(cub_map[i], scene, i);
+		if (fill_map(cub_map[i], scene, i) == -1)
+			return (-1);
 		i++;
 	}
 	return (0);

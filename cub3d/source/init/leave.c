@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 23:09:17 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/09 23:35:10 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/27 11:35:12 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,8 @@ int	before_living(t_cub3d *data)
 /*
 	Write error messages and exit program
 */
-void	check_error(int err, char *msg)
+int	check_error(int err, char *msg)
 {
-	if (err < 1)
-	{
-		ft_printf("-ERROR: %s\n", msg);
-		exit (1);
-	}
+	ft_printf("-Error\n: %s\n", msg);
+	return (err);
 }

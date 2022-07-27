@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 13:42:52 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/26 21:48:47 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/27 11:46:26 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,12 @@ static int	check_elements(int elements[6], t_scene *s)
 	i = 0;
 	if (s->no_texture == NULL || s->so_texture == NULL
 		|| s->we_texture == NULL || s->ea_texture == NULL)
-	{
-		printf("-ERROR: invalid path\n");
-		return (-1);
-	}
+		return (check_error(-1, "INVALID PATH"));
 	while (elements[i] == 1 && i < 6)
 		i++;
 	if (i == 6)
 		return (0);
-	printf("-ERROR - repeated or missing map element [NO, SO, WE, EA]\n");
-	return (-1);
+	return (check_error(-1, "REPEATED OR MISSING MAP ELEMENTS"));
 }
 
 static int	get_rgb(char *line, int rgb[3], char element)
@@ -40,19 +36,13 @@ static int	get_rgb(char *line, int rgb[3], char element)
 	i = 0;
 	color = ft_strchr(line, element);
 	if (*(++color) != ' ')
-	{
-		printf ("-ERROR: invalid colors\n");
-		return (-1);
-	}
+		return (check_error(-1, "INVALID COLORS"));
 	line_rgb = ft_split(++color, ',');
 	while (i < 3)
 	{
 		rgb[i] = ft_atoi(line_rgb[i]);
 		if (rgb[i] < 0 || rgb[i] > 255)
-		{
-			printf ("-ERROR: invalid colors\n");
-			return (-1);
-		}
+			return (check_error(-1, "INVALID COLORS"));
 		i++;
 	}
 	free_matrix(line_rgb);
@@ -82,9 +72,6 @@ static char	*check_path(char *line, int len)
 	return (path);
 }
 
-/*
-	check f and c
-*/
 static int	cpy_elements(t_scene *scene, int elements[6], char *line)
 {
 	if (ft_strncmp("NO", line, 2) == 0 && ++elements[0])
@@ -106,10 +93,7 @@ static int	cpy_elements(t_scene *scene, int elements[6], char *line)
 			return (-1);
 	}
 	else
-	{
-		printf ("- ERROR: unknown element\n");
-		return (-1);
-	}
+		return (check_error(-1, "UNKNOWN ELEMENTS"));
 	return (0);
 }
 
