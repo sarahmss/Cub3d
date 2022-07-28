@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 21:26:02 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/27 11:48:02 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/28 14:05:09 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,12 @@ static int	fill_map(char *map_line, t_scene *scene, int line)
 	while (*map_line != '\0')
 	{
 		*cub_line = set_element(map_line);
+		if (*cub_line == TAB)
+		{
+			ft_intset(cub_line, TAB, 4);
+			cub_line += 3;
+			i += 3;
+		}
 		if (*cub_line == -1)
 			return (-1);
 		i++;
