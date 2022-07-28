@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 23:29:38 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/27 12:23:23 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/28 13:22:26 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,14 @@ typedef enum e_map
 	TAB
 }				t_map;
 
+typedef enum e_textures
+{
+	T_NO,
+	T_SO,
+	T_WE,
+	T_EA
+}		t_textures;
+
 typedef struct s_scene
 {
 	char	*no_texture;
@@ -55,6 +63,10 @@ typedef struct s_scene
 	int		**cub_map;
 }			t_scene;
 
+/*
+	rays: all rays beeing casted (cleaned in each frame)
+	r: store information about this frame
+*/
 typedef struct s_cub3d
 {
 	t_scene			*scene;
@@ -66,7 +78,16 @@ typedef struct s_cub3d
 	int				win_width;
 	int				win_height;
 	double			fov;
+	t_image			*textures[4];
 }				t_cub3d;
+
+//	textures
+int				get_facing_side(double ray_angle, t_side side);
+int				get_x_offset(t_raycasting ray);
+int				check_x_inverse_offset(t_raycasting ray, int texture_offset);
+int				handle_textures(t_cub3d *data, t_image *text[4]);
+int				get_wall_pixel_color(t_image *texture, int offset_x, int offset_y);
+
 
 //	init
 t_cub3d			*init_data(char *argv);

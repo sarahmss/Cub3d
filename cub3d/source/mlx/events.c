@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/20 10:49:09 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/27 12:22:32 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/28 13:55:16 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,14 @@ static int	keyboard_input(int key, t_cub3d *data)
 {
 	if (key == MAIN_KEY_ESC)
 		close_window(data);
-	else if (key == MAIN_KEY_W)
+	else if (key == MAIN_KEY_W || key == ARROW_UP)
 		move_forward(data, data->r);
-	else if (key == MAIN_KEY_A)
-		move_left(data, data->r);
-	else if (key == MAIN_KEY_D)
-		move_right(data, data->r);
-	else if (key == MAIN_KEY_S)
+	else if (key == MAIN_KEY_S || key == ARROW_DOWN)
 		move_backward(data, data->r);
+	else if (key == MAIN_KEY_A)
+		move_right(data, data->r);
+	else if (key == MAIN_KEY_D)
+		move_left(data, data->r);
 	else if (key == ARROW_RIGHT)
 		rotate_right(data);
 	else if (key == ARROW_LEFT)

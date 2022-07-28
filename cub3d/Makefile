@@ -6,7 +6,7 @@
 #    By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/11 17:02:33 by smodesto          #+#    #+#              #
-#    Updated: 2022/07/26 13:52:34 by smodesto         ###   ########.fr        #
+#    Updated: 2022/07/28 00:06:23 by smodesto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,8 @@ SRCS_FILES =	init/main.c				\
 				game/controls.c			\
 				game/minimap.c			\
 				game/2D_to_3D.c			\
+				game/textures.c			\
+				game/textures_utils.c	\
 				raycasting/aux_cast.c	\
 				raycasting/get_scene.c	\
 				raycasting/math.c		\

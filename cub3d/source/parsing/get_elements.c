@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 13:42:52 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/27 11:46:26 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/27 21:20:46 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ static char	*check_path(char *line, int len)
 {
 	char	*path;
 	int		i;
+	int		fd;
 
 	i = 0;
 	while (i++ < len)
@@ -63,12 +64,13 @@ static char	*check_path(char *line, int len)
 	if (line == NULL)
 		return (NULL);
 	path = ft_strtrim(line, " ");
-	if (open(path, O_RDONLY) == -1)
+	fd = open(path, O_RDONLY);
+	if (fd == -1)
 	{
 		free(path);
 		return (NULL);
 	}
-	// handle_textures();
+	close (fd);
 	return (path);
 }
 

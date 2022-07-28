@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 17:58:28 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/21 21:10:53 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/28 12:33:00 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	draw_game(t_cub3d *data, t_mlx *mlx, t_image *img)
 int	main(int argc, char **argv)
 {
 	t_cub3d	*data;
+	t_scene	*s;
 
 	if (argc != 2)
 	{
@@ -63,11 +64,12 @@ int	main(int argc, char **argv)
 		exit (0);
 	}
 	data = init_data(argv[1]);
-	print_map(data->scene->map_width, data->scene->map_height,
-		data->scene->cub_map);
+	s = data->scene;
+	print_map(s->map_width, s->map_height, s->cub_map);
 	data->mlx->mlx = mlx_init();
 	data->mlx->win = mlx_new_window(data->mlx->mlx, data->win_width,
 			data->win_height, "cub3D");
+	handle_textures(data, data->textures);
 	data->r = define_points(data->scene);
 	draw_game(data, data->mlx, data->img);
 	before_living(data);

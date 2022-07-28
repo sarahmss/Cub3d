@@ -1,10 +1,10 @@
-NO ./cub_files/no_texture
+NO ./cub_files/textures/no_redbrick.xpm
 
-SO ./cub_files/no_texture
+SO ./cub_files/textures/so_redbrick.xpm
 
-WE ./cub_files/no_texture
+WE ./cub_files/textures/we_redbrick.xpm
 
-EA ./cub_files/no_texture
+EA ./cub_files/textures/ea_redbrick.xpm
 
 F 100,100,0
 C 225,30,0

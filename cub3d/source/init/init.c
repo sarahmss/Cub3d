@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 19:27:02 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/27 11:32:06 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/28 13:59:46 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,8 @@ static t_scene	*init_scene(void)
 */
 t_cub3d	*init_data(char *argv)
 {
-	t_cub3d	*data;
+	t_cub3d		*data;
+	t_textures	t;
 
 	data = (t_cub3d *)malloc(sizeof(t_cub3d));
 	if (!data)
@@ -81,8 +82,11 @@ t_cub3d	*init_data(char *argv)
 	data->win_width = data->scene->map_width * TILE_SIZE;
 	data->win_height = data->scene->map_height * TILE_SIZE;
 	data->img = init_img(data->win_width, data->win_height);
-	data->num_rays = data->win_width / WALL_STRIP_WIDTH;
+	data->num_rays = data->win_width;
 	data->rays = NULL;
 	data->fov = 60 * (M_PI / 180);
+	t = T_NO;
+	while (t <= T_EA)
+		data->textures[t++] = init_img(0, 0);
 	return (data);
 }
