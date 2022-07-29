@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 23:29:38 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/28 13:22:26 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/28 23:00:19 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ typedef struct s_cub3d
 	t_scene			*scene;
 	t_mlx			*mlx;
 	t_image			*img;
+	t_image			*background;
 	t_raycasting	r;
 	t_raycasting	*rays;
 	int				num_rays;
@@ -87,6 +88,8 @@ int				get_x_offset(t_raycasting ray);
 int				check_x_inverse_offset(t_raycasting ray, int texture_offset);
 int				handle_textures(t_cub3d *data, t_image *text[4]);
 int				get_wall_pixel_color(t_image *texture, int offset_x, int offset_y);
+void			init_background(t_cub3d *data, int width, int height, t_scene *s);
+void			copy_layer(t_image *from, t_image *to, t_point win);
 
 
 //	init
@@ -110,7 +113,7 @@ void			move_right(t_cub3d *data, t_raycasting r);
 void			ft_create_image(t_mlx *mlx, t_image *img, int width,
 					int height);
 void			draw_game(t_cub3d *data, t_mlx *mlx, t_image *img);
-void			background(t_image *img, int f[3], int c[3], int wh[2]);
+void			background(t_image *img, int f[3], int c[3], t_point wh);
 void			draw_minimap(t_cub3d *data, t_scene *scene, t_image *img);
 
 // raycasting.c

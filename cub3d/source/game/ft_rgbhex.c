@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 18:50:44 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/17 17:39:55 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/28 21:35:59 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,19 @@
 /*
 	Fill background with especific colors
 	f and c: array with RGB color
-	wh: wh[0] win width; wh[1] win height
+	wh: wh.x win width; wh.y win height
 */
-void	background(t_image *img, int f[3], int c[3], int wh[2])
+void	background(t_image *img, int f[3], int c[3], t_point wh)
 {
 	int	*image;
 	int	i;
 
-	ft_bzero(img->data_address, wh[0] * wh[1] * (img->bpp / 8));
+	ft_bzero(img->data_address, wh.x * wh.y * (img->bpp / 8));
 	image = (int *)(img->data_address);
 	i = 0;
-	while (i < wh[0] * wh[1])
+	while (i < wh.x * wh.y)
 	{
-		if (i < (wh[0] * wh[1] / 2))
+		if (i < (wh.x * wh.y / 2))
 			image[i] = ft_rgbhex(f[0], f[1], f[2]);
 		else
 			image[i] = ft_rgbhex(c[0], c[1], c[2]);

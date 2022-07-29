@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 19:27:02 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/28 13:59:46 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/28 23:01:39 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,21 @@ static t_scene	*init_scene(void)
 	scene->map_width = 0;
 	scene->cub_map = NULL;
 	return (scene);
+}
+
+void	init_background(t_cub3d *data, int width, int height, t_scene *s)
+{
+	t_point	wh;
+	t_image	*back;
+
+	wh.x = width;
+	wh.y = height;
+	back = init_img(width, height);
+	ft_create_image(data->mlx, back, width, height);
+	back->data_address = mlx_get_data_addr(back->img, &(back->bpp),
+			&(back->line_size), &(back->endian));
+	background(back, s->floor_color, s->ceiling_color, wh);
+	data->background = back;
 }
 
 /*
