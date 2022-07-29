@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 23:09:17 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/28 13:58:40 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/28 23:13:04 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ int	before_living(t_cub3d *data)
 		if (data->textures[t])
 			free(data->textures[t++]);
 	}
+	if (data->background)
+		free(data->background);
 	if (data)
 		free(data);
 	return (0);
