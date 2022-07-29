@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 19:27:02 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/28 23:01:39 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/29 00:04:38 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ t_cub3d	*init_data(char *argv)
 	data->win_width = data->scene->map_width * TILE_SIZE;
 	data->win_height = data->scene->map_height * TILE_SIZE;
 	data->img = init_img(data->win_width, data->win_height);
-	data->num_rays = data->win_width;
+	data->num_rays = data->win_width / WALL_STRIP_WIDTH;
 	data->rays = NULL;
 	data->fov = 60 * (M_PI / 180);
 	t = T_NO;

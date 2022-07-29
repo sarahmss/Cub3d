@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 20:16:38 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/28 22:20:51 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/29 00:12:51 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@
 # define MENU_BACKGROUND	1973790
 # define TEXT_COLOR			0XEAEAEA
 # define BLACK				0x000000
-
 
 # define K_PRESS 0
 # define K_RELEASE 1

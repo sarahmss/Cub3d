@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 23:29:38 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/28 23:00:19 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/29 00:13:17 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,10 +87,11 @@ int				get_facing_side(double ray_angle, t_side side);
 int				get_x_offset(t_raycasting ray);
 int				check_x_inverse_offset(t_raycasting ray, int texture_offset);
 int				handle_textures(t_cub3d *data, t_image *text[4]);
-int				get_wall_pixel_color(t_image *texture, int offset_x, int offset_y);
-void			init_background(t_cub3d *data, int width, int height, t_scene *s);
+int				get_wall_pixel_color(t_image *texture, int offset_x,
+					int offset_y);
+void			init_background(t_cub3d *data, int width, int height,
+					t_scene *s);
 void			copy_layer(t_image *from, t_image *to, t_point win);
-
 
 //	init
 t_cub3d			*init_data(char *argv);
@@ -119,7 +120,8 @@ void			draw_minimap(t_cub3d *data, t_scene *scene, t_image *img);
 // raycasting.c
 void			cast_all_rays(t_cub3d *data);
 t_raycasting	define_points(t_scene *scn);
-void			render_walls(t_cub3d *data, t_point init, t_point end);
+void			render_walls(t_cub3d *data, t_point init, t_point end,
+					t_point win);
 
 // controls
 void			move_forward(t_cub3d *data, t_raycasting r);

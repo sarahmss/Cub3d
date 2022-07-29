@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 17:58:28 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/28 23:00:38 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/29 00:06:57 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,15 @@ void	draw_game(t_cub3d *data, t_mlx *mlx, t_image *img)
 {
 	t_point	init;
 	t_point	end;
+	t_point	win;
 
+	win.y = data->win_height;
+	win.x = data->win_width;
 	cast_all_rays(data);
-	ft_create_image(mlx, img, data->win_width, data->win_height);
-	render_walls(data, init, end);
+	ft_create_image(mlx, img, win.x, win.y);
+	render_walls(data, init, end, win);
 	if (data->rays)
 		free(data->rays);
-	end.y = data->win_height;
-	end.x = data->win_width;
 	copy_layer(data->background, data->img, end);
 	draw_minimap(data, data->scene, data->img);
 	mlx_put_image_to_window(mlx->mlx, mlx->win, img->img, 0, 0);
