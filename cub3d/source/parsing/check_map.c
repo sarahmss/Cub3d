@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 22:24:29 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/17 18:18:52 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/27 11:37:56 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,7 @@ static int	top_line(char **cub_map)
 		while (cub_map[0][i] == '\t' || cub_map[0][i] == ' ')
 			i++;
 		if (cub_map[0][i] != '1')
-		{
-			printf ("ERROR- INVALID MAP - CHECK TOP_LINE");
-			return (-1);
-		}
+			return (check_error(-1, "INVALID MAP - CHECK TOP LINE"));
 		i++;
 	}
 	return (0);
@@ -41,10 +38,7 @@ static int	bottom_line(char **cub_map, int last_line)
 		while (cub_map[last_line][i] == '\t' || cub_map[last_line][i] == ' ')
 			i++;
 		if (cub_map[last_line][i] != '1')
-		{
-			printf ("ERROR- INVALID MAP - CHECK BOTTOM LINE");
-			return (-1);
-		}
+			return (check_error(-1, "INVALID MAP - CHECK BOTTOM LINE"));
 		i++;
 	}
 	return (0);
@@ -59,13 +53,11 @@ static int	left_column(char **cub_map, int lines)
 	j = 0;
 	while (i < lines)
 	{
-		while (cub_map[i][0 + j] == '\t' || cub_map[i][0 + j] == ' ')
+		j = 0;
+		while (cub_map[i][j] == '\t' || cub_map[i][j] == ' ')
 			j++;
-		if (cub_map[i][0 + j] != '1')
-		{
-			printf ("ERROR- INVALID MAP - CHECK LEFT COLUMN");
-			return (-1);
-		}
+		if (cub_map[i][j] != '1')
+			return (check_error(-1, "INVALID MAP - CHECK LEFT COLUMN"));
 		i++;
 	}
 	return (0);
@@ -79,10 +71,7 @@ static int	right_column(char **cub_map, int lines)
 	while (i < lines)
 	{
 		if (cub_map[i][ft_strlen(cub_map[i]) - 1] != '1')
-		{
-			printf ("ERROR- INVALID MAP - CHECK RIGHT COLUMN");
-			return (-1);
-		}
+			return (check_error(-1, "INVALID MAP - CHECK RIGHT COLUMN"));
 		i++;
 	}
 	return (0);
@@ -110,9 +99,6 @@ int	check_map(char **cub_map, t_scene *scene)
 			valid++;
 	}
 	if (valid != 1)
-	{
-		printf ("ERROR- INVALID MAP - CHECK NSWE");
-		return (-1);
-	}
+		return (check_error(-1, "INVALID MAP - CHECK [N, S, W, E]"));
 	return (0);
 }

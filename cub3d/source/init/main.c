@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 17:58:28 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/17 18:05:38 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/07/29 00:06:57 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,29 +31,30 @@ void	print_map(int w, int h, int **map)
 	}
 }
 
-/*
-*/
 void	draw_game(t_cub3d *data, t_mlx *mlx, t_image *img)
 {
 	t_point	init;
 	t_point	end;
-	int		wh[2];
+	t_point	win;
 
-	wh[0] = data->win_width;
-	wh[1] = data->win_height;
+	win.y = data->win_height;
+	win.x = data->win_width;
 	cast_all_rays(data);
-	ft_create_image(mlx, img, wh[0], wh[1]);
-	background(img, data->scene->floor_color, data->scene->ceiling_color, wh);
-	render_walls(data, init, end);
-	draw_minimap(data, data->scene, data->img);
+	ft_create_image(mlx, img, win.x, win.y);
+	render_walls(data, init, end, win);
 	if (data->rays)
 		free(data->rays);
+	copy_layer(data->background, data->img, end);
+	draw_minimap(data, data->scene, data->img);
 	mlx_put_image_to_window(mlx->mlx, mlx->win, img->img, 0, 0);
+	control_events(data);
+	mlx_loop(data->mlx->mlx);
 }
 
 int	main(int argc, char **argv)
 {
 	t_cub3d	*data;
+	t_scene	*s;
 
 	if (argc != 2)
 	{
@@ -61,15 +62,14 @@ int	main(int argc, char **argv)
 		exit (0);
 	}
 	data = init_data(argv[1]);
-	print_map(data->scene->map_width, data->scene->map_height,
-		data->scene->cub_map);
+	s = data->scene;
+	print_map(s->map_width, s->map_height, s->cub_map);
 	data->mlx->mlx = mlx_init();
 	data->mlx->win = mlx_new_window(data->mlx->mlx, data->win_width,
 			data->win_height, "cub3D");
+	handle_textures(data, data->textures);
 	data->r = define_points(data->scene);
 	draw_game(data, data->mlx, data->img);
-	control_events(data);
-	mlx_loop(data->mlx->mlx);
 	before_living(data);
 	return (0);
 }
