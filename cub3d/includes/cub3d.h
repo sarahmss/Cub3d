@@ -82,6 +82,17 @@ typedef struct s_cub3d
 	t_image			*textures[4];
 }				t_cub3d;
 
+typedef struct s_wall
+{
+	t_point offset;
+	double height;
+	int top_y;
+	int bottom_y;
+	int pixel_color;
+	double distance_top;
+	
+}			t_wall;
+
 //	textures
 int				get_facing_side(double ray_angle, t_side side);
 int				get_x_offset(t_raycasting ray);
@@ -120,8 +131,7 @@ void			draw_minimap(t_cub3d *data, t_scene *scene, t_image *img);
 // raycasting.c
 void			cast_all_rays(t_cub3d *data);
 t_raycasting	define_points(t_scene *scn);
-void			render_walls(t_cub3d *data, t_point init, t_point end,
-					t_point win);
+void			render_walls(t_cub3d *data, t_point win);
 
 // controls
 void			move_forward(t_cub3d *data, t_raycasting r);

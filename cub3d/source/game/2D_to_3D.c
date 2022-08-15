@@ -22,28 +22,69 @@ double	get_height(t_raycasting r, t_player p, int win_width, double fov)
 	return ((TILE_SIZE / correct_wall_distance) * distance_projection_plane);
 }
 
-void	render_walls(t_cub3d *data, t_point init, t_point end, t_point win)
+int    change_color_intensity(int color, float factor)
+{
+    int    r;
+    int    g;
+    int    b;
+
+    r = (color & 0xFF0000) * factor;
+    g = (color & 0x00FF00) * factor;
+    b = (color & 0x0000FF) * factor;
+    return((r & 0xFF0000) | (g & 0x00FF00) | (b & 0x0000FF));
+}
+
+void render_slices(int x, t_wall w, t_cub3d *data)
+{
+		int 	y;
+		int 	t_num;
+		double	height_scale;
+		double	color_factor;
+		int i; 
+
+		y = w.top_y - 1;
+		while(++y < w.bottom_y)
+		{
+			t_num = get_facing_side(data->rays[x].ray_angle, data->rays[x].hit_side);
+			w.distance_top = y + (w.height / 2) - (data->win_height / 2);
+			height_scale = data->textures[t_num]->height / w.height;
+			w.offset.y = w.distance_top * height_scale;
+			w.pixel_color = get_wall_pixel_color(data->textures[t_num], w.offset.x, w.offset.y);
+			if (data->rays[x].hit_side == VERTICAL)
+				w.pixel_color = change_color_intensity(w.pixel_color, 1);
+			i = -1;
+			while (++i < WALL_STRIP_WIDTH)
+				my_mlx_pixel_put(x + i, y, data->img, w.pixel_color);	
+			//my_mlx_pixel_put(x, y, data->img, w.pixel_color);
+			
+		}
+}
+
+void	render_walls(t_cub3d *data, t_point win)
 {
 	int	x;
 	int	height;
 	int	color;
+	t_wall w;
 
 	x = -1;
+	printf("%d\n", data->num_rays);
 	while (++x < data->num_rays)
 	{
 		color = DGREY;
-		height = get_height(data->rays[x], data->r.player, win.x,
+		w.height = get_height(data->rays[x], data->r.player, win.x,
 				data->fov);
-		init.y = -height / 2 + win.y / 2;
-		if (init.y < 0)
-			init.y = 0;
-		end.y = height / 2 + win.y / 2;
-		if (end.y >= win.y)
-			end.y = win.y - 1;
-		if (data->rays[x].hit_side == VERTICAL)
-			color /= 2;
-		init.x = x * WALL_STRIP_WIDTH;
-		end.x = init.x + WALL_STRIP_WIDTH;
-		draw_rectangle(data->img, color, init, end);
+		w.top_y = -(w.height / 2) + (win.y / 2);
+		if (w.top_y < 0)
+			w.top_y = 0;
+		if (w.top_y >= win.y)
+			w.top_y = win.y;
+		w.bottom_y = (height / 2) + (win.y / 2);
+		if (w.bottom_y < 0)
+			w.bottom_y = 0;
+		if (w.bottom_y >= win.y)
+			w.bottom_y = win.y;
+		w.offset.x = get_x_offset(data->rays[x]);
+		render_slices(x, w, data);
 	}
 }

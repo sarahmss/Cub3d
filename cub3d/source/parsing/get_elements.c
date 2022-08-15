@@ -19,7 +19,7 @@ static int	check_elements(int elements[6], t_scene *s)
 	i = 0;
 	if (s->no_texture == NULL || s->so_texture == NULL
 		|| s->we_texture == NULL || s->ea_texture == NULL)
-		return (check_error(-1, "INVALID PATH"));
+		return (check_error(-1, "INVALID TEXTURE PATH"));
 	while (elements[i] == 1 && i < 6)
 		i++;
 	if (i == 6)

@@ -33,18 +33,16 @@ void	print_map(int w, int h, int **map)
 
 void	draw_game(t_cub3d *data, t_mlx *mlx, t_image *img)
 {
-	t_point	init;
-	t_point	end;
 	t_point	win;
 
 	win.y = data->win_height;
 	win.x = data->win_width;
 	cast_all_rays(data);
 	ft_create_image(mlx, img, win.x, win.y);
-	render_walls(data, init, end, win);
+	render_walls(data, win);
 	if (data->rays)
 		free(data->rays);
-	copy_layer(data->background, data->img, end);
+	copy_layer(data->background, data->img, win);
 	draw_minimap(data, data->scene, data->img);
 	mlx_put_image_to_window(mlx->mlx, mlx->win, img->img, 0, 0);
 	control_events(data);
