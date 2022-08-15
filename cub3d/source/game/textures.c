@@ -6,13 +6,13 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 18:59:18 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/28 23:00:02 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/08/15 19:46:19 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	copy_layer(t_image *from, t_image *to, t_point win)
+void	copy_layer(t_image *from, t_image *to)
 {
 	int	i;
 	int	j;
