@@ -15,35 +15,16 @@
 int	get_color(t_stripe s, int y)
 {
 	t_textures		facing_side;
-	int				distance_from_top;
+	int			distance_from_top;
 	int				height_scale;
 
+	s.offset.x = get_x_offset(s.ray);
 	facing_side = get_facing_side(s.ray.ray_angle, s.ray.hit_side);
 	distance_from_top = y + (s.height / 2) - (s.data->win_height / 2);
 	height_scale = s.data->textures[facing_side]->height / s.height;
 	s.offset.y = distance_from_top * height_scale;
 	s.color = get_wall_pixel_color(s.data->textures[facing_side], s.offset.x, s.offset.y);
 	return (s.color);
-}
-
-static void	textured_brasenham(t_line line, t_image *img, t_stripe s)
-{
-	t_line	*temp;
-
-	temp = &line;
-	temp->delta_x = (temp->x1 - temp->x0);
-	temp->delta_y = (temp->y1 - temp->y0);
-	temp->max = max(mod(temp->delta_x), mod(temp->delta_y));
-	temp->delta_x /= temp->max;
-	temp->delta_y /= temp->max;
-	s.offset.x = get_x_offset(s.ray);
-	while ((int)(temp->x0 - temp->x1) || (int)(temp->y0 - temp->y1))
-	{
-		s.color = get_color(s, s.init.y - 1);
-		my_mlx_pixel_put(temp->x0, temp->y0, img, s.color);
-		temp->x0 += temp->delta_x;
-		temp->y0 += temp->delta_y;
-	}
 }
 
 void	draw_textured_rectangle(t_stripe s)
@@ -53,6 +34,7 @@ void	draw_textured_rectangle(t_stripe s)
 	vector.y0 = s.init.y;
 	while (vector.y0 < s.end.y)
 	{
+		s.color = get_color(s, vector.y0 - 1);
 		vector.x0 = s.init.x;
 		while (vector.x0 < s.end.x)
 		{
@@ -60,13 +42,13 @@ void	draw_textured_rectangle(t_stripe s)
 			{
 				vector.x1 = vector.x0 + 1;
 				vector.y1 = vector.y0;
-				textured_brasenham(vector, s.data->img, s);
+				brasenham(vector, s.data->img, s.color);
 			}
 			if (vector.y0 < s.end.y - 1)
 			{
 				vector.x1 = vector.x0;
 				vector.y1 = vector.y0 + 1;
-				textured_brasenham(vector, s.data->img, s);
+				brasenham(vector, s.data->img, s.color);
 			}
 			vector.x0++;
 		}

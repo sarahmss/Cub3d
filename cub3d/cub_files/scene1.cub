@@ -1,10 +1,10 @@
-NO ./cub_files/textures/bluebrick.xpm
+NO /home/idk/Desktop/projects/cub3dreal/Cub3d/cub3d/cub_files/textures/so_redbrick.xpm
 
-SO ./cub_files/textures/redbrick.xpm
+SO /home/idk/Desktop/projects/cub3dreal/Cub3d/cub3d/cub_files/textures/bluebrick.xpm
 
-WE ./cub_files/textures/bluebrick.xpm
+WE /home/idk/Desktop/projects/cub3dreal/Cub3d/cub3d/cub_files/textures/bluebrick.xpm
 
-EA ./cub_files/textures/grenbrick.xpm
+EA /home/idk/Desktop/projects/cub3dreal/Cub3d/cub3d/cub_files/textures/bluebrick.xpm
 
 F 225,0,50
 C 0,225,50

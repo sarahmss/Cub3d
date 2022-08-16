@@ -31,7 +31,7 @@ void	copy_layer(t_image *from, t_image *to)
 	}
 }
 
-static int	convert_xpm_to_img(t_mlx *mlx, t_scene *s, t_image *text[8])
+static int	convert_xpm_to_img(t_mlx *mlx, t_scene *s, t_image *text[4])
 {
 	t_textures	t;
 
@@ -60,7 +60,7 @@ static int	get_texture_data(t_image *no, t_image *so, t_image *we, t_image *ea)
 	return (0);
 }
 
-int	handle_textures(t_cub3d *data, t_image *text[8])
+int	handle_textures(t_cub3d *data, t_image *text[4])
 {
 	if (convert_xpm_to_img(data->mlx, data->scene, text) == -1)
 		exit (before_living(data));
