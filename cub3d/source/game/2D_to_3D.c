@@ -6,18 +6,15 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 00:19:21 by smodesto          #+#    #+#             */
-/*   Updated: 2022/08/15 20:24:37 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/08/15 21:31:01 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-/*
-
-*/
 int	get_color(t_stripe s, int y)
 {
-	t_side			facing_side;
+	t_textures		facing_side;
 	int				distance_from_top;
 	int				height_scale;
 

@@ -12,12 +12,12 @@
 
 #include "../includes/cub3d.h"
 
-int	get_wall_pixel_color(t_image *texture, int offset_x, int offset_y)
+unsigned int	get_wall_pixel_color(t_image *img, int x, int y)
 {
-	int	pixel_color;
+	char	*color;
 
-	pixel_color = texture->data_address[(offset_y * texture->width) + offset_x];
-	return (pixel_color);
+	color = img->data_address + (y * img->line_size + x * (img->bpp / 8));
+	return (*(unsigned int *)color);
 }
 
 int	get_facing_side(double ray_angle, t_side side)

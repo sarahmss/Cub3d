@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 23:29:38 by smodesto          #+#    #+#             */
-/*   Updated: 2022/08/15 20:25:32 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/08/15 20:31:28 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ typedef struct s_cub3d
 typedef struct s_stripe
 {
 	t_cub3d			*data;
-	int				color;
+	unsigned int	color;
 	t_point			init;
 	t_point			end;
 	t_point			win;
@@ -103,8 +103,7 @@ int				get_facing_side(double ray_angle, t_side side);
 int				get_x_offset(t_raycasting ray);
 int				check_x_inverse_offset(t_raycasting ray, int texture_offset);
 int				handle_textures(t_cub3d *data, t_image *text[4]);
-int				get_wall_pixel_color(t_image *texture, int offset_x,
-					int offset_y);
+unsigned int	get_wall_pixel_color(t_image *img, int x, int y);
 void			init_background(t_cub3d *data, int width, int height,
 					t_scene *s);
 void			copy_layer(t_image *from, t_image *to);

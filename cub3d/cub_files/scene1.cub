@@ -1,17 +1,17 @@
-NO ./cub_files/textures/Grass_64x64.xpm
+NO ./cub_files/textures/bluebrick.xpm
 
-SO ./cub_files/textures/Grass_64x64.xpm
+SO ./cub_files/textures/redbrick.xpm
 
-WE ./cub_files/textures/Grass_64x64.xpm
+WE ./cub_files/textures/bluebrick.xpm
 
-EA ./cub_files/textures/Grass_64x64.xpm
+EA ./cub_files/textures/grenbrick.xpm
 
-F 100,100,0
-C 225,30,0
+F 225,0,50
+C 0,225,50
 
 		1111111111111111111111111
 		1000000000110000000000001
-		1011000001110000N00000001
+		1011000001110000S00000001
 		1001000000000000000000001
 111111111011000001110000000000001
 100000000011000001110111111111111
