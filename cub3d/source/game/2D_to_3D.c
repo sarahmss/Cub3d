@@ -16,7 +16,7 @@ int	get_color(t_stripe s, int y)
 {
 	t_textures		facing_side;
 	int			distance_from_top;
-	int				height_scale;
+	double			height_scale;
 
 	s.offset.x = get_x_offset(s.ray);
 	facing_side = get_facing_side(s.ray.ray_angle, s.ray.hit_side);

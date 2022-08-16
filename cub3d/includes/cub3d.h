@@ -82,6 +82,8 @@ typedef struct s_cub3d
 	t_image			*textures[4];
 }				t_cub3d;
 
+
+
 typedef struct s_stripe
 {
 	t_cub3d			*data;
@@ -90,7 +92,7 @@ typedef struct s_stripe
 	t_point			end;
 	t_point			win;
 	t_point			offset;
-	int				height;
+	double			height;
 	t_raycasting	ray;
 
 }				t_stripe;
