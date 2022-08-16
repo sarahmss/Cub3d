@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 23:29:38 by smodesto          #+#    #+#             */
-/*   Updated: 2022/08/16 00:55:38 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/08/16 14:29:11 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,7 @@ typedef enum e_textures
 
 typedef struct s_scene
 {
-	char			*no_texture;
-	char			*so_texture;
-	char			*we_texture;
-	char			*ea_texture;
+	char			*textures[4];
 	int				floor_color[3];
 	int				ceiling_color[3];
 	int				map_height;
@@ -76,7 +73,7 @@ typedef struct s_cub3d
 	t_image			*img;
 	t_raycasting	r;
 	t_raycasting	*rays;
-	int				num_rays;
+	double			num_rays;
 	int				win_width;
 	int				win_height;
 	double			fov;
@@ -98,8 +95,7 @@ typedef struct s_stripe
 
 //	textures
 int				get_facing_side(double ray_angle, t_side side);
-int				get_x_offset(t_raycasting ray);
-int				check_x_inverse_offset(t_raycasting ray, int texture_offset);
+int				get_x_offset(t_raycasting ray, int tile_size);
 int				handle_textures(t_cub3d *data, t_image *text[4]);
 unsigned int	get_wall_pixel_color(t_image *img, int x, int y);
 void			init_background(t_cub3d *data, int width, int height,

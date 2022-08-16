@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 23:09:17 by smodesto          #+#    #+#             */
-/*   Updated: 2022/08/16 01:15:25 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/08/16 14:29:59 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,15 @@
 
 static void	free_scene(t_scene *scene)
 {
-	if (scene->no_texture)
-		free(scene->no_texture);
-	if (scene->so_texture)
-		free(scene->so_texture);
-	if (scene->we_texture)
-		free(scene->we_texture);
-	if (scene->ea_texture)
-		free(scene->ea_texture);
+	t_textures	t;
+
+	t = T_NO;
+	while (t <= T_EA)
+	{
+		if (scene->textures[t])
+			free (scene->textures[t]);
+		t++;
+	}
 	if (scene->cub_map)
 		free_array((void **)scene->cub_map, scene->map_height);
 	free(scene);

@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 22:04:46 by smodesto          #+#    #+#             */
-/*   Updated: 2022/08/16 00:00:42 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/08/16 14:23:15 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ typedef struct s_raycasting
 	t_point		intercept;
 	t_point		next_touch;
 	t_side		hit_side;
-	int			distance;
+	double		distance;
 	double		ray_angle;
 }				t_raycasting;
 

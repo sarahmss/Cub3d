@@ -16,6 +16,11 @@ unsigned int	get_wall_pixel_color(t_image *img, int x, int y)
 {
 	char	*color;
 
+	if (x < 0 || x > img->width
+		|| y < 0 || y > img->height)
+	{
+		return (1);
+	}
 	color = img->data_address + (y * img->line_size + x * (img->bpp / 8));
 	return (*(unsigned int *)color);
 }
@@ -33,23 +38,23 @@ int	get_facing_side(double ray_angle, t_side side)
 	return (0);
 }
 
-int	check_x_inverse_offset(t_raycasting ray, int texture_offset)
+static int	check_x_offset(t_raycasting ray, int texture_offset, int tile_size)
 {
 	if (ray.hit_side == HORIZONTAL && is_ray_facing_down(ray.ray_angle))
-		return (TILE_SIZE - texture_offset);
+		return (tile_size - texture_offset);
 	if (ray.hit_side == VERTICAL && is_ray_facing_left(ray.ray_angle))
-		return (TILE_SIZE - texture_offset);
+		return (tile_size - texture_offset);
 	return (texture_offset);
 }
 
-int	get_x_offset(t_raycasting ray)
+int	get_x_offset(t_raycasting ray, int tile_size)
 {
 	int	offset;
 
 	if (ray.hit_side == VERTICAL)
-		offset = (int)ray.wall_hit.y % TILE_SIZE;
+		offset = (int)ray.wall_hit.y % tile_size;
 	else
-		offset = (int)ray.wall_hit.x % TILE_SIZE;
-	offset = check_x_inverse_offset(ray, offset);
+		offset = (int)ray.wall_hit.x % tile_size;
+	offset = check_x_offset(ray, offset, tile_size);
 	return (offset);
 }

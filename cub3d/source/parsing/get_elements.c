@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 13:42:52 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/27 21:20:46 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/08/16 14:30:41 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ static int	check_elements(int elements[6], t_scene *s)
 	int	i;
 
 	i = 0;
-	if (s->no_texture == NULL || s->so_texture == NULL
-		|| s->we_texture == NULL || s->ea_texture == NULL)
+	if (s->textures[T_NO] == NULL || s->textures[T_SO] == NULL
+		|| s->textures[T_WE] == NULL || s->textures[T_EA] == NULL)
 		return (check_error(-1, "INVALID TEXTURE PATH"));
 	while (elements[i] == 1 && i < 6)
 		i++;
@@ -77,13 +77,13 @@ static char	*check_path(char *line, int len)
 static int	cpy_elements(t_scene *scene, int elements[6], char *line)
 {
 	if (ft_strncmp("NO", line, 2) == 0 && ++elements[0])
-		scene->no_texture = check_path(line, 3);
+		scene->textures[T_NO] = check_path(line, 3);
 	else if (ft_strncmp("SO", line, 2) == 0 && ++elements[1])
-		scene->so_texture = check_path(line, 3);
+		scene->textures[T_SO] = check_path(line, 3);
 	else if (ft_strncmp("WE", line, 2) == 0 && ++elements[2])
-		scene->we_texture = check_path(line, 3);
+		scene->textures[T_WE] = check_path(line, 3);
 	else if (ft_strncmp("EA", line, 2) == 0 && ++elements[3])
-		scene->ea_texture = check_path(line, 3);
+		scene->textures[T_EA] = check_path(line, 3);
 	else if (ft_strncmp("F", line, 1) == 0 && ++elements[4])
 	{
 		if (get_rgb(line, scene->floor_color, 'F') == -1)

@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 19:27:02 by smodesto          #+#    #+#             */
-/*   Updated: 2022/08/16 00:54:51 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/08/16 14:31:17 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,10 @@ static t_scene	*init_scene(void)
 	t_scene	*scene;
 
 	scene = (t_scene *)malloc(sizeof(t_scene));
-	scene->no_texture = NULL;
-	scene->so_texture = NULL;
-	scene->we_texture = NULL;
-	scene->ea_texture = NULL;
+	scene->textures[T_NO] = NULL;
+	scene->textures[T_SO] = NULL;
+	scene->textures[T_WE] = NULL;
+	scene->textures[T_EA] = NULL;
 	bzero(scene->floor_color, 3);
 	bzero(scene->ceiling_color, 3);
 	scene->map_height = 0;

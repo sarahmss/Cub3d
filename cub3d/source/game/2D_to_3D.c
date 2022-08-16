@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 00:19:21 by smodesto          #+#    #+#             */
-/*   Updated: 2022/08/16 01:04:30 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/08/16 14:12:21 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ static int	get_color(t_stripe s, int y)
 	int				distance_from_top;
 	double			height_scale;
 
-	s.offset.x = get_x_offset(s.ray);
 	facing_side = get_facing_side(s.ray.ray_angle, s.ray.hit_side);
 	distance_from_top = y + (s.height / 2) - (s.data->win_height / 2);
 	height_scale = s.data->textures[facing_side]->height / s.height;
+	s.offset.x = get_x_offset(s.ray, s.data->textures[facing_side]->width);
 	s.offset.y = distance_from_top * height_scale;
 	s.color = get_wall_pixel_color(s.data->textures[facing_side],
 			s.offset.x, s.offset.y);
