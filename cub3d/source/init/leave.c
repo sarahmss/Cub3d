@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 23:09:17 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/28 23:13:04 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/08/16 00:55:09 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,29 +27,37 @@ static void	free_scene(t_scene *scene)
 	free(scene);
 }
 
+static void	clean_images(t_cub3d *data)
+{
+	t_textures	t;
+
+	t = T_NO;
+	if (data->img)
+	{
+		free(data->img);
+	}
+	while (t <= T_EA)
+	{
+		if (data->textures[t])
+		{
+			free(data->textures[t]);
+		}
+		t++;
+	}
+}
+
 /*
 	free memory before living
 */
 int	before_living(t_cub3d *data)
 {
-	t_textures	t;
-
-	t = T_NO;
+	clean_images(data);
 	if (data->scene)
 		free_scene(data->scene);
 	if (data->mlx->mlx)
 		free(data->mlx->mlx);
 	if (data->mlx)
 		free(data->mlx);
-	if (data->img)
-		free(data->img);
-	while (t <= T_EA)
-	{
-		if (data->textures[t])
-			free(data->textures[t++]);
-	}
-	if (data->background)
-		free(data->background);
 	if (data)
 		free(data);
 	return (0);

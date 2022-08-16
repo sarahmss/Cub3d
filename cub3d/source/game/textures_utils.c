@@ -53,4 +53,3 @@ int	get_x_offset(t_raycasting ray)
 	offset = check_x_inverse_offset(ray, offset);
 	return (offset);
 }
-

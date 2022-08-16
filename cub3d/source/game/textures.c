@@ -6,30 +6,11 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 18:59:18 by smodesto          #+#    #+#             */
-/*   Updated: 2022/08/15 19:46:19 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/08/16 00:36:08 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-void	copy_layer(t_image *from, t_image *to)
-{
-	int	i;
-	int	j;
-
-	i = -1;
-	j = -1;
-	while (++j < from->height)
-	{
-		while (++i < from->width * (from->bpp / 8))
-		{
-			if (to->data_address[(int)(i + (j * to->line_size))] == BLACK)
-			to->data_address[(int)(i + (j * to->line_size))]
-					= from->data_address[i + j * from->line_size];
-		}
-		i = -1;
-	}
-}
 
 static int	convert_xpm_to_img(t_mlx *mlx, t_scene *s, t_image *text[4])
 {
@@ -65,6 +46,5 @@ int	handle_textures(t_cub3d *data, t_image *text[4])
 	if (convert_xpm_to_img(data->mlx, data->scene, text) == -1)
 		exit (before_living(data));
 	get_texture_data(text[T_NO], text[T_SO], text[T_WE], text[T_EA]);
-	init_background(data, data->win_width, data->win_height, data->scene);
 	return (0);
 }

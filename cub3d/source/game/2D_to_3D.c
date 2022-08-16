@@ -6,16 +6,16 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 00:19:21 by smodesto          #+#    #+#             */
-/*   Updated: 2022/08/15 21:31:01 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/08/16 00:52:54 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int	get_color(t_stripe s, int y)
+static int	get_color(t_stripe s, int y)
 {
 	t_textures		facing_side;
-	int			distance_from_top;
+	int				distance_from_top;
 	double			height_scale;
 
 	s.offset.x = get_x_offset(s.ray);
@@ -23,7 +23,8 @@ int	get_color(t_stripe s, int y)
 	distance_from_top = y + (s.height / 2) - (s.data->win_height / 2);
 	height_scale = s.data->textures[facing_side]->height / s.height;
 	s.offset.y = distance_from_top * height_scale;
-	s.color = get_wall_pixel_color(s.data->textures[facing_side], s.offset.x, s.offset.y);
+	s.color = get_wall_pixel_color(s.data->textures[facing_side],
+			s.offset.x, s.offset.y);
 	return (s.color);
 }
 
@@ -66,6 +67,21 @@ double	get_height(t_raycasting r, t_player p, int win_width, double fov)
 	return ((TILE_SIZE / correct_wall_distance) * distance_projection_plane);
 }
 
+static void	draw_background(t_cub3d *data, t_stripe s)
+{
+	t_point	init;
+	t_point	end;
+
+	init.x = s.init.x;
+	end.x = s.end.x;
+	init.y = -1;
+	end.y = s.init.y;
+	draw_rectangle(data->img, data->scene->ceil, init, end);
+	init.y = s.end.y;
+	end.y = data->win_height;
+	draw_rectangle(data->img, data->scene->floor, init, end);
+}
+
 void	render_walls(t_cub3d *data, t_point win)
 {
 	int			x;
@@ -87,5 +103,6 @@ void	render_walls(t_cub3d *data, t_point win)
 		s.init.x = x * WALL_STRIP_WIDTH;
 		s.end.x = s.init.x + WALL_STRIP_WIDTH;
 		draw_textured_rectangle(s);
+		draw_background(data, s);
 	}
 }

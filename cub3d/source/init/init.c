@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 19:27:02 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/29 00:04:38 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/08/16 00:54:51 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,21 +64,6 @@ static t_scene	*init_scene(void)
 	return (scene);
 }
 
-void	init_background(t_cub3d *data, int width, int height, t_scene *s)
-{
-	t_point	wh;
-	t_image	*back;
-
-	wh.x = width;
-	wh.y = height;
-	back = init_img(width, height);
-	ft_create_image(data->mlx, back, width, height);
-	back->data_address = mlx_get_data_addr(back->img, &(back->bpp),
-			&(back->line_size), &(back->endian));
-	background(back, s->floor_color, s->ceiling_color, wh);
-	data->background = back;
-}
-
 /*
 ** allocate and init cub3d data structure
 */
@@ -103,5 +88,9 @@ t_cub3d	*init_data(char *argv)
 	t = T_NO;
 	while (t <= T_EA)
 		data->textures[t++] = init_img(0, 0);
+	data->scene->floor = ft_rgbhex(data->scene->floor_color[0],
+			data->scene->floor_color[1], data->scene->floor_color[2]);
+	data->scene->ceil = ft_rgbhex(data->scene->ceiling_color[0],
+			data->scene->ceiling_color[1], data->scene->ceiling_color[2]);
 	return (data);
 }
