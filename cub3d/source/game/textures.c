@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 18:59:18 by smodesto          #+#    #+#             */
-/*   Updated: 2022/08/16 00:36:08 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/08/16 01:11:08 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,16 @@ static int	convert_xpm_to_img(t_mlx *mlx, t_scene *s, t_image *text[4])
 	t_textures	t;
 
 	t = T_NO;
+	text[T_NO]->img = mlx_xpm_file_to_image(mlx->mlx, s->no_texture,
+				&text[T_NO]->width, &text[T_NO]->height);
+	text[T_SO]->img = mlx_xpm_file_to_image(mlx->mlx, s->so_texture,
+				&text[T_SO]->width, &text[T_SO]->height);
+	text[T_WE]->img = mlx_xpm_file_to_image(mlx->mlx, s->we_texture,
+				&text[T_WE]->width, &text[T_WE]->height);
+	text[T_EA]->img = mlx_xpm_file_to_image(mlx->mlx, s->ea_texture,
+				&text[T_EA]->width, &text[T_EA]->height);
 	while (t <= T_EA)
 	{
-		text[t]->img = mlx_xpm_file_to_image(mlx->mlx, s->no_texture,
-				&text[t]->width, &text[t]->height);
 		if (text[t]->img == NULL)
 			return (check_error(-1, "INVALID XPM FILE"));
 		t++;
