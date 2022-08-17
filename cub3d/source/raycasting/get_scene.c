@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 00:12:12 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/09 23:16:34 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/08/16 22:07:36 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ Defines direction in function of unitary vectors
 static double	get_direction(t_map direction)
 {
 	if (direction == N)
-		return (3 * M_PI / 2);
+		return ((3 * M_PI) / 2);
 	if (direction == S)
 		return (M_PI / 2);
 	if (direction == W)
@@ -76,8 +76,8 @@ t_player	init_player(int **cub_map, int width, int height)
 	t_player	player;
 
 	player.pos = get_initial_position(cub_map, width, height);
-	player.rotation_angle = get_direction(cub_map[(int)player.pos.y / TILE_SIZE]
-		[(int)player.pos.x / TILE_SIZE]);
+	player.rotation_angle = get_direction(cub_map
+		[(int)(player.pos.y / TILE_SIZE)][(int)(player.pos.x / TILE_SIZE)]);
 	player.radius = 8;
 	player.move_speed = 2.0;
 	player.rotation_speed = 2 * (M_PI / 180);

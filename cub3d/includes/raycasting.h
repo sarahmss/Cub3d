@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 22:04:46 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/28 21:23:29 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/08/17 14:34:37 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 # define TILE_SIZE			32
 # define WALL_STRIP_WIDTH	2
-# define MM_SCALE_FACTOR	0.3
+# define MM_SCALE_FACTOR	0.2
 
 typedef enum e_side
 {
@@ -59,7 +59,7 @@ typedef struct s_raycasting
 	t_point		intercept;
 	t_point		next_touch;
 	t_side		hit_side;
-	int			distance;
+	double		distance;
 	double		ray_angle;
 }				t_raycasting;
 

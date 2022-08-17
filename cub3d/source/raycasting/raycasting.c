@@ -6,83 +6,64 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 17:58:28 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/21 21:06:38 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/08/17 19:26:47 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-static t_raycasting	hit_aux(t_raycasting r, t_side s, t_point next_touch)
+t_point	hit(t_raycasting *r, t_side s, t_point win, double ray_angle)
 {
-	r.hit_side = s;
-	r.wall_hit = next_touch;
-	return (r);
-}
-
-/*
-	@brief: defines if ray its a wall
-		@param: w = map_width * TILE_SIZE
-		@param: h = map_height * TILE_SIZE
-		@param: s = HORIZONTAL / VERTICAL
-*/
-t_raycasting	hit(t_raycasting r, t_side s, t_point wh)
-{
-	t_raycasting	r_local;
 	t_point			next_touch;
 	t_point			map;
 
-	r_local = r;
-	r_local.wall_hit.x = 0;
-	r_local.wall_hit.y = 0;
-	r_local.intercept = set_intercept(r_local.ray_angle, r_local.player.pos, s);
-	r_local.step = set_step(r_local.ray_angle, s);
-	next_touch = r_local.intercept;
-	while ((next_touch.x >= 0 && next_touch.x <= wh.x)
-		&& (next_touch.y >= 0 && next_touch.y <= wh.y))
+	r->ray_angle = ray_angle;
+	r->intercept = set_intercept(r->ray_angle, r->player.pos, s);
+	r->step = set_step(r->ray_angle, s);
+	r->hit_side = s;
+	next_touch = r->intercept;
+	while ((next_touch.x >= 0 && next_touch.x <= win.x)
+		&& (next_touch.y >= 0 && next_touch.y <= win.y))
 	{
-		map = set_map(r_local.ray_angle, next_touch, s, wh);
-		if (r.cub_map[(int)map.y][(int)map.x] == WALL)
-			return (hit_aux(r_local, s, next_touch));
-		next_touch.x += r_local.step.x;
-		next_touch.y += r_local.step.y;
+		map = set_map(r->ray_angle, next_touch, s, win);
+		if (r->cub_map[(int)map.y][(int)map.x] == WALL)
+			return (next_touch);
+		next_touch.x += r->step.x;
+		next_touch.y += r->step.y;
 	}
-	return (r_local);
+	return (next_touch);
 }
 
-t_raycasting	raycasting(t_cub3d *data, double ray_angle)
+t_raycasting	raycasting(t_cub3d *data, double ray_angle, t_point win)
 {
 	t_raycasting	r_h;
 	t_raycasting	r_v;
-	t_point			wh;
 
-	wh.x = data->win_width;
-	wh.y = data->win_height;
 	r_h = data->r;
 	r_v = data->r;
-	r_h.ray_angle = normalize_angle(ray_angle);
-	r_v.ray_angle = normalize_angle(ray_angle);
-	r_h = hit(r_h, HORIZONTAL, wh);
-	r_v = hit(r_v, VERTICAL, wh);
+	r_h.wall_hit = hit(&r_h, HORIZONTAL, win, ray_angle);
+	r_v.wall_hit = hit(&r_v, VERTICAL, win, ray_angle);
 	r_h.distance = distance_between_points(r_h.player.pos, r_h.wall_hit);
 	r_v.distance = distance_between_points(r_v.player.pos, r_v.wall_hit);
-	if (r_v.distance < r_h.distance)
-		return (r_v);
-	return (r_h);
+	if (r_h.distance < r_v.distance)
+		return (r_h);
+	return (r_v);
 }
 
-void	cast_all_rays(t_cub3d *data)
+void	cast_all_rays(t_cub3d *data, t_point win)
 {
 	t_raycasting	*rays;
 	int				pixel;
 	double			ray_angle;
 
-	rays = malloc(sizeof(t_raycasting) * data->num_rays);
+	rays = ft_calloc(data->num_rays, sizeof(t_raycasting));
 	pixel = -1;
-	ray_angle = data->r.player.rotation_angle - (data->fov / 2);
+	ray_angle = (double)(data->r.player.rotation_angle - (data->fov / 2));
 	while (++pixel < data->num_rays)
 	{
-		rays[pixel] = raycasting(data, ray_angle);
-		ray_angle += data->fov / data->num_rays;
+		ray_angle = normalize_angle(ray_angle);
+		rays[pixel] = raycasting(data, ray_angle, win);
+		ray_angle += (double)(data->fov / data->num_rays);
 	}
 	data->rays = rays;
 }

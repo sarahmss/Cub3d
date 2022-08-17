@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 11:21:03 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/29 00:03:34 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/08/16 20:49:45 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	move_forward(t_cub3d *data, t_raycasting r)
 	new_pos = r.player.pos;
 	new_pos.x += cos(r.player.rotation_angle) * r.player.move_speed;
 	new_pos.y += sin(r.player.rotation_angle) * r.player.move_speed;
-	map.x = new_pos.x / TILE_SIZE;
-	map.y = new_pos.y / TILE_SIZE;
+	map.x = (new_pos.x / TILE_SIZE);
+	map.y = (new_pos.y / TILE_SIZE);
 	next_step.x = (new_pos.x + cos(r.player.rotation_angle)
 			* r.player.move_speed) / TILE_SIZE;
 	next_step.y = (new_pos.y + sin(r.player.rotation_angle)
