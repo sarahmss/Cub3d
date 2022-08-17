@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 17:58:28 by smodesto          #+#    #+#             */
-/*   Updated: 2022/08/16 22:08:20 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/08/17 13:53:24 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ t_raycasting	hit(t_raycasting r, t_side s, t_point wh)
 	t_point			map;
 
 	r_local = r;
-	r_local.wall_hit.x = -1;
-	r_local.wall_hit.y = -1;
 	r_local.intercept = set_intercept(r_local.ray_angle, r_local.player.pos, s);
 	r_local.step = set_step(r_local.ray_angle, s);
 	next_touch = r_local.intercept;
@@ -65,8 +63,7 @@ t_raycasting	raycasting(t_cub3d *data, double ray_angle)
 	r_v = hit(r_v, VERTICAL, wh);
 	r_h.distance = distance_between_points(r_h.player.pos, r_h.wall_hit);
 	r_v.distance = distance_between_points(r_v.player.pos, r_v.wall_hit);
-	if (r_h.distance < r_v.distance && r_h.wall_hit.x != -1
-		&& r_h.wall_hit.y != -1)
+	if (r_h.distance < r_v.distance)
 		return (r_h);
 	return (r_v);
 }
