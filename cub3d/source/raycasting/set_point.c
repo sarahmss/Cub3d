@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 22:03:40 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/21 21:14:29 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/08/16 21:29:36 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,15 @@
 t_point	set_intercept(double ray_angle, t_point pos, t_side h_v)
 {
 	t_point	intercept;
+	double	tg;
 
 	if (h_v == HORIZONTAL)
 	{
 		intercept.y = floor(pos.y / TILE_SIZE) * TILE_SIZE;
 		if (is_ray_facing_down(ray_angle))
 			intercept.y += TILE_SIZE;
-		intercept.x = pos.x + (intercept.y - pos.y) / tan(ray_angle);
+		tg = tan(ray_angle);
+		intercept.x = pos.x + ((intercept.y - pos.y) / tg);
 	}
 	else if (h_v == VERTICAL)
 	{
