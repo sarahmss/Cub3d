@@ -6,13 +6,13 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 13:42:52 by smodesto          #+#    #+#             */
-/*   Updated: 2022/08/16 14:30:41 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/08/18 00:27:52 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-static int	check_elements(int elements[6], t_scene *s)
+static int	check_elements(int elements[6], t_scene *s, int el)
 {
 	int	i;
 
@@ -22,9 +22,9 @@ static int	check_elements(int elements[6], t_scene *s)
 		return (check_error(-1, "INVALID TEXTURE PATH"));
 	while (elements[i] == 1 && i < 6)
 		i++;
-	if (i == 6)
-		return (0);
-	return (check_error(-1, "REPEATED OR MISSING MAP ELEMENTS"));
+	if (i != 6 || el != 6)
+		return (check_error(-1, "REPEATED OR MISSING MAP ELEMENTS"));
+	return (0);
 }
 
 static int	get_rgb(char *line, int rgb[3], char element)
@@ -38,13 +38,15 @@ static int	get_rgb(char *line, int rgb[3], char element)
 	if (*(++color) != ' ')
 		return (check_error(-1, "INVALID COLORS"));
 	line_rgb = ft_split(++color, ',');
-	while (i < 3)
+	while (line_rgb[i])
 	{
 		rgb[i] = ft_atoi(line_rgb[i]);
-		if (rgb[i] < 0 || rgb[i] > 255)
+		if (rgb[i] < 0 || rgb[i] > 255 || !ft_strisdigit(line_rgb[i]))
 			return (check_error(-1, "INVALID COLORS"));
 		i++;
 	}
+	if (i != 3 || ft_str_count_char(color, ',') > 2)
+		return (check_error(-1, "INVALID COLORS"));
 	free_matrix(line_rgb);
 	return (0);
 }
@@ -95,7 +97,7 @@ static int	cpy_elements(t_scene *scene, int elements[6], char *line)
 			return (-1);
 	}
 	else
-		return (check_error(-1, "UNKNOWN ELEMENTS"));
+		return (check_error(-1, "UNKNOWN OR MISSING ELEMENTS"));
 	return (0);
 }
 
@@ -118,5 +120,5 @@ int	get_elements(t_scene *scene, int fd, int i)
 		ft_free_g(&line);
 	}
 	ft_free_g(&line);
-	return (check_elements(elements, scene));
+	return (check_elements(elements, scene, i));
 }

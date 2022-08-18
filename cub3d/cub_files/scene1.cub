@@ -6,8 +6,8 @@ WE ./cub_files/textures/we_redbrick.xpm
 
 EA ./cub_files/textures/ea_redbrick.xpm
 
-F 225,0,50
-C 0,225,50
+C 0,225,31
+F 0,225,31
 
 		1111111111111111111111111
 		1000000000110000000000001
