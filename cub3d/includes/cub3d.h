@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 23:29:38 by smodesto          #+#    #+#             */
-/*   Updated: 2022/08/17 19:12:44 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/08/17 22:32:34 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,8 +117,8 @@ int				get_elements(t_scene *scene, int fd, int i);
 
 //	events
 void			control_events(t_cub3d *data);
-void			move_left(t_cub3d *data, t_raycasting r);
-void			move_right(t_cub3d *data, t_raycasting r);
+void			move_left(t_cub3d *data, t_raycasting r, int key);
+void			move_right(t_cub3d *data, t_raycasting r, int key);
 
 //	img
 void			ft_create_image(t_mlx *mlx, t_image *img, int width,
