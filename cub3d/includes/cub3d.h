@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 23:29:38 by smodesto          #+#    #+#             */
-/*   Updated: 2022/08/17 22:32:34 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/08/17 22:58:12 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ void			init_background(t_cub3d *data, int width, int height,
 					t_scene *s);
 void			copy_layer(t_image *from, t_image *to);
 void			draw_textured_rectangle(t_stripe s);
+int				change_color_intensity(int color, float factor);
 
 //	init
 t_cub3d			*init_data(char *argv);

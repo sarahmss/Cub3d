@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 00:19:21 by smodesto          #+#    #+#             */
-/*   Updated: 2022/08/16 14:12:21 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/08/17 23:00:41 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ static int	get_color(t_stripe s, int y)
 	s.offset.y = distance_from_top * height_scale;
 	s.color = get_wall_pixel_color(s.data->textures[facing_side],
 			s.offset.x, s.offset.y);
+	if (s.ray.hit_side == VERTICAL)
+		s.color = change_color_intensity(s.color, 0.5);
 	return (s.color);
 }
 
