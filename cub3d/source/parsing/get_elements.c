@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 13:42:52 by smodesto          #+#    #+#             */
-/*   Updated: 2022/08/18 00:37:29 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/08/18 01:12:15 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,20 +78,20 @@ static char	*check_path(char *line, int len)
 
 static int	cpy_elements(t_scene *scene, int elements[6], char *line, int order)
 {
-	if (ft_strncmp("NO", line, 2) == 0 && ++elements[0] && order == 0)
+	if (ft_strncmp("NO", line, 2) == 0 && ++elements[0])
 		scene->textures[T_NO] = check_path(line, 3);
-	else if (ft_strncmp("SO", line, 2) == 0 && ++elements[1] && order == 1)
+	else if (ft_strncmp("SO", line, 2) == 0 && ++elements[1])
 		scene->textures[T_SO] = check_path(line, 3);
-	else if (ft_strncmp("WE", line, 2) == 0 && ++elements[2] && order == 2)
+	else if (ft_strncmp("WE", line, 2) == 0 && ++elements[2])
 		scene->textures[T_WE] = check_path(line, 3);
-	else if (ft_strncmp("EA", line, 2) == 0 && ++elements[3] && order == 3)
+	else if (ft_strncmp("EA", line, 2) == 0 && ++elements[3])
 		scene->textures[T_EA] = check_path(line, 3);
-	else if (ft_strncmp("F", line, 1) == 0 && ++elements[4] && order == 4)
+	else if (ft_strncmp("F", line, 1) == 0 && ++elements[4])
 	{
 		if (get_rgb(line, scene->floor_color, 'F') == -1)
 			return (-1);
 	}
-	else if (ft_strncmp("C", line, 1) == 0 && ++elements[5] && order == 5)
+	else if (ft_strncmp("C", line, 1) == 0 && ++elements[5])
 	{
 		if (get_rgb(line, scene->ceiling_color, 'C') == -1)
 			return (-1);
