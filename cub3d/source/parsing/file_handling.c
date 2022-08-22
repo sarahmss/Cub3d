@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 20:45:09 by smodesto          #+#    #+#             */
-/*   Updated: 2022/08/22 16:50:34 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/08/22 17:48:51 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static char	*map_error(char *line, char *map_in_one_line)
 	return (NULL);
 }
 
-static char *skip_empty(int fd)
+static char	*skip_empty(int fd)
 {
 	char	*line;
 
@@ -35,9 +35,11 @@ static char *skip_empty(int fd)
 	{
 		if (ft_strlen(line))
 			return (line);
+		ft_free_g(&line);
 	}
 	return (line);
 }
+
 static char	**copy_map(int fd, char **maptriz, int i)
 {
 	char	*line;
@@ -46,6 +48,7 @@ static char	**copy_map(int fd, char **maptriz, int i)
 
 	line = skip_empty(fd);
 	map_in_one_line = ft_strdup(line);
+	ft_free_g(&line);
 	while (get_next_line(fd, &line))
 	{
 		if (!ft_strlen(line))
