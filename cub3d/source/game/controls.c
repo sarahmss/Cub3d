@@ -6,7 +6,7 @@
 /*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 11:21:03 by smodesto          #+#    #+#             */
-/*   Updated: 2022/08/22 16:07:22 by coder            ###   ########.fr       */
+/*   Updated: 2022/08/22 16:18:50 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	move_backward(t_cub3d *data, t_raycasting r)
 	}
 }
 
-void	move_left(t_cub3d *data, t_raycasting r, int key)
+void	move_left(t_cub3d *data, t_raycasting r)
 {
 	t_point	new_pos;
 	t_point	map;
@@ -81,7 +81,7 @@ void	move_left(t_cub3d *data, t_raycasting r, int key)
 	}
 }
 
-void	move_right(t_cub3d *data, t_raycasting r, int key)
+void	move_right(t_cub3d *data, t_raycasting r)
 {
 	t_point	new_pos;
 	t_point	map;

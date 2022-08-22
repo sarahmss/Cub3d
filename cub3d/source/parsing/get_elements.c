@@ -3,27 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   get_elements.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 13:42:52 by smodesto          #+#    #+#             */
-/*   Updated: 2022/08/22 16:06:27 by coder            ###   ########.fr       */
+/*   Updated: 2022/08/22 17:33:55 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-static int	check_elements(int elements[6], t_scene *s, int el)
+static int	check_elements(int *elements, t_scene *s)
 {
 	int	i;
 
 	i = 0;
+	while (elements[i] == 1 && i < 6)
+		i++;
+	free(elements);
+	if (i != 6)
+		return (check_error(-1, "REPEATED OR MISSING MAP ELEMENTS"));
 	if (s->textures[T_NO] == NULL || s->textures[T_SO] == NULL
 		|| s->textures[T_WE] == NULL || s->textures[T_EA] == NULL)
 		return (check_error(-1, "INVALID TEXTURE PATH"));
-	while (elements[i] == 1 && i < 6)
-		i++;
-	if (i != 6 || el != 6)
-		return (check_error(-1, "REPEATED OR MISSING MAP ELEMENTS"));
 	return (0);
 }
 
@@ -76,7 +77,7 @@ static char	*check_path(char *line, int len)
 	return (path);
 }
 
-static int	cpy_elements(t_scene *scene, int elements[6], char *line, int order)
+static int	cpy_elements(t_scene *scene, int *elements, char *line)
 {
 	if (ft_strncmp("NO", line, 2) == 0 && ++elements[0])
 		scene->textures[T_NO] = check_path(line, 3);
@@ -104,21 +105,19 @@ static int	cpy_elements(t_scene *scene, int elements[6], char *line, int order)
 int	get_elements(t_scene *scene, int fd, int i)
 {
 	char	*line;
-	int		elements[6];
+	int		*elements;
 
-	while (i < 6)
-		elements[i++] = 0;
-	i = 0;
-	while (get_next_line(fd, &line) && i < 6)
+	elements = (int *)ft_calloc(7, sizeof(int));
+	while (i < 6 && get_next_line(fd, &line))
 	{
 		if (ft_strlen(line))
 		{
-			if (cpy_elements(scene, elements, line, i) == -1)
+			if (cpy_elements(scene, elements, line) == -1)
 				return (-1);
 			i++;
 		}
 		ft_free_g(&line);
 	}
 	ft_free_g(&line);
-	return (check_elements(elements, scene, i));
+	return (check_elements(elements, scene));
 }
