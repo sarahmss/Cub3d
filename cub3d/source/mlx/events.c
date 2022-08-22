@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/20 10:49:09 by smodesto          #+#    #+#             */
-/*   Updated: 2022/08/22 16:19:37 by coder            ###   ########.fr       */
+/*   Updated: 2022/08/22 20:51:56 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,17 @@ void	rotate_right(t_cub3d *data)
 */
 static int	close_window(t_cub3d *data)
 {
-	mlx_destroy_image(data->mlx->mlx, data->img->img);
+	clean_images(data);
+	if (data->scene)
+		free_scene(data->scene);
 	mlx_destroy_window(data->mlx->mlx, data->mlx->win);
 	mlx_destroy_display(data->mlx->mlx);
-	before_living(data);
+	if (data->mlx->mlx)
+		free(data->mlx->mlx);
+	if (data->mlx)
+		free(data->mlx);
+	if (data)
+		free(data);
 	exit(0);
 }
 

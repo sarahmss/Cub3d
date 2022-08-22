@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   leave.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 23:09:17 by smodesto          #+#    #+#             */
-/*   Updated: 2022/08/22 16:06:42 by coder            ###   ########.fr       */
+/*   Updated: 2022/08/22 20:50:11 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-static void	free_scene(t_scene *scene)
+void	free_scene(t_scene *scene)
 {
 	t_textures	t;
 
@@ -28,19 +28,21 @@ static void	free_scene(t_scene *scene)
 	free(scene);
 }
 
-static void	clean_images(t_cub3d *data)
+void	clean_images(t_cub3d *data)
 {
 	t_textures	t;
 
 	t = T_NO;
 	if (data->img)
 	{
+		mlx_destroy_image(data->mlx->mlx, data->img->img);
 		free(data->img);
 	}
 	while (t <= T_EA)
 	{
 		if (data->textures[t])
 		{
+			mlx_destroy_image(data->mlx->mlx, data->textures[t]->img);
 			free(data->textures[t]);
 		}
 		t++;
