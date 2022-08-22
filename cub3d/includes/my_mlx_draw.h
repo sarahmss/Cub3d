@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   my_mlx_draw.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 23:16:56 by smodesto          #+#    #+#             */
-/*   Updated: 2022/08/15 19:10:07 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/08/22 16:08:41 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MY_MLX_DRAW_H
-# define MT_MLX_DRAW_H
+# define MY_MLX_DRAW_H
 
 # include "../includes/cub3d.h"
 

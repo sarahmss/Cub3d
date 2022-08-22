@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_point.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 22:03:40 by smodesto          #+#    #+#             */
-/*   Updated: 2022/08/17 13:54:16 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/08/22 16:05:57 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_point	set_intercept(double ray_angle, t_point pos, t_side h_v)
 			intercept.y += TILE_SIZE;
 		intercept.x = pos.x + ((intercept.y - pos.y) / tan(ray_angle));
 	}
-	else if (h_v == VERTICAL)
+	else
 	{
 		intercept.x = floor(pos.x / TILE_SIZE) * TILE_SIZE;
 		if (is_ray_facing_right(ray_angle))
@@ -55,7 +55,7 @@ t_point	set_step(double ray_angle, t_side h_v)
 		if (is_ray_facing_right(ray_angle) && step.x < 0)
 			step.x *= -1;
 	}
-	else if (h_v == VERTICAL)
+	else
 	{
 		step.x = TILE_SIZE;
 		if (is_ray_facing_left(ray_angle))

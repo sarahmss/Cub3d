@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_rgbhex.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 18:50:44 by smodesto          #+#    #+#             */
-/*   Updated: 2022/08/17 22:57:52 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/08/22 16:07:06 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static char	get_hex(float num)
 
 int	ft_rgbhex(int r, int g, int b)
 {
-	char	str_hex[6];
+	char	str_hex[7];
 
 	str_hex[0] = get_hex(r / 16);
 	str_hex[1] = get_hex(fmod(r, 16));
