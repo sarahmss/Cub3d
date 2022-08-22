@@ -24,6 +24,8 @@
 # include "structs_lft.h"
 
 // str
+int		ft_strisdigit(char *str);
+int		ft_str_count_char(char *str, char c);
 char	*ft_strjoinchar(char *str, char c);
 char	*ft_strchr(const char *str, int c);
 char	*ft_strdup(const char *src);

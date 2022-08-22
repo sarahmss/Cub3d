@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 23:29:38 by smodesto          #+#    #+#             */
-/*   Updated: 2022/08/17 19:12:44 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/08/22 16:08:48 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,10 @@ void			init_background(t_cub3d *data, int width, int height,
 					t_scene *s);
 void			copy_layer(t_image *from, t_image *to);
 void			draw_textured_rectangle(t_stripe s);
+<<<<<<< HEAD
+int				change_color_intensity(int color, float factor);
+=======
+>>>>>>> main
 
 //	init
 t_cub3d			*init_data(char *argv);
@@ -117,8 +121,8 @@ int				get_elements(t_scene *scene, int fd, int i);
 
 //	events
 void			control_events(t_cub3d *data);
-void			move_left(t_cub3d *data, t_raycasting r);
-void			move_right(t_cub3d *data, t_raycasting r);
+void			move_left(t_cub3d *data, t_raycasting r, int key);
+void			move_right(t_cub3d *data, t_raycasting r, int key);
 
 //	img
 void			ft_create_image(t_mlx *mlx, t_image *img, int width,

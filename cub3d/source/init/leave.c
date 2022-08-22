@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   leave.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 23:09:17 by smodesto          #+#    #+#             */
-/*   Updated: 2022/08/16 14:29:59 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/08/22 16:06:42 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,6 @@ int	before_living(t_cub3d *data)
 */
 int	check_error(int err, char *msg)
 {
-	ft_printf("-Error\n: %s\n", msg);
+	ft_printf("           -Error\n    %s\n", msg);
 	return (err);
 }

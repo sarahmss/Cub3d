@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 22:04:46 by smodesto          #+#    #+#             */
-/*   Updated: 2022/08/17 14:34:37 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/08/22 16:08:37 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "../includes/cub3d.h"
 
-# define TILE_SIZE			32
+# define TILE_SIZE			24
 # define WALL_STRIP_WIDTH	2
 # define MM_SCALE_FACTOR	0.2
 

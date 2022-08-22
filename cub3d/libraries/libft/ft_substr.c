@@ -38,3 +38,19 @@ char	*ft_substr(char const *string, unsigned int start, size_t len)
 		substr[i++] = string[start++];
 	return (substr);
 }
+
+int	ft_str_count_char(char *str, char c)
+{
+	int	i;
+	int	ocurrences;
+
+	i = 0;
+	ocurrences = 0;
+	while (str[i])
+	{
+		if (str[i] == c)
+			ocurrences++;
+		i++;
+	}
+	return (ocurrences);
+}

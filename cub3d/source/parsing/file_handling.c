@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 20:45:09 by smodesto          #+#    #+#             */
-/*   Updated: 2022/07/28 12:17:48 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/08/18 01:03:10 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,12 @@
 
 static char	*map_error(char *line, char *map_in_one_line)
 {
-	check_error(-1, "INVALID MAP - CHECK EMPTY LINES");
+	if (line[0] == 'C' || line[0] == 'F' || !ft_strncmp(line, "NO", 2)
+		|| !ft_strncmp(line, "WE", 2) || !ft_strncmp(line, "SO", 2)
+		|| !ft_strncmp(line, "EA", 2))
+		check_error(-1, "REPEATED OR MISSING MAP ELEMENTS");
+	else
+		check_error(-1, "INVALID MAP - CHECK EMPTY LINES");
 	ft_free_g(&line);
 	if (map_in_one_line)
 		free (map_in_one_line);

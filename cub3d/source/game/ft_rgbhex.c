@@ -6,11 +6,23 @@
 /*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 18:50:44 by smodesto          #+#    #+#             */
-/*   Updated: 2022/08/22 15:54:17 by coder            ###   ########.fr       */
+/*   Updated: 2022/08/22 16:07:06 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+int	change_color_intensity(int color, float factor)
+{
+	int	r;
+	int	g;
+	int	b;
+
+	r = (color & 0xFF0000) * factor;
+	g = (color & 0x00FF00) * factor;
+	b = (color & 0x0000FF) * factor;
+	return (r & 0xFF0000) | (g & 0x00FF00) | (b & 0x0000FF);
+}
 
 static char	get_hex(float num)
 {
