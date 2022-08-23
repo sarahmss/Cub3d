@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 21:26:02 by smodesto          #+#    #+#             */
-/*   Updated: 2022/08/22 17:35:49 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/08/22 21:07:11 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	alloc_map(t_scene *scene)
 	int	i;
 
 	i = 0;
-	scene->cub_map = (int **) malloc(sizeof(int *) * (scene->map_height));
+	scene->cub_map = (int **) ft_calloc(sizeof(int *), (scene->map_height));
 	if (!(scene->cub_map))
 		check_error(-1, "ALLOCATING ERROR");
 	i = 0;

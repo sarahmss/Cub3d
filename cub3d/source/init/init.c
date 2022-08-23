@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 19:27:02 by smodesto          #+#    #+#             */
-/*   Updated: 2022/08/22 21:04:21 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/08/22 21:07:38 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_image	*init_img(int width, int height)
 {
 	t_image	*img;
 
-	img = (t_image *)malloc(sizeof(t_image));
+	img = (t_image *)ft_calloc(1, sizeof(t_image));
 	if (!img)
 		return (NULL);
 	img->img = NULL;
@@ -39,7 +39,7 @@ t_mlx	*init_mlx(void)
 {
 	t_mlx	*data;
 
-	data = (t_mlx *)malloc(sizeof(t_mlx));
+	data = (t_mlx *)ft_calloc(1, sizeof(t_mlx));
 	if (!data)
 		return (NULL);
 	data->mlx = NULL;
@@ -51,7 +51,7 @@ static t_scene	*init_scene(void)
 {
 	t_scene	*scene;
 
-	scene = (t_scene *)malloc(sizeof(t_scene));
+	scene = (t_scene *)ft_calloc(1, sizeof(t_scene));
 	scene->textures[T_NO] = NULL;
 	scene->textures[T_SO] = NULL;
 	scene->textures[T_WE] = NULL;
