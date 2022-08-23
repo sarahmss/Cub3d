@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 19:27:02 by smodesto          #+#    #+#             */
-/*   Updated: 2022/08/22 16:43:50 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/08/22 21:04:21 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ t_cub3d	*init_data(char *argv)
 	t_cub3d		*data;
 	t_textures	t;
 
-	data = (t_cub3d *)malloc(sizeof(t_cub3d));
+	data = (t_cub3d *)ft_calloc(1, sizeof(t_cub3d));
 	if (!data)
 		check_error(-1, "Error\n - allocating error");
 	data->scene = init_scene();
